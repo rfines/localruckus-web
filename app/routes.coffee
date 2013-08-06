@@ -1,4 +1,5 @@
 module.exports = (match) ->
   console.log match
-  match '', 'home#index'
-  match 'users', 'users#index'
+  match '', 'dashboard#index'
+  match 'entertainment', 'dashboard#entertainment'
+

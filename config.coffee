@@ -15,6 +15,7 @@ exports.config =
 
     stylesheets:
       defaultExtension: 'less'
+      ignored: 'app/styles/bootstrap/*'
       joinTo:
         'stylesheets/app.css': /^(?!test)/
         'test/stylesheets/test.css': /^test/
