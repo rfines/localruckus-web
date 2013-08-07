@@ -1,3 +1,4 @@
 {
-  "development" : false
+  "development" : false,
+  "apiUrl" : "http://METkwI15Bg0heuRNaru6:6n0pRhok4WR8yx8VudUD7XshboNCz51oFXJvZA2y@hoopla-io-api-stage.herokuapp.com/"
 }
