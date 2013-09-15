@@ -13,14 +13,16 @@
 </head>
 
 <body>
-  {{#if development}}
-  <script>
-    window.brunch = window.brunch || {};
-    window.brunch['auto-reload'] = "{disabled: true}";
-  </script>
-  {{/if}}
-  <script>
-    window.apiUrl = "{{apiUrl}}"
-  </script>
+    {{#if development}}
+    <script>
+      window.brunch = window.brunch || {};
+      window.brunch['auto-reload'] = "{disabled: true}";
+    </script>
+    {{/if}}
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>  
+    <script>
+      window.facebookClientId = "{{facebookClientId}}";
+      window.baseUrl = "{{baseUrl}}"
+    </script>
 </body>
 </html>
