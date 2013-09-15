@@ -1,12 +1,11 @@
 Controller = require 'controllers/base/controller'
 HomePageView = require 'views/home-page-view'
-Events = require 'models/events'
+
 
 module.exports = class HomeController extends Controller
   index: ->
-    collection = new Events()
-    collection.fetch
-      success: =>
-        @view = new HomePageView
-          region: 'main'
-          collection: collection
+    @view = new HomePageView
+      region: 'main'
+    if window?.navigator?.geolocation?.getCurrentPosition
+      window.navigator.geolocation.getCurrentPosition (pos) =>
+        @publishEvent 'event:searchChanged', {ll: "#{pos.coords.longitude},#{pos.coords.latitude}"}

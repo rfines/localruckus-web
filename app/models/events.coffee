@@ -3,8 +3,15 @@ Event = require('models/event')
 
 module.exports = class Events extends Collection
   model : Event
+  near : '66762'
   url: ->
-    "/api/event?near=64105"
+    u = "/api/event?"
+    if @ll
+      u = u + "ll=#{@ll}"
+    else
+      u = u + "near=#{encodeURIComponent(@near)}"
+    console.log u
+    return u
     
   comparator : (event) ->
     event.getSortDate()?.toDate().toISOString()
