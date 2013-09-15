@@ -4,5 +4,9 @@ Events = require 'models/events'
 
 module.exports = class HomeController extends Controller
   index: ->
-    @view = new HomePageView
-      region: 'main'
+    collection = new Events()
+    collection.fetch
+      success: =>
+        @view = new HomePageView
+          region: 'main'
+          collection: collection
