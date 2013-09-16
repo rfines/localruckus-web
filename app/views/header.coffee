@@ -13,5 +13,4 @@ module.exports = class HeaderView extends View
   searchEvents: (e) ->
     e.preventDefault()
     near = @$el.find('input[name=near]').val()
-    console.log 'search it'
     @publishEvent 'event:searchChanged', {near : near}
