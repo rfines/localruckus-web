@@ -74,6 +74,18 @@ body {
       background-attachment: fixed;
       min-height: 720px;    
     }
+    .eventGalleryHeader {
+      text-align: center;
+      .nearGroup {
+        width: 50%;
+        input {
+          background-color: @gray-darker;
+          color: #fff;
+          min-width: 400px; 
+        }        
+      }
+      padding-bottom: 10px;
+    }
     .eventGallery {
       padding-left: 3em;
       padding-right: 3em;
@@ -139,4 +151,9 @@ div#pageLoader {
   img {
     border-radius: @border-radius-large;
   }
+}
+
+.btn-default {
+  color: #fff;
+  background-color: @gray-darker;
 }

@@ -16,21 +16,20 @@ module.exports = class HomePageView extends CollectionView
     'submit form' : 'searchEvents'
 
   listen:
-    'geo:addressFound mediator' : 'updateAddress'  
+    'geo:newAddress mediator' : 'updateAddress'  
 
   initialize: (options) ->
     @collection = new Events()
     super(options)
+    @startLoading()
     @cookie = $.cookie('localRuckus') || {}
     @searchOptions = options.searchOptions || {near: 66762}
     @loadEvents()
     @subscribeEvent 'event:searchChanged', (searchOptions) =>
       @searchOptions = searchOptions
-      console.log @searchOptions
       @loadEvents()
 
   loadEvents: ->
-    $('#pageLoader').show()
     @collection = new Events()
     if @searchOptions?.ll
       @collection.ll = "#{@searchOptions.ll}"
@@ -42,7 +41,7 @@ module.exports = class HomePageView extends CollectionView
       success: =>
         @$el.empty()
         @render()
-        $('#pageLoader').hide()
+        @stopLoading()
 
   updateAddress: (addr) ->
     @$el.find('input[name=near]').val(addr)        
@@ -53,3 +52,4 @@ module.exports = class HomePageView extends CollectionView
     @cookie.near = near
     $.cookie('localruckus', @cookie, { expires: 60 });
     @publishEvent 'event:searchChanged', {near : near}    
+    @publishEvent 'geo:newAddress', near

@@ -13,7 +13,3 @@ module.exports = class EventDetail extends View
   loadAndRender: =>
     @model.fetch
       success: @render
-
-  dispose: ->
-    console.log 'dispose event detail'
-    super

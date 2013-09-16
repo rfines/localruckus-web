@@ -9,11 +9,9 @@ module.exports = class Events extends Collection
     p = {}
     p.ll = @ll if @ll
     p.near = @near if @near
-    console.log p.near
     p.tags = @tags if @tags?.length > 0
     p.limit = 100
     u = u + $.param(p)
-    console.log u
     return u
     
   comparator : (event) ->
