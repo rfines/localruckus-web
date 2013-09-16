@@ -13,13 +13,21 @@ module.exports = class HeaderView extends View
   listen:
     'geo:addressFound mediator' : 'updateAddress'
 
+  initialize: ->
+    super
+    @cookie = $.cookie('localRuckus') || {}
+
   searchEvents: (e) ->
     e.preventDefault()
     near = @$el.find('input[name=near]').val()
-    cookie = $.cookie('localruckus') || {}
-    cookie.near = near
-    $.cookie('localruckus', cookie, { expires: 60 });
+    @cookie.near = near
+    $.cookie('localruckus', @cookie, { expires: 60 });
     @publishEvent 'event:searchChanged', {near : near}
 
   updateAddress: (addr) ->
     @$el.find('input[name=near]').val(addr)
+
+  getTemplateData: ->
+    td = super()
+    td.near = @cookie.near if @cookie.near
+    td

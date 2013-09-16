@@ -68,14 +68,24 @@ body {
     }
   }
   #main{
-    padding: 120px 15px 0;
-  }
-  .eventGallery {
-    .eventItem {
-      margin-bottom: 20px;
-      min-height: 200px;
-      max-height: 200px;
+    .home-page {
+      padding: 120px 15px 0;
+      background: url("../images/bg_vh.jpg") 0 0 repeat-x;
+      background-attachment: fixed;
+      min-height: 720px;    
     }
+    .eventGallery {
+      padding-left: 3em;
+      padding-right: 3em;
+      .eventItem {
+
+        margin-bottom: 20px;
+        .thumbnail {
+          min-height: 200px;
+          max-height: 200px;
+        }
+      }
+    }    
   }
 }
 
