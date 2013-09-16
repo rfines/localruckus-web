@@ -30,7 +30,8 @@ module.exports = class HomePageView extends View
     super()
     eventGallery = @$el.find('.eventGallery')
     for x in @collection.models
-      eventGallery.append "<div class='col-lg-3'><a class='thumbnail' href='/event/#{x.id}'>#{x.get('name')}</a>"
+      i = x.imageUrl({height:150, width:266}) || 'http://placehold.it/266x150'
+      eventGallery.append "<div class='col-lg-3'><img src='#{i}' /><a class='thumbnail' href='/event/#{x.id}'>#{x.get('name')}</a>"
 
   dispose: ->
     console.log 'dispose home page view'
