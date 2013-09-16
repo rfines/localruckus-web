@@ -30,6 +30,7 @@ module.exports = class HomePageView extends CollectionView
       @loadEvents()
 
   loadEvents: ->
+    $('#pageLoader').show()
     @collection = new Events()
     if @searchOptions?.ll
       @collection.ll = "#{@searchOptions.ll}"
@@ -41,6 +42,7 @@ module.exports = class HomePageView extends CollectionView
       success: =>
         @$el.empty()
         @render()
+        $('#pageLoader').hide()
 
   updateAddress: (addr) ->
     @$el.find('input[name=near]').val(addr)        
