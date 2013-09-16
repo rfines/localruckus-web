@@ -1,6 +1,7 @@
 template = require 'views/templates/home'
 View = require 'views/base/view'
 Events = require 'models/events'
+EventItem = require 'views/eventItem'
 
 module.exports = class HomePageView extends View
   autoRender: false
@@ -30,8 +31,7 @@ module.exports = class HomePageView extends View
     super()
     eventGallery = @$el.find('.eventGallery')
     for x in @collection.models
-      i = x.imageUrl({height:150, width:266}) || 'http://placehold.it/266x150'
-      eventGallery.append "<div class='col-lg-3'><img src='#{i}' /><a class='thumbnail' href='/event/#{x.id}'>#{x.get('name')}</a>"
+      @subview("eventItem-#{x.id}", new EventItem({container: eventGallery, model: x})) 
 
   dispose: ->
     console.log 'dispose home page view'

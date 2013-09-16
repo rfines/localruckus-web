@@ -20,12 +20,18 @@ body {
   padding: 0 0 60px;
 
   #header {
+    .navbar {
+      margin-bottom: 0px;
+    }
     .categoryButton {
       display:inline-block;
-      background-position-x: -11px;
-      height: 65px;
-      width: 65px;
+      background-position-x: -15px;
+      height: 70px;
+      width: 70px;
       background: url('../images/category-icons-with-hover.png') no-repeat;
+      &:hover {
+        background-position-x: -75px;
+      }
       &.music {
         background-position-y: -150px;
       }
@@ -46,6 +52,14 @@ body {
     .subNav {
       height: 30px;
       #gradient > .vertical(@start-color: #7d7e7d; @end-color: #0e0e0e);
+      margin-bottom: 15px;
+    }
+  }
+  .eventGallery {
+    .eventItem {
+      margin-bottom: 20px;
+      min-height: 200px;
+      max-height: 200px;
     }
   }
 }
@@ -70,4 +84,5 @@ body {
 .navbar-default {
   background-color: transparent;
   border-color: transparent;
+
 }
