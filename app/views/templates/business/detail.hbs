@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="row">
+      <img src="http://placehold.it/350x150" />
+    </div>
+    <div class="row shareIcons">
+      Share Icons go here
+    </div>
+    <div class="row businessInfo">
+      Business INfo Goes Here
+    </div>        
+  </div>
+  <div class="col-md-8">
+    <div class="row">
+      <h2>{{name}}</h2>
+    </div>
+    <div class="details">
+      <ul id="businessTab" class="nav nav-tabs">
+        <li class="active"><a href="#info" data-toggle="tab">Info</a></li>
+        <li class=""><a href="#events" data-toggle="tab">Profile</a></li>
+        <li class=""><a href="#specials" data-toggle="tab">Specials</a></li>
+      </ul>
+      <div id="businessTabContent" class="tab-content">
+        <div class="tab-pane fade active in" id="info">
+          <div class="row details">
+            <div class="col-md-5">
+              <h3>Categories</h3>
+              <p>{{tags}}</p>
+              <h3>Phone</h3>
+              <p>{{contactPhone}}</p>
+              <h3>Address</h3>
+              <p>{{location.address}}</p>
+              <h3>Cost / Tickets</h3>
+              {{cost}} {{#if ticketUrl}}- <a href="{{ticketUrl}}">Tickets</a>{{/if}}
+              <h3>Map & Directions</h3>
+            </div>
+            <div class="col-md-7">
+              <h3></h3>
+              <p>{{description}}</p>
+              <h3>More Info</h3>
+              <div>{{website}}</div>
+              <div>{{contactName}}</div>
+              <div>{{contactPhone}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="events">
+          <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+        </div>
+        <div class="tab-pane fade" id="specials">
+          <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

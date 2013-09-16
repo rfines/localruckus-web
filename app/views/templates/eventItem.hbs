@@ -1,4 +1,7 @@
 <div class="thumbnail">
   <img src="{{i}}" />
   <a href="/event/{{_id}}">{{name}}</a>
+  {{#if businessName}}
+  <div><a class="glyphicon glyphicon-map-marker" href="/business/{{businessId}}">{{businessName}}</a></div>
+  {{/if}}
 </div>
