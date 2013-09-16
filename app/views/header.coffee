@@ -10,6 +10,9 @@ module.exports = class HeaderView extends View
   events: 
     'submit form' : 'searchEvents'
 
+  listen:
+    'geo:addressFound mediator' : 'updateAddress'
+
   searchEvents: (e) ->
     e.preventDefault()
     near = @$el.find('input[name=near]').val()
@@ -17,3 +20,6 @@ module.exports = class HeaderView extends View
     cookie.near = near
     $.cookie('localruckus', cookie, { expires: 60 });
     @publishEvent 'event:searchChanged', {near : near}
+
+  updateAddress: (addr) ->
+    @$el.find('input[name=near]').val(addr)

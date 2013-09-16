@@ -1,14 +1,19 @@
 template = require 'views/templates/home'
 View = require 'views/base/view'
+CollectionView = require 'views/base/collection-view'
 Events = require 'models/events'
 EventItem = require 'views/eventItem'
 
-module.exports = class HomePageView extends View
+module.exports = class HomePageView extends CollectionView
   autoRender: false
   className: 'home-page'
   template: template
+  renderItems: true
+  itemView: EventItem
+  listSelector: '.eventGallery'
 
   initialize: (options) ->
+    @collection = new Events()
     super(options)
     @searchOptions = options.searchOptions || {near: 66762}
     @loadEvents()
@@ -29,14 +34,3 @@ module.exports = class HomePageView extends View
       success: =>
         @$el.empty()
         @render()
-
-
-  attach: () ->
-    super()
-    eventGallery = @$el.find('.eventGallery')
-    for x in @collection.models
-      @subview("eventItem-#{x.id}", new EventItem({container: eventGallery, model: x})) 
-
-  dispose: ->
-    console.log 'dispose home page view'
-    super

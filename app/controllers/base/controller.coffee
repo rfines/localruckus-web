@@ -6,4 +6,4 @@ module.exports = class Controller extends Chaplin.Controller
   beforeAction: ->
     @compose 'site', SiteView
     @compose 'header', HeaderView
-    @compose 'footer', FooterView
+    #@compose 'footer', FooterView

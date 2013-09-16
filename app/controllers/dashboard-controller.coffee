@@ -16,7 +16,8 @@ module.exports = class HomeController extends Controller
     @view = new HomePageView(options)
     if window?.navigator?.geolocation?.getCurrentPosition
       window.navigator.geolocation.getCurrentPosition (pos) =>
-        console.log pos
+        $.get "http://maps.googleapis.com/maps/api/geocode/json?latlng=#{pos.coords.latitude},#{pos.coords.longitude}&sensor=false", (a, b, c) =>
+          @publishEvent 'geo:addressFound', a.results[0].formatted_address
         cookie = $.cookie('localruckus') || {}
         cookie.ll = "#{pos.coords.longitude},#{pos.coords.latitude}"
         cookie.grantedGeo = true
