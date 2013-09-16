@@ -8,7 +8,7 @@ module.exports = class HomeController extends Controller
       region: 'main'
       searchOptions : {}
     }
-    if $.cookie('localruckus').ll or $.cookie('localruckus').near
+    if $.cookie('localruckus')?.ll or $.cookie('localruckus')?.near
       if $.cookie('localruckus').ll
         options.searchOptions.ll = $.cookie('localruckus').ll 
       else
@@ -16,7 +16,7 @@ module.exports = class HomeController extends Controller
     @view = new HomePageView(options)
     if window?.navigator?.geolocation?.getCurrentPosition
       window.navigator.geolocation.getCurrentPosition (pos) =>
-        console.log 'good to geo'
+        console.log pos
         cookie = $.cookie('localruckus') || {}
         cookie.ll = "#{pos.coords.longitude},#{pos.coords.latitude}"
         cookie.grantedGeo = true

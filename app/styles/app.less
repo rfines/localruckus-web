@@ -24,9 +24,10 @@ body {
       margin-bottom: 0px;
     }
     .categoryButton {
+      border-right: 1px solid @gray;
       display:inline-block;
       background-position-x: -15px;
-      height: 70px;
+      height: 71px;
       width: 70px;
       background: url('../images/category-icons-with-hover.png') no-repeat;
       &:hover {
@@ -49,10 +50,17 @@ body {
       }              
 
     }
+    .searchForm {
+      margin-top: 20px;
+      input {
+        background-color: @gray-darker;
+      }
+    }
     .subNav {
       height: 30px;
       #gradient > .vertical(@start-color: #7d7e7d; @end-color: #0e0e0e);
       margin-bottom: 15px;
+      margin-top: -5px;
     }
   }
   .eventGallery {
