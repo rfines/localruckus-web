@@ -13,4 +13,7 @@ module.exports = class HeaderView extends View
   searchEvents: (e) ->
     e.preventDefault()
     near = @$el.find('input[name=near]').val()
+    cookie = $.cookie('localruckus') || {}
+    cookie.near = near
+    $.cookie('localruckus', cookie, { expires: 60 });
     @publishEvent 'event:searchChanged', {near : near}

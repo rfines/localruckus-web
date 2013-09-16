@@ -3,7 +3,7 @@ View = require 'views/base/view'
 
 module.exports = class EventItem extends View
   autoRender: true
-  className: 'col-md-3 eventItem'
+  className: 'col-lg-2 col-md-3 col-sm-4 col-xs-6 eventItem'
   template: template
 
   getTemplateData: ->

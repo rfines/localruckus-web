@@ -7,20 +7,24 @@ module.exports = class HomePageView extends View
   autoRender: false
   className: 'home-page'
   template: template
-  searchOptions = {}
 
-  initialize: ->
-    super
+  initialize: (options) ->
+    super(options)
+    @searchOptions = options.searchOptions || {near: 66762}
     @loadEvents()
     @subscribeEvent 'event:searchChanged', (searchOptions) =>
       @searchOptions = searchOptions
+      console.log @searchOptions
       @loadEvents()
 
   loadEvents: ->
     @collection = new Events()
-    @collection.ll = "#{@searchOptions.ll}" if @searchOptions?.ll
-    @collection.near = "#{@searchOptions.near}" if @searchOptions?.near
-    console.log @searchOptions
+    if @searchOptions?.ll
+      @collection.ll = "#{@searchOptions.ll}"
+      @collection.near = undefined
+    else
+      @collection.near = "#{@searchOptions.near}" if @searchOptions?.near
+    @collection.tags = @searchOptions.tags if @searchOptions?.tags
     @collection.fetch 
       success: =>
         @$el.empty()

@@ -3,13 +3,15 @@ Event = require('models/event')
 
 module.exports = class Events extends Collection
   model : Event
-  near : '66762'
+
   url: ->
     u = "/api/event?"
-    if @ll
-      u = u + "ll=#{@ll}"
-    else
-      u = u + "near=#{encodeURIComponent(@near)}"
+    p = {}
+    p.ll = @ll if @ll
+    p.near = @near if @near
+    console.log p.near
+    p.tags = @tags if @tags?.length > 0
+    u = u + $.param(p)
     console.log u
     return u
     
