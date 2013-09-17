@@ -76,7 +76,6 @@ module.exports = class Event extends Model
   imageUrl: (options) ->
     media = @get('media')
     if media?.length > 0
-      console.log media[0]
       return $.cloudinary.url(ImageUtils.getId(media[0].url), {crop: 'fill', height: options.height, width: options.width})  
     else
       return undefined        

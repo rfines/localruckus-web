@@ -16,13 +16,17 @@
     <div class="row details">
       <div class="col-md-5">
         <h3>Date & Time</h3>
+        <p>{{date}}</p>
         <h3>Cost / Tickets</h3>
         {{cost}} {{#if ticketUrl}}- <a href="{{ticketUrl}}">Tickets</a>{{/if}}
         <h3>Map & Directions</h3>
+        <p><a href="/business/{{business._id}}">{{business.name}}</a></p>
+        <p>{{business.location.address}}</p>
+        <div class="map" id="map_{{_id}}" style="height:149px;width:265px"></div>
       </div>
       <div class="col-md-7">
         <h3>Categories</h3>
-        <div>{{eventTags}}</div>
+        <div>{{tags}}</div>
         <h3>Description</h3>
         <div>{{description}}</div>
         <h3>More Info</h3>

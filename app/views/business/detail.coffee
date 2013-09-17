@@ -22,5 +22,6 @@ module.exports = class BusinessDetail extends View
 
   getTemplateData: =>
     td = super
+    td.i = @model.imageUrl({height:150, width:266}) || 'http://placehold.it/266x150' 
     td.tags = @model.get('tags').join(', ')
     td
