@@ -2,7 +2,6 @@
 @import "variables.less";
 @import "mixins.less";
 
-
 a{
   cursor: pointer;
 }
@@ -61,10 +60,21 @@ body {
       }
     }
     .subNav {
-      height: 30px;
+      height: 40px;
       #gradient > .vertical(@start-color: #7d7e7d; @end-color: #0e0e0e);
       margin-bottom: 15px;
       margin-top: -5px;
+      a {
+        i {
+          padding-right: 3px;
+        }
+        display: inline-block;
+        color: @gray-lighter;
+        text-decoration: none;
+        min-width: 50px;
+        padding-right: 10px;
+      }
+
     }
   }
   #main{
@@ -158,7 +168,13 @@ div#pageLoader {
   background-color: @gray-darker;
 }
 
-#weeklyRuckusSignup {
+
+/* Modals */
+.modal-backdrop.in {
+  opacity: 0.8;
+}
+
+.modal {
   .modal-dialog {
     width: 800px;
     text-align: center;
@@ -172,9 +188,20 @@ div#pageLoader {
     background: transparent;
     font-family: 'Indie Flower', cursive;
     color: #fff;
+    form {
+      padding: 20px 0px 10px 0px;
+      input.email {
+        width: 50%
+      }      
+    }
     .line1 {
       font-size: 2em;
     }
+  }  
+}
+#weeklyRuckusSignup {
+  .modal-content {
+
     .line2 {
       font-size: 4em;
     }
@@ -183,15 +210,14 @@ div#pageLoader {
     }
     .line4 {
       font-size: 1em;
-    }            
-    form {
-      padding: 20px 0px 10px 0px;
-      input.email {
-        width: 50%
-      }      
-    }
-  }
+    }   
+  } 
 }
-.modal-backdrop.in {
-  opacity: 0.8;
+#contactUs {
+  .control-group {
+    text-align: left;
+  }
+  textarea {
+    height: 100px;
+  }
 }

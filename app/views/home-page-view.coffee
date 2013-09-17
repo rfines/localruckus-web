@@ -13,7 +13,7 @@ module.exports = class HomePageView extends CollectionView
   listSelector: '.eventGallery'
 
   events: 
-    'submit form' : 'searchEvents'
+    'submit form.searchForm' : 'searchEvents'
 
   listen:
     'geo:newAddress mediator' : 'updateAddress'  

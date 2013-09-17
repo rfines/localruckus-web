@@ -10,5 +10,9 @@
   "googleAnalytics" : {
     "code" : "UA-26299789-3"
   },
+  "sendgrid" : {
+    "password" : "ddh8lrzb",
+    "username" : "app17368325@heroku.com"
+  },
   "robotsFile" : "stage.robots.hbs"
 }

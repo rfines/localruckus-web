@@ -30,6 +30,25 @@ app.get "/robots.txt", (req, res) ->
     'Content-Type': 'text/plain'
   res.render CONFIG.robotsFile
 
+app.post "/lrApi/contact", (req, res) ->
+  console.log 'lrApi contact'
+  username = process.env.SENDGRID_USERNAME || CONFIG.sendgrid.username
+  password = process.env.SENDGRID_PASSWORD || CONFIG.sendgrid.password
+  sendgrid = require("sendgrid")(username, password)
+  sendgrid.send
+    to: "info@localruckus.com"
+    from: req.body.email
+    subject: "Contact Form Submission from LocalRuckus.com"
+    text: "Name: #{req.body.name}\n\nMessage: #{req.body.text}"
+  , (err, json) ->
+    if err
+      res.send 500, err
+      res.end()
+    else 
+      res.send 200, {status: 'SUCCESS'}
+      res.end()
+
+
 app.get "/*", (req, res) ->
   data =
     development: CONFIG.development
