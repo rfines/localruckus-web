@@ -36,6 +36,7 @@ app.get "/*", (req, res) ->
     apiUrl : CONFIG.apiUrl
     baseUrl : CONFIG.baseUrl
     cloudinary : CONFIG.cloudinary
+    googleAnalytics : CONFIG.googleAnalytics
   res.render "index.hbs", data
 
 app.listen(port);
