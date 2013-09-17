@@ -68,7 +68,7 @@ body {
     }
   }
   #main{
-    .home-page {
+    .home-page, .event-detail, .business-detail {
       padding: 120px 15px 0;
       background: url("../images/bg_vh.jpg") 0 0 repeat-x;
       background-attachment: fixed;
@@ -156,4 +156,42 @@ div#pageLoader {
 .btn-default {
   color: #fff;
   background-color: @gray-darker;
+}
+
+#weeklyRuckusSignup {
+  .modal-dialog {
+    width: 800px;
+    text-align: center;
+  }
+  .modal-content {
+    .box-shadow(none);
+    border: 0px;
+    border-radius: 0px;
+    outline: none;
+    background-clip: padding-box;    
+    background: transparent;
+    font-family: 'Indie Flower', cursive;
+    color: #fff;
+    .line1 {
+      font-size: 2em;
+    }
+    .line2 {
+      font-size: 4em;
+    }
+    .line3 {
+      font-size: 2em;
+    }
+    .line4 {
+      font-size: 1em;
+    }            
+    form {
+      padding: 20px 0px 10px 0px;
+      input.email {
+        width: 50%
+      }      
+    }
+  }
+}
+.modal-backdrop.in {
+  opacity: 0.8;
 }

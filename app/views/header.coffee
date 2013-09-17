@@ -8,7 +8,7 @@ module.exports = class HeaderView extends View
   template: template
 
   events: 
-    'submit form' : 'searchEvents'
+    'submit form.searchForm' : 'searchEvents'
 
   listen:
     'geo:newAddress mediator' : 'updateAddress'
