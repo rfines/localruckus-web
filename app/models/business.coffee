@@ -8,6 +8,8 @@ module.exports = class Business extends Model
   imageUrl: (options) ->
     media = @get('media')
     if media?.length > 0
-      return $.cloudinary.url(ImageUtils.getId(media[0].url), {crop: 'fill', height: options.height, width: options.width})  
+      opts = {}
+      opts = {crop: 'fill', height: options.height, width: options.width} if options
+      return $.cloudinary.url(ImageUtils.getId(media[0].url), opts)  
     else
-      return undefined
+      return undefined        

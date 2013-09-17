@@ -5,8 +5,18 @@
     </div>
     <div class="row shareIcons">
     </div>
-    <div class="row businessInfo">
-      Business INfo Goes Here
+    <div class="row">
+      <div class="col-md-9 businessInfo">
+        <p class="businessName">{{businessName}}</p>
+        <hr />
+          <dl>
+            <dt>Phone</dt>
+            <dd>{{business.contactPhone}}</dd>
+            {{#if business.website}}
+            <dd><a href="{{business.website}}" target="_blank">Visit Website</a></dd>
+            {{/if}}
+          </dl>        
+      </div>
     </div>        
   </div>
   <div class="col-md-8">
@@ -15,8 +25,8 @@
     </div>
     <div class="row details">
       <div class="col-md-5">
-        <h3>Date & Time</h3>
-        <p>{{date}}</p>
+        <h3 class="light">Date & Time</h3>
+        <p class="light">{{date}}</p>
         <h3>Cost / Tickets</h3>
         {{cost}} {{#if ticketUrl}}- <a href="{{ticketUrl}}">Tickets</a>{{/if}}
         <h3>Map & Directions</h3>

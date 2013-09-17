@@ -39,9 +39,10 @@ module.exports = class EventDetail extends View
 
   getTemplateData: =>
     td = super
-    td.i = @model.imageUrl({height:400, width:266}) || 'http://placehold.it/266x150' 
+    td.i = @model.imageUrl() || 'http://placehold.it/266x150' 
     td.tags = @model.get('tags').join(', ')
     td.business = @business.toJSON()
+    td.businessName = @business.get('name').trim()
     if not td.cost or td.cost is 0
       td.cost = 'FREE'
     startTime = @model.nextOccurrence().format('h:mm a')
