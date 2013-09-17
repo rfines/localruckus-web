@@ -11,6 +11,7 @@ module.exports = class EventItem extends View
   events:
     'mouseover .imageOrMap' : 'showMap'
     'mouseout .imageOrMap' : 'showImage'
+    'click .imageOrMap' : 'gotoEvent'
 
   initialize: ->
     super
@@ -49,8 +50,12 @@ module.exports = class EventItem extends View
         disableDefaultUI: true
         mapTypeId: google.maps.MapTypeId.ROADMAP
       map = new google.maps.Map(document.getElementById("map_#{@model.id}"), mapOptions)        
+      google.maps.event.trigger(map, "resize")
       marker = new google.maps.Marker({position: mapLatLng, map: map})
 
   showImage: ->
     @$el.find('.imageOrMap .image').show()
     @$el.find('.imageOrMap .map').hide()
+
+  gotoEvent: ->
+    @publishEvent '!router:route', "/event/#{@model.id}"
