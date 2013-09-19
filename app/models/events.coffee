@@ -12,6 +12,10 @@ module.exports = class Events extends Collection
     p.tags = @tags if @tags?.length > 0
     p.limit = 100
     p.keyword = @keyword if @keyword
+    console.log @start
+    console.log @end
+    p.start = @start if @start
+    p.end = @start if @start
     u = u + $.param(p)
     return u
     

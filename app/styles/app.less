@@ -307,4 +307,33 @@ div#pageLoader {
     padding-right: 2px;
     padding-left:2px;
   }
+  .when {
+    font-family: 'Montserrat', sans-serif;   
+    font-size: 1.2em;
+    a {
+      border: 1px solid @gray-lighter;
+      .border-bottom-radius(3px);
+      .border-top-radius(3px);
+    }
+    a.whenPrev {
+      padding: 2px 5px 5px 2px;
+    }
+    a.whenNext {
+      padding: 2px 2px 5px 5px;
+    }    
+    a, span {
+      color: @white;
+    }
+    a:hover {
+      text-decoration: none;
+      color: @gray-light;
+    }
+    .whenSelected {
+      display: inline-block;
+      width: 50%;
+      min-width: 50%;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
 }

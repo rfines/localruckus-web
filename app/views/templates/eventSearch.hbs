@@ -1,11 +1,14 @@
 <form class="form-inline eventSearchForm" role="search">
   <div class="form-group col-md-3 col-md-offset-2">
-    <input type="text" class="form-control" placeholder="What do you wanna do?" name="keyword" value="{{search.keyword}}" />
+    <input type="text" class="form-control" placeholder="What" name="keyword" value="{{search.keyword}}" />
   </div>  
   <div class="form-group col-md-3">
-    <input type="text" class="form-control" placeholder="Where are you?" name="near" value="{{search.near}}" />
+    <input type="text" class="form-control" placeholder="Where" name="near" value="{{search.near}}" />
   </div>    
-  <div class="form-group col-md-2">
-    <button type="submit" class="btn btn-default">Start a Ruckus!</button>
+  <div class="form-group col-md-3 when">
+      <a class="glyphicon glyphicon-backward whenPrev"></a><span class="whenSelected">Today</span><a class="glyphicon glyphicon-forward whenNext"></a>
+  </div>
+  <div class="form-group col-md-1">
+    <button type="submit" class="btn btn-default">Search</button>
   </div>
 </form>  
