@@ -13,9 +13,14 @@
       <li><a class='categoryButton family' href="/family"></a></li>
       <li><a class='categoryButton food' href="/food"></a></li>
     </ul>  
-    <ul class="nav navbar-nav ">
+    <ul class="nav navbar-nav small">
+      <li><a href="http://www.hoopla.io/signUp">Add My Business</a></li>
+      <li><a data-toggle="modal" href="#contactUs" class="suggestBusiness">Suggest a Business</a></li>
+      <li><a data-toggle="modal" href="#contactUs" class="suggestEvent">Suggest an Event</a></li>
+    </ul>
+    <ul class="nav navbar-nav small">
       <li><a href="http://blog.localruckus.com">Blog</a></li>
-      <li><a data-toggle="modal" href="#contactUs">Contact</a></li>
+      <li><a data-toggle="modal" href="#contactUs" class="contactUs">Contact</a></li>
       <li><a data-toggle="modal" href="#weeklyRuckusSignup"><i class="glyphicon glyphicon-envelope"></i>Sign Up for the Weekly Ruckus </a></li>    
     </ul>
   </div>
@@ -55,6 +60,7 @@
         <div>
             <p class="line1">Questions or Comments?</p>
             <form role="form" class="contactForm">
+              <input type="text" name="subject" class="hide" />
               <div class="control-group">
                 <label for="name">Your Name <span class="required">*</span></label>
                 <input type="text" name="name" class="form-control" />

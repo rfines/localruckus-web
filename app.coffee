@@ -38,7 +38,7 @@ app.post "/lrApi/contact", (req, res) ->
   sendgrid.send
     to: "info@localruckus.com"
     from: req.body.email
-    subject: "Contact Form Submission from LocalRuckus.com"
+    subject: req.body.subject
     text: "Name: #{req.body.name}\n\nMessage: #{req.body.text}"
   , (err, json) ->
     if err
