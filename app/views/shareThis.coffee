@@ -6,5 +6,4 @@ module.exports = class ShareThis extends View
   template: template
 
   initialize: ->
-    console.log 'share'
     super

@@ -1,24 +1,19 @@
 Controller = require 'controllers/base/controller'
-HomePageView = require 'views/home-page-view'
+DiscoveryView = require 'views/discovery'
 
 
 module.exports = class HomeController extends Controller
 
   index: ->
-    options = {
-      region: 'main'
-      searchOptions : {}
-    }
-    @view = new HomePageView(@locationOptions(options))
+    c = Chaplin.cookieManager.cookie
+    @view = new DiscoveryView({region: 'main'})
+    if not c?.search?.sensor
+      @view.loadEvents()
     if window?.navigator?.geolocation?.getCurrentPosition
       window.navigator.geolocation.getCurrentPosition (pos) =>
         $.get "http://maps.googleapis.com/maps/api/geocode/json?latlng=#{pos.coords.latitude},#{pos.coords.longitude}&sensor=false", (a, b, c) =>
           @publishEvent 'geo:newAddress', a.results[0].formatted_address
-        cookie = $.cookie('localruckus') || {}
-        cookie.ll = "#{pos.coords.longitude},#{pos.coords.latitude}"
-        cookie.grantedGeo = true
-        $.cookie('localruckus', cookie, { expires: 60 });
-        @publishEvent 'event:searchChanged', {ll: "#{pos.coords.longitude},#{pos.coords.latitude}"}
+        @publishEvent 'event:searchChanged', {ll: "#{pos.coords.longitude},#{pos.coords.latitude}", sensor: true}
 
   music: ->
     options = {
@@ -26,7 +21,8 @@ module.exports = class HomeController extends Controller
       searchOptions : {}
     }  
     options.searchOptions.tags = 'MUSIC'
-    @view = new HomePageView(@locationOptions(options))
+    @view = new DiscoveryView(@locationOptions(options))
+    @view.loadEvents()
 
   family: ->
     options = {
@@ -34,7 +30,8 @@ module.exports = class HomeController extends Controller
       searchOptions : {}
     }  
     options.searchOptions.tags = 'FAMILY-AND-CHILDREN'
-    @view = new HomePageView(@locationOptions(options))   
+    @view = new DiscoveryView(@locationOptions(options))   
+    @view.loadEvents()
 
   food: ->
     options = {
@@ -42,7 +39,8 @@ module.exports = class HomeController extends Controller
       searchOptions : {}
     }  
     options.searchOptions.tags = 'FOOD-AND-DRINK'
-    @view = new HomePageView(@locationOptions(options))     
+    @view = new DiscoveryView(@locationOptions(options))   
+    @view.loadEvents()  
 
   art: ->
     options = {
@@ -50,13 +48,17 @@ module.exports = class HomeController extends Controller
       searchOptions : {}
     }  
     options.searchOptions.tags = 'ARTS'
-    @view = new HomePageView(@locationOptions(options))         
-   
+    console.log @locationOptions(options)
+    @view = new DiscoveryView(@locationOptions(options))         
+    @view.loadEvents()
 
   locationOptions: (options) ->
-    if $.cookie('localruckus')?.ll or $.cookie('localruckus')?.near
-      if $.cookie('localruckus').ll
-        options.searchOptions.ll = $.cookie('localruckus').ll 
+    c = Chaplin.cookieManager.cookie
+    if c?.ll or c?.near
+      if c.ll
+        options.searchOptions.ll = c.ll 
       else
-        options.searchOptions.near = $.cookie('localruckus').near
-    return options
+        options.searchOptions.near = c.near
+    else
+      options.searchOptions.near = '64105'
+    return options    

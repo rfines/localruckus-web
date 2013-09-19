@@ -1,8 +1,9 @@
 Application = require 'application'
 routes = require 'routes'
+CookieManager = require 'cookieManager'
 
 $ ->
-  $.cookie.json = true;
+  Chaplin.cookieManager = new CookieManager()
   new Application {
     title: 'Local Ruckus - Do the Local Thing',
     controllerSuffix: '-controller',

@@ -11,6 +11,7 @@ module.exports = class Events extends Collection
     p.near = @near if @near
     p.tags = @tags if @tags?.length > 0
     p.limit = 100
+    p.keyword = @keyword if @keyword
     u = u + $.param(p)
     return u
     
