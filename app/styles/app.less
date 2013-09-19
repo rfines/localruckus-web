@@ -170,6 +170,7 @@ body {
     h2 {
       color: @gray-lighter;
       margin-top: 0px;
+      padding-left: 10px;
     }
     h3 {
       font-size: 1.25em;
@@ -183,15 +184,22 @@ body {
       padding: 10px 0px 0px 0px;
     }
     .detailSidebar {
+      width: 90%;
+      margin-top:10px;
       min-height: 150px;
-      background: rgba(0,0,0,0.6);
-      border-radius: @border-radius-large;
-      color: @white;    
+      background: rgba(68,68,68,0.6);
+      .border-top-radius(10px);
+      .border-bottom-radius(10px);
+      border: 1px solid rgba(0, 0, 0, 0.9);
+      .box-shadow(0 3px 6px rgba(0, 0, 0, 0.36));
+      color: @gray-light;    
       .businessName {
         padding: 5px;
         margin: 0px;
+        border-bottom: 1px solid @gray;
       }
       hr {
+        color: @gray-darker;
         margin: 0px;
       }      
     }
