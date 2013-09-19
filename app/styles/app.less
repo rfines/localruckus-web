@@ -2,7 +2,7 @@
 @import "variables.less";
 @import "mixins.less";
 
-a{
+a {
   cursor: pointer;
 }
 html,
@@ -12,6 +12,7 @@ body {
   &.modal-open {
     margin-right: 0px;
   }
+  -webkit-font-smoothing: antialiased;
 }
 
 #site-container {
@@ -25,18 +26,21 @@ body {
 }
 
 #header {
-
-  background: url('../images/bg_header_dark.png');
+  .nav {
+    a:hover {
+      color: @gray;
+    }
+  }
   .navbar {
     margin-bottom: 0px;
-  }
-  .navbar-fixed-top {
-    background: url('../images/bg_header_dark.png');
   }
   .navbar-default {
     background-color: transparent;
     border-color: transparent;
   }  
+  .navbar-fixed-top {
+    background: url('../images/bg_tile.jpg');
+  }
   .categoryButton {
     border-right: 1px solid @gray;
     display:inline-block;
@@ -62,33 +66,7 @@ body {
     &.food {
       background-position-y: -230px;
     }              
-
   }
-  .searchForm {
-    margin-top: 20px;
-    input {
-      background-color: @gray-darker;
-      color: #fff;
-      min-width: 400px; 
-    }
-  }
-  /*.subNav {
-    height: 40px;
-    #gradient > .vertical(@start-color: #7d7e7d; @end-color: #0e0e0e);
-    margin-bottom: 15px;
-    margin-top: -5px;
-    a {
-      i {
-        padding-right: 3px;
-      }
-      display: inline-block;
-      color: @gray-lighter;
-      text-decoration: none;
-      min-width: 50px;
-      padding-right: 10px;
-    }
-
-  }*/
 }
 
 #main{
@@ -105,8 +83,10 @@ body {
       .eventItem {
         margin-bottom: 20px;
         .thumbnail {
+          text-align: center;
           border-radius: @border-radius-large;
           .cardHeader {
+            text-align: left;
             padding: 14px 10px 0 10px;
             #gradient > .vertical(@start-color: #ffffff; @end-color: #f9f9f9);
             h4 {
@@ -114,7 +94,6 @@ body {
                 color: #464344; 
                 font-size: 14px; 
               }
-              -webkit-font-smoothing: antialiased;
               font-family: Helvetica, Arial, sans-serif;
               font-size: 16px;
               font-weight: 700;
@@ -122,8 +101,9 @@ body {
               padding: 0px;
               height: 38px;
             }         
-            .location {
+            .location, .additionalDates {
               height: 36px;
+              color: #696868;
               a{
                 color: #696868;
                 font-size: 12px;
@@ -142,10 +122,9 @@ body {
           }
 
           padding:0px;
-          width: 266px;
+          width: 100%;
           img {
-            width: 264px;
-            height: 148px;
+            max-width: 100%;
             margin: 0px 0px 0px -1px;
           }
 
@@ -171,6 +150,7 @@ body {
       color: @gray-lighter;
       margin-top: 0px;
       padding-left: 10px;
+      font-size: 3em;
     }
     h3 {
       font-size: 1.25em;
@@ -215,6 +195,7 @@ body {
         }      
         dd {
           margin-bottom: 10px;
+          font-family: Helvetica, sans-serif;
           font-size: 0.9em;
           color: @gray;
         }
