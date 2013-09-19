@@ -1,24 +1,11 @@
 template = require 'views/templates/business/detail'
-View = require 'views/base/view'
+View = require 'views/base/detail'
 ShareThis = require 'views/shareThis'
 
 module.exports = class BusinessDetail extends View
   autoRender: false
   className: 'business-detail'
   template: template
-
-  initialize: ->
-    super
-    @loadAndRender()
-
-  loadAndRender: =>
-    @model.fetch
-      success: =>
-        @render()
-
-  attach: =>
-    super()
-    @subview('shareThis', new ShareThis({container: '.shareIcons'}))
 
   getTemplateData: =>
     td = super

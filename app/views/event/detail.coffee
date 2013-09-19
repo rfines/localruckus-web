@@ -1,5 +1,5 @@
 template = require 'views/templates/event/detail'
-View = require 'views/base/view'
+View = require 'views/base/detail'
 ShareThis = require 'views/shareThis'
 Business = require 'models/business'
 
@@ -7,10 +7,6 @@ module.exports = class EventDetail extends View
   autoRender: false
   className: 'event-detail'
   template: template
-
-  initialize: ->
-    super
-    @loadAndRender()
 
   loadAndRender: =>
     @model.fetch
@@ -23,19 +19,6 @@ module.exports = class EventDetail extends View
                 @render()
           else
             @render()
-
-  attach: =>
-    super()
-    @subview('shareThis', new ShareThis({container: '.shareIcons'}))      
-    mapLatLng = new google.maps.LatLng(@model.get('location').geo.coordinates[1], @model.get('location').geo.coordinates[0])
-    mapOptions =
-      zoom: 15
-      center: mapLatLng
-      disableDefaultUI: true
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    map = new google.maps.Map(document.getElementById("map_#{@model.id}"), mapOptions)        
-    google.maps.event.trigger(map, "resize")
-    marker = new google.maps.Marker({position: mapLatLng, map: map})    
 
   getTemplateData: =>
     td = super

@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width">
   <link rel="shortcut icon" href="/client/images/favicon.png">
   <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/client/stylesheets/app.css">
   <script src="/client/javascripts/vendor.js"></script>
   <script src="/client/javascripts/app.js"></script>
@@ -29,9 +30,10 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>  
     <script>
       window.facebookClientId = "{{facebookClientId}}";
-      $.cloudinary.config({ cloud_name: '{{cloudinary.cloudName}}'})
-      window.baseUrl = "{{baseUrl}}"
-
+      $.cloudinary.config({ cloud_name: '{{cloudinary.cloudName}}'});
+      window.baseUrl = "{{baseUrl}}";
+    </script>
+    <script>
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', '{{googleAnalytics.code}}']);
       _gaq.push(['_trackPageview']);

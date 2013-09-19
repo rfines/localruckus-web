@@ -93,7 +93,7 @@ body {
 
 #main{
   .home-page, .event-detail, .business-detail {
-    padding: 110px 15px 0;
+    padding: 80px 15px 0;
     background: url("../images/bg_vh.jpg") 0 0 repeat-x;
     background-attachment: fixed;
     min-height: 720px;    
@@ -105,19 +105,50 @@ body {
       .eventItem {
         margin-bottom: 20px;
         .thumbnail {
-          h4 {
-            font-size: 16px;
-            margin: 4px 0 4px 0;
-            padding: 0 10px;
-            height: 38px;
+          border-radius: @border-radius-large;
+          .cardHeader {
+            padding: 14px 10px 0 10px;
+            #gradient > .vertical(@start-color: #ffffff; @end-color: #f9f9f9);
+            h4 {
+              a{
+                color: #464344; 
+                font-size: 14px; 
+              }
+              -webkit-font-smoothing: antialiased;
+              font-family: Helvetica, Arial, sans-serif;
+              font-size: 16px;
+              font-weight: 700;
+              margin: 0px;
+              padding: 0px;
+              height: 38px;
+            }         
+            .location {
+              height: 36px;
+              a{
+                color: #696868;
+                font-size: 12px;
+                i {
+                  color: red;
+                  padding-right: 2px;
+                }
+              }
+            }
+            .card-calendar {
+              div {
+                padding: 10px;
+              }
+              border-top: 3px double #ebebeb;
+            }   
           }
+
           padding:0px;
-          min-height: 200px;
-          max-height: 200px;
           width: 266px;
           img {
-            margin: -1px 0px 0px -1px;
+            width: 264px;
+            height: 148px;
+            margin: 0px 0px 0px -1px;
           }
+
         }
       }
     }
@@ -133,6 +164,7 @@ body {
     }       
   }
   .event-detail, .business-detail {
+    font-family: 'Montserrat', sans-serif;
     margin: 3em;
     font-size: 1em;
     h2 {
@@ -150,35 +182,51 @@ body {
     .shareIcons {
       padding: 10px 0px 0px 0px;
     }
-  }
-  .event-detail {
-    .details {
-      border-radius: @border-radius-large;
-      background: #ffffff;
-      color: @text-color;
-    }
-    .businessInfo {
+    .detailSidebar {
       min-height: 150px;
       background: rgba(0,0,0,0.6);
       border-radius: @border-radius-large;
-      color: @white;
+      color: @white;    
       .businessName {
         padding: 5px;
         margin: 0px;
       }
       hr {
         margin: 0px;
+      }      
+    }
+    .leftCol {
+    }
+    .rightCol {
+      dl {
+        dt {
+          font-size: 1.2em;
+        }      
+        dd {
+          margin-bottom: 10px;
+          font-size: 0.9em;
+          color: @gray;
+        }
       }
     }
-  }
-  .business-detail {
+    .detailImage{ 
+      img {
+        max-width: 90%;
+        .border-top-radius(10px);
+        .border-bottom-radius(10px);
+      }
+    }
+    .details {
+      .tab-content {
+        padding-left: 30px;
+      }
+      color: @text-color;
+    }    
     .tab-content {
       padding: 10px;
       background: #ffffff;
-    }
-    #businessTab {
-    }
-  }  
+    }    
+  }
 }
 
 /* Set the fixed height of the footer here */

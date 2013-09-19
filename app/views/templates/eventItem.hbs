@@ -1,10 +1,22 @@
 <div class="thumbnail">
     <div class="imageOrMap">
       <div class="image"><img src="{{i}}" /></div>
-      <div class="map" id="map_{{_id}}" style="height:149px;width:265px"></div>
-    <h4><a href="/event/{{_id}}">{{name}}</a></h4>
-  </a>
-  {{#if businessName}}
-  <div><a class="glyphicon glyphicon-map-marker" href="/business/{{businessId}}">{{businessName}}</a></div>
-  {{/if}}
+      <div class="map" id="map_{{_id}}" style="height:148px;width:264px"></div>
+    </div>
+    <div class="cardHeader">
+      <h4><a href="/event/{{_id}}">{{name}}</a></h4>
+      </a>
+      <div class="location">
+        {{#if businessName}}
+        <div><a href="/business/{{businessId}}"><i class="glyphicon glyphicon-map-marker"></i>{{businessName}}</a></div>
+        {{/if}}
+      </div>
+      <div class="card-calendar">
+        <div class="row">
+            <span class="date">Thu Sep 19</span><span class="time" style="padding-left: 10px;"><i class="glyphicon glyphicon-time"></i> 9:00 AM- 1:30 PM</span>
+            <br />
+            <i class="glyphicon glyphicon-plus"></i> <a href="#" data-toggle="popover" class="dates-popover" data-placement="bottom" data-content="Every week on  Monday - Friday  from  9:00 AM to 1:30 PM" data-original-title="Additional Dates" data-trigger="hover" style="color:black;"><i class="icon-plus"></i>Additional Dates</a>
+        </div>
+      </div>
+  </div>
 </div>

@@ -1,16 +1,25 @@
 <div class="row">
-  <div class="col-md-4">
-    <div class="row">
-      <img src="http://placehold.it/350x150" />
+  <div class="col-md-3 col-md-offset-1 leftCol">
+    <div class="row detailImage">
+      <img src="{{i}}" />
     </div>
     <div class="row shareIcons">
-      Share Icons go here
     </div>
-    <div class="row businessInfo">
-      Business INfo Goes Here
-    </div>        
+    <div class="row">
+      <div class="col-md-9 businessInfo detailSidebar">
+        <p class="businessName">{{name}}</p>
+        <hr />
+          <dl>
+            <dt>Phone</dt>
+            <dd>{{contactPhone}}</dd>
+            {{#if website}}
+            <dd><a href="{{website}}" target="_blank">Visit Website</a></dd>
+            {{/if}}
+          </dl>        
+      </div>
+    </div>     
   </div>
-  <div class="col-md-8">
+  <div class="col-md-8 rightCol">
     <div class="row">
       <h2>{{name}}</h2>
     </div>
@@ -24,23 +33,27 @@
         <div class="tab-pane fade active in" id="info">
           <div class="row details">
             <div class="col-md-5">
-              <h3>Categories</h3>
-              <p>{{tags}}</p>
-              <h3>Phone</h3>
-              <p>{{contactPhone}}</p>
-              <h3>Address</h3>
-              <p>{{location.address}}</p>
-              <h3>Cost / Tickets</h3>
-              {{cost}} {{#if ticketUrl}}- <a href="{{ticketUrl}}">Tickets</a>{{/if}}
+              <dl>
+                <dt>Categories:</dt>
+                <dd>{{tags}}</dd>
+                <dt>Phone:</dt>
+                <dd>{{contactPhone}}</dd>
+                <dt>Address:</dt>
+                <dd>{{location.address}}</dd>
+              </dl>              
               <h3>Map & Directions</h3>
+              <div class="map" id="map_{{_id}}" style="height:149px;width:265px"></div>
             </div>
             <div class="col-md-7">
-              <h3></h3>
-              <p>{{description}}</p>
-              <h3>More Info</h3>
-              <div>{{website}}</div>
-              <div>{{contactName}}</div>
-              <div>{{contactPhone}}</div>
+              <dl>
+                <dd>{{description}}</dd>
+                <dt>More Info</dt>
+                <dd>
+                  <p>{{website}}</p>
+                  <p>{{contactName}}</p>
+                  <p>{{contactPhone}}</p>
+                </dd>
+              </dl>
             </div>
           </div>
         </div>
