@@ -25,6 +25,7 @@ module.exports = class EventDetail extends View
     td.i = @model.imageUrl() || 'http://placehold.it/266x150' 
     td.tags = @model.get('tags').join(', ')
     td.business = @business.toJSON()
+    td.businessId = @business.id
     td.businessName = @business.get('name').trim()
     if not td.cost or td.cost is 0
       td.cost = 'FREE'

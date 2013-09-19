@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-md-9 businessInfo detailSidebar">
-        <p class="businessName">{{businessName}}</p>
+        <p class="businessName"><a href="/business/{{businessId}}">{{businessName}}</a></p>
           <dl>
             <dt>Phone</dt>
             <dd>{{business.contactPhone}}</dd>
@@ -18,37 +18,6 @@
       </div>
     </div>        
   </div>
-  <!--<div class="col-md-8 rightCol">
-    <div class="row">
-      <h2>{{name}}</h2>
-    </div>
-    <div class="row details">
-      <div class="col-md-5">
-        <dl>
-          <dt class="light">Date & Time</dt>
-          <dd class="light">{{date}}</dd>
-          <dt>Cost / Tickets</dt>
-          <dd>{{cost}} {{#if ticketUrl}}- <a href="{{ticketUrl}}">Tickets</a>{{/if}}</dd>
-          <dt>Map & Directions</dt>
-          <dd>
-            <p><a href="/business/{{business._id}}">{{business.name}}</a></p>
-            <p>{{business.location.address}}</p>
-            <div class="map" id="map_{{_id}}" style="height:149px;width:265px"></div>
-          </dd>
-        </dl>
-      </div>
-      <div class="col-md-7">
-        <h3>Categories</h3>
-        <div>{{tags}}</div>
-        <h3>Description</h3>
-        <div>{{description}}</div>
-        <h3>More Info</h3>
-        <div>{{website}}</div>
-        <div>{{contactName}}</div>
-        <div>{{contactPhone}}</div>
-      </div>
-    </div>
-  </div>-->
   <div class="col-md-8 rightCol">
     <div class="row">
       <h2>{{name}}</h2>
