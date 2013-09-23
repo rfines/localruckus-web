@@ -39,6 +39,23 @@ module.exports = class EventDetail extends View
     td.time = "#{@model.nextOccurrence()?.format('h:mm a')} to #{@model.nextOccurrenceEnd()?.format('h:mm a')}"
     td.date = "#{@model.nextOccurrence().format('MM/DD/YYYY')} from #{startTime} to #{endTime}"
     td
+  events:
+    "click .addToCal": "addToCalendar"
+    "click .closeModal":"closeModal"
+  closeModal:(e)->
+    e.preventDefault() if e
+    @$('calendarModal').modal('hide')
+  
+  addToCalendar:(e)=>
+    e.preventDefault() if e
+    calType=@$el.find("calendarSelect").val()
+    if calType is 'ical'
+      file =@model.getICal()
+    else
+      gCal = @googleCalurl()
+      window.open(gCal,'_blank')
+
+
 
   googleCalUrl:()=>
     calName = "Local Ruckus: #{@model.get('name')}"
