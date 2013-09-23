@@ -22,11 +22,6 @@ module.exports = class Event extends Model
         moment(o.start).isAfter(afterMoment)
       if m
         return moment(m.start)
-      else
-        console.log 'couldnt find'
-        console.log afterMoment
-        console.log 'in'      
-        console.log @get('occurrences')
     else
       if @get('occurrences') and _.first(@get('occurrences'))
         m = moment(_.first(@get('occurrences')).start)

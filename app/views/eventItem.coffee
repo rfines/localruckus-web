@@ -49,8 +49,8 @@ module.exports = class EventItem extends View
     td.businessId = @model.get('business')
     td.businessName = @business.get('name') if @business
     td.isRecurring = @model.get('schedules')?.length > 0
-    console.log 
-    td.nextOccurrence = @model.nextOccurrence(moment(@collection.start).startOf('day')).format("ddd, MMM Do")    
+    start = moment(@collection.start || new Date()).startOf('day')
+    td.nextOccurrence = @model.nextOccurrence(start).format("ddd, MMM Do")    
     td.time = "#{@model.nextOccurrence()?.format('h:mm a')} to #{@model.nextOccurrenceEnd()?.format('h:mm a')}"
     td
 

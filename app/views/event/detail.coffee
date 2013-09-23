@@ -11,14 +11,20 @@ module.exports = class EventDetail extends View
   loadAndRender: =>
     @model.fetch
       success: =>
-          if @model.get('business')
+        if @model.get('business')
+          match = _.find Chaplin.datastore.businesses, (b) =>
+            return b.id is @model.get('business')
+          if match
+            @business = match
+            @render()
+          else    
             @business = new Business()
             @business.id = @model.get('business')
             @business.fetch
               success: =>
                 @render()
-          else
-            @render()
+        else
+          @render()
 
   getTemplateData: =>
     td = super
