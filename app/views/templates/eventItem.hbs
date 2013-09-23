@@ -12,12 +12,14 @@
         {{/if}}
       </div>
       <div class="card-calendar">
-        <div class="row">
+        <div class="row padding10">
             <span class="date">Thu Sep 19</span><span class="time" style="padding-left: 10px;"><i class="glyphicon glyphicon-time"></i> 9:00 AM- 1:30 PM</span>
             <br />
+            {{#if isRecurring}}
             <span class="additionalDates">
-              <i class="glyphicon glyphicon-plus"></i> <a href="#" data-toggle="popover" class="dates-popover" data-placement="bottom" data-content="Every week on  Monday - Friday  from  9:00 AM to 1:30 PM" data-original-title="Additional Dates" data-trigger="hover"><i class="icon-plus"></i>Additional Dates</a>
+              <i class="glyphicon glyphicon-plus"></i> <a data-toggle="popover" class="dates-popover"><i class="icon-plus"></i>Additional Dates</a>
             </span>
+            {{/if}}
         </div>
       </div>
   </div>

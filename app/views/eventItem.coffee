@@ -30,12 +30,18 @@ module.exports = class EventItem extends View
   attach: ->
     super()
     @$el.find('.map').hide()
+    $('.dates-popover').popover(
+      trigger: 'hover'
+      placement: 'bottom'
+      content: @model.scheduleText()
+    )
 
   getTemplateData: ->
     td = super()
     td.i = @model.imageUrl({height:150, width:266}) || 'http://placehold.it/266x150' 
     td.businessId = @model.get('business')
     td.businessName = @business.get('name') if @business
+    td.isRecurring = @model.get('schedules')?.length > 0
     td
 
   showMap: ->

@@ -29,7 +29,7 @@ module.exports = class EventDetail extends View
     td.businessName = @business.get('name').trim()
     if not td.cost or td.cost is 0
       td.cost = 'FREE'
-    startTime = @model.nextOccurrence().format('h:mm a')
-    endTime = @model.nextOccurrenceEnd().format('h:mm a')
+    startTime = @model.nextOccurrence()?.format('h:mm a')
+    endTime = @model.nextOccurrenceEnd()?.format('h:mm a')
     td.date = "#{@model.nextOccurrence().format('MM/DD/YYYY')} from #{startTime} to #{endTime}"
     td

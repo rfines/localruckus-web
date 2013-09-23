@@ -80,7 +80,26 @@ module.exports = class Event extends Model
       opts = {crop: 'fill', height: options.height, width: options.width} if options
       return $.cloudinary.url(ImageUtils.getId(media[0].url), opts)  
     else
-      return undefined        
+      return undefined    
+
+  scheduleText: ->
+    dayOrder =  ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    if @get('schedules')?[0]
+      s = @get('schedules')[0]
+      endDate = moment(s.end)
+      if s.dayOfWeek?.length is 0 and s.dayOfWeekCount?.length is 0
+        return 'Every Day'
+      else
+        if s.dayOfWeekCount?.length > 0
+          return 'MOnthly'
+        else
+          days = _.map s.dayOfWeek, (i) ->
+            return dayOrder[i]
+          out = "Every #{days.join(', ')}"
+          out = "#{out} until #{endDate.format('MM/DD/YYYY')}"
+          return out
+    else
+      return ''
 
   clone: ->
     json = @toJSON()
