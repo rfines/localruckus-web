@@ -7,4 +7,5 @@ module.exports = class CookieManager
 
   updateSearch: (search) ->
     @cookie.search = search
+    console.log @cookie
     $.cookie('localruckus', @cookie, { expires: 60, path: '/'});

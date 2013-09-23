@@ -1,12 +1,21 @@
 <form class="form-inline eventSearchForm" role="search">
-  <div class="form-group col-md-3 col-md-offset-2">
+  <div class="form-group col-md-3 col-md-offset-1">
     <input type="text" class="form-control" placeholder="What" name="keyword" value="{{search.keyword}}" />
   </div>  
   <div class="form-group col-md-3">
     <input type="text" class="form-control" placeholder="Where" name="near" value="{{search.near}}" />
   </div>    
-  <div class="form-group col-md-3 when">
-      <a class="glyphicon glyphicon-backward whenPrev"></a><span class="whenSelected">Today</span><a class="glyphicon glyphicon-forward whenNext"></a>
+  <div class="form-group col-md-1">
+    <select name="radius" class="form-control">
+      <option value="1609">1 mile</option>
+      <option value="8047">5 miles</option>
+      <option value="16093" selected="selected">10 miles</option>
+      <option value="32186">20 miles</option>
+      <option value="80467">50 miles</option>
+    </select>
+  </div>
+  <div class="form-group col-md-2 when">
+      <a class="glyphicon glyphicon-backward whenPrev"></a><span class="whenSelected">Anytime</span><a class="glyphicon glyphicon-forward whenNext"></a>
   </div>
   <div class="form-group col-md-1">
     <button type="submit" class="btn btn-default">Search</button>

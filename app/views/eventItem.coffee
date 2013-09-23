@@ -19,11 +19,18 @@ module.exports = class EventItem extends View
 
   loadAndRender: =>
     if @model.get('business')
-      @business = new Business()
-      @business.id = @model.get('business')
-      @business.fetch
-        success: =>
-          @render()
+      match = _.find Chaplin.datastore.businesses, (b) =>
+        return b.id is @model.get('business')
+      if match
+        @business = match
+        @render()
+      else
+        @business = new Business()
+        @business.id = @model.get('business')
+        @business.fetch
+          success: =>
+            Chaplin.datastore.businesses.push @business
+            @render()
     else
       @render()
 
@@ -42,7 +49,8 @@ module.exports = class EventItem extends View
     td.businessId = @model.get('business')
     td.businessName = @business.get('name') if @business
     td.isRecurring = @model.get('schedules')?.length > 0
-    td.nextOccurrence = @model.nextOccurrence().format("ddd, MMM Do")    
+    console.log 
+    td.nextOccurrence = @model.nextOccurrence(moment(@collection.start).startOf('day')).format("ddd, MMM Do")    
     td.time = "#{@model.nextOccurrence()?.format('h:mm a')} to #{@model.nextOccurrenceEnd()?.format('h:mm a')}"
     td
 

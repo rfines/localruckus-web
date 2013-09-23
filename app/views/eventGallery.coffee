@@ -66,3 +66,6 @@ module.exports = class EventGallery extends CollectionView
         console.log 'render'
         @render()
         @stopLoading()
+
+  initItemView: (model) =>
+    new EventItem({model : model, collection : @collection})

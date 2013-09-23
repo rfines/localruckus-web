@@ -16,10 +16,11 @@ module.exports = class EventSearch extends View
   initialize: ->
     super()
     @whenOptions = [
-      {text: 'Today', start: moment().startOf('day'), end : moment().endOf('day')}
+      {text: 'Anytime', start: moment().startOf('day')}
+      {text: 'Today', start: moment().startOf('day'), end : moment().startOf('day').add('days',1)}
       {text: 'Tomorrow', start: moment().startOf('day').add('days',1), end : moment().endOf('day').add('days',1)}
       {text: 'This Weekend', start: moment().day(5).startOf('day'), end : moment().day(7).endOf('day')}
-      {text: 'Next Week', start: moment().startOf('week').add('weeks',1), end : moment().endOf('week').add('weeks', 1)}
+      {text: 'Next Week', start: moment().startOf('week').add('weeks',1).add('days',1), end : moment().endOf('week').add('weeks', 1).add('days',1)}
       {text: 'Next Weekend', start: moment().day(5).startOf('day').add('weeks',1), end : moment().day(7).endOf('day').add('weeks',1)}
       {text: 'Beyond', start: moment().startOf('day').day(1).add('weeks',2)}
     ]
@@ -35,6 +36,8 @@ module.exports = class EventSearch extends View
       c is item.text
     o.start = w.start.toDate().toISOString()
     o.end = w.end.toDate().toISOString() if w.end
+    o.radius = @$el.find('select[name=radius] > option:selected').val()
+    console.log o
     @publishEvent 'event:searchChanged', o
     @publishEvent 'geo:newAddress', near
 
