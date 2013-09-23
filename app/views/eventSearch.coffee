@@ -34,7 +34,7 @@ module.exports = class EventSearch extends View
     w = _.find @whenOptions, (item) ->
       c is item.text
     o.start = w.start.toDate().toISOString()
-    o.end = w.end.toDate().toISOString()
+    o.end = w.end.toDate().toISOString() if w.end
     @publishEvent 'event:searchChanged', o
     @publishEvent 'geo:newAddress', near
 

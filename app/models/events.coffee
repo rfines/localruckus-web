@@ -14,12 +14,13 @@ module.exports = class Events extends Collection
     p.keyword = @keyword if @keyword
     console.log @start
     console.log @end
-    p.start = @start if @start
+    p.start = @start || moment().toDate().toISOString()
     p.end = @start if @start
     u = u + $.param(p)
     return u
     
   comparator : (event) ->
+    console.log 'calling comparator'
     event.getSortDate()?.toDate().toISOString()
   
   upcomingEvents: (limit) ->

@@ -34,6 +34,7 @@ module.exports = class EventGallery extends CollectionView
     @startLoading()
     for x in _.keys(newOptions)
       @searchOptions[x] = newOptions[x]
+    console.log @searchOptions
     if newOptions.ll and not newOptions.near
       delete @searchOptions.near
     if newOptions.near and not newOptions.ll
