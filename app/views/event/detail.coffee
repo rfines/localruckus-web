@@ -23,9 +23,9 @@ module.exports = class EventDetail extends View
             @business.fetch
               success: =>
                 @render()
-        else
-          @render()
-
+          else
+            @render()
+  
   getTemplateData: =>
     td = super
     td.tags = @model.get('tags').join(', ')
@@ -37,4 +37,13 @@ module.exports = class EventDetail extends View
     startTime = @model.nextOccurrence()?.format('h:mm a')
     endTime = @model.nextOccurrenceEnd()?.format('h:mm a')
     td.time = "#{@model.nextOccurrence()?.format('h:mm a')} to #{@model.nextOccurrenceEnd()?.format('h:mm a')}"
+    td.date = "#{@model.nextOccurrence().format('MM/DD/YYYY')} from #{startTime} to #{endTime}"
     td
+
+  googleCalUrl:()=>
+    calName = "Local Ruckus: #{@model.get('name')}"
+    eventDescription = @model.get('description')
+    sDate = @model.nextOccurrence().format("yyyyMMddTHHmmss")
+    address = @model.get('location').address
+    id = @model.id
+    return "https://www.google.com/calendar/render?action=TEMPLATE&dates=#{sDate}&details=#{eventDescription}&location=#{address}&text=#{calName}&sprop=partner:localruckus.com&sprop=partneruuid:#{id}&pli=1&sf=true&output=xml" 
