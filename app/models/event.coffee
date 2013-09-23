@@ -82,27 +82,6 @@ module.exports = class Event extends Model
     else
       return undefined    
 
-  scheduleText: ->
-    dayOrder =  ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    dayCountOrder = ['Last', 'First', 'Second', 'Third', 'Fourth']
-    if @get('schedules')?[0]
-      s = @get('schedules')[0]
-      endDate = moment(s.end)
-      if s.dayOfWeek?.length is 0 and s.dayOfWeekCount?.length is 0
-        return 'Every Day'
-      else
-        out = ""
-        days = _.map s.dayOfWeek, (i) ->
-          return dayOrder[i]
-        if s.dayOfWeekCount?.length > 0
-          out = "The #{dayCountOrder[s.dayOfWeekCount]} #{days.join(', ')} of the month"
-        else
-          out = "Every #{days.join(', ')}"
-        out = "#{out} until #{endDate.format('MM/DD/YYYY')}"
-        return out
-    else
-      return ''
-
   clone: ->
     json = @toJSON()
     delete json.id

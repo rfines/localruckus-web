@@ -33,7 +33,7 @@ module.exports = class EventItem extends View
     $('.dates-popover').popover(
       trigger: 'hover'
       placement: 'bottom'
-      content: @model.scheduleText()
+      content: @model.get('scheduleText')
     )
 
   getTemplateData: ->
