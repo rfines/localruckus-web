@@ -17,11 +17,7 @@ module.exports = class BusinessDetail extends View
 
   getTemplateData: =>
     td = super
-    td.i = @model.imageUrl() || 'http://placehold.it/266x150' 
     td.tags = @model.get('tags').join(', ')
-    for sl in @model.get('socialMediaLinks')
-      td[sl.target.toLowerCase()] = sl.url
-    td.hasSocialMediaLinks = @model.get('socialMediaLinks')?.length > 0
     td
 
   loadAndRender: =>

@@ -14,6 +14,23 @@
             {{#if business.website}}
             <dd><a href="{{business.website}}" target="_blank">Visit Website</a></dd>
             {{/if}}
+            {{#if hasSocialMediaLinks}}
+              <dt>Social Media</dt>
+              <dd class="hasSocialMediaLinks">
+              {{#if website}}
+                <a href="{{website}}" target="_blank">Visit Website</a>
+              {{/if}}
+              {{#if facebook}}
+                <a href="{{facebook}}" target="_blank"><img src="/client/images/facebook_16.png" /></a>
+              {{/if}}
+              {{#if twitter}}
+                <a href="{{twitter}}" target="_blank"><img src="/client/images/twitter_16.png" /></a>
+              {{/if}}
+              {{#if foursquare}}
+                <a href="{{foursquare}}" target="_blank"><img src="/client/images/foursquare_16.png" /></a>
+              {{/if}}                        
+              </dd>
+            {{/if}}            
           </dl>        
       </div>
     </div>        
@@ -32,7 +49,7 @@
             <div class="col-md-5">
               <dl>
                 <dt class="light">Date & Time</dt>
-                <dd class="light">{{date}}</dd>
+                <dd class="light">{{scheduleText}} from {{time}}</dd>
                 <dt>Cost / Tickets</dt>
                 <dd>{{cost}} {{#if ticketUrl}}- <a href="{{ticketUrl}}">Tickets</a>{{/if}}</dd>
                 <dt>Map & Directions</dt>
@@ -53,6 +70,7 @@
                   <p>{{website}}</p>
                   <p>{{contactName}}</p>
                   <p>{{contactPhone}}</p>
+                  <p>{{contactEmail}}</p>
                 </dd>
               </dl>
             </div>

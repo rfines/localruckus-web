@@ -28,7 +28,6 @@ module.exports = class EventDetail extends View
 
   getTemplateData: =>
     td = super
-    td.i = @model.imageUrl() || 'http://placehold.it/266x150' 
     td.tags = @model.get('tags').join(', ')
     td.business = @business.toJSON()
     td.businessId = @business.id
@@ -37,5 +36,5 @@ module.exports = class EventDetail extends View
       td.cost = 'FREE'
     startTime = @model.nextOccurrence()?.format('h:mm a')
     endTime = @model.nextOccurrenceEnd()?.format('h:mm a')
-    td.date = "#{@model.nextOccurrence().format('MM/DD/YYYY')} from #{startTime} to #{endTime}"
+    td.time = "#{@model.nextOccurrence()?.format('h:mm a')} to #{@model.nextOccurrenceEnd()?.format('h:mm a')}"
     td

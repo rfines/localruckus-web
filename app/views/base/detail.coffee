@@ -29,3 +29,11 @@ module.exports = class Detail extends View
     map = new google.maps.Map(document.getElementById("map_#{@model.id}"), mapOptions)        
     google.maps.event.trigger(map, "resize")
     marker = new google.maps.Marker({position: mapLatLng, map: map})
+
+  getTemplateData: =>
+    td = super
+    td.i = @model.imageUrl() || 'http://placehold.it/266x150' 
+    for sl in @model.get('socialMediaLinks')
+      td[sl.target.toLowerCase()] = sl.url
+    td.hasSocialMediaLinks = @model.get('socialMediaLinks')?.length > 0
+    td    
