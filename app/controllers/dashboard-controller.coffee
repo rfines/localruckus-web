@@ -13,7 +13,7 @@ module.exports = class HomeController extends Controller
       window.navigator.geolocation.getCurrentPosition (pos) =>
         $.get "http://maps.googleapis.com/maps/api/geocode/json?latlng=#{pos.coords.latitude},#{pos.coords.longitude}&sensor=false", (a, b, c) =>
           @publishEvent 'geo:newAddress', a.results[0].formatted_address
-        @publishEvent 'event:searchChanged', {ll: "#{pos.coords.longitude},#{pos.coords.latitude}", sensor: true}
+          @publishEvent 'event:searchChanged', {ll: "#{pos.coords.longitude},#{pos.coords.latitude}", near : a.results[0].formatted_address, sensor: true}
 
   music: ->
     options = {

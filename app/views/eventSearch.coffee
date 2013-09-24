@@ -31,6 +31,7 @@ module.exports = class EventSearch extends View
     o = {near: near}
     if @$el.find('input[name=keyword]').val()
       o.keyword = @$el.find('input[name=keyword]').val()
+      o.tags = ''
     c = @$el.find('.whenSelected').text()      
     w = _.find @whenOptions, (item) ->
       c is item.text
