@@ -16,6 +16,7 @@ handler = (req, res, method) ->
       res.send
 
 handleGet = (req, res)->
+
   o = getOptions('GET', req)
   creq = http.request(o, (cres) ->
     res.writeHead cres.statusCode, cres.headers
@@ -37,6 +38,7 @@ handlePost = (req, res)->
   creq = http.request(o, (cres) ->
     res.writeHead cres.statusCode, cres.headers
     cres.on "data", (chunk) ->
+      console.log cres.headers
       res.write chunk
     cres.on "close", ->
       res.writeHead cres.statusCode, cres.headers
@@ -44,10 +46,12 @@ handlePost = (req, res)->
     cres.on 'end', (x) ->
       res.end()
   ).on("error", (e) ->
+    console.log "error in post"
+    console.log e
     res.writeHead 500
     res.end()
   )
-  if req.headers['content-type'] is 'application/json'
+  if req.headers['content-type'].indexOf('application/json') != -1 
     creq.write JSON.stringify(req.body)
     creq.end()
   else
@@ -72,7 +76,7 @@ handlePut = (req, res)->
     res.writeHead 500
     res.end()
   )
-  if req.headers['content-type'] is 'application/json'
+  if req.headers['content-type'].indexOf('application/json') != -1
     creq.write JSON.stringify(req.body)
     creq.end()
   else

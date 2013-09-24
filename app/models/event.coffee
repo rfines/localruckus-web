@@ -1,6 +1,6 @@
 Model = require 'models/base/model'
 ImageUtils = require 'utils/imageUtils'
-CONFIG = require('config')
+
 
 module.exports = class Event extends Model
   
@@ -51,18 +51,24 @@ module.exports = class Event extends Model
       return $.cloudinary.url(ImageUtils.getId(media[0].url), opts)  
     else
       return undefined
+
   getICal:()->
-    url = "#{CONFIG.baseUrl}/api/event/#{@id}/getCalendar?start=#{encodeUDIComponent(@nextOccurrence)}&end=#{encodeURIComponent(@nextOccurrenceEnd)}"
+    start = @nextOccurrence().format("X")
+    end = @nextOccurrenceEnd().format("X")
+    
+    url = "/api/event/#{@id}/invite.ics?start=#{start}&end=#{end}"
+    window.location.href = url
+    ###
     $.ajax
       type:'GET'
       url:url
       success: (response)=>
         console.log response
-        if response.success
-          return response.file
+        return response.file
       error:(error)=>
         console.log error
         return error
+    ###
 
   clone: ->
     json = @toJSON()

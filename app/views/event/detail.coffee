@@ -40,27 +40,30 @@ module.exports = class EventDetail extends View
     td.date = "#{@model.nextOccurrence().format('MM/DD/YYYY')} from #{startTime} to #{endTime}"
     td
   events:
-    "click .addToCal": "addToCalendar"
+    "click .addToCalendar": "addToCalendar"
     "click .closeModal":"closeModal"
+
   closeModal:(e)->
     e.preventDefault() if e
-    @$('calendarModal').modal('hide')
+    $('.calendarModal').modal('hide')
   
   addToCalendar:(e)=>
     e.preventDefault() if e
-    calType=@$el.find("calendarSelect").val()
+    calType=$(".calendarSelect").val()
     if calType is 'ical'
       file =@model.getICal()
     else
-      gCal = @googleCalurl()
+      gCal = @googleCalUrl()
       window.open(gCal,'_blank')
 
 
-
   googleCalUrl:()=>
-    calName = "Local Ruckus: #{@model.get('name')}"
-    eventDescription = @model.get('description')
-    sDate = @model.nextOccurrence().format("yyyyMMddTHHmmss")
+    name = encodeURIComponent(@model.get('name'))
+    calName = "Local Ruckus: #{name}"
+    eventDescription = encodeURIComponent(@model.get('description'))
+    sDate = @model.nextOccurrence().format("YYYYMMDDTHHmmss")
+    eDate = @model.nextOccurrenceEnd().format("YYYYMMDDTHHmmss")
+    d = "#{sDate}/#{eDate}"
     address = @model.get('location').address
     id = @model.id
-    return "https://www.google.com/calendar/render?action=TEMPLATE&dates=#{sDate}&details=#{eventDescription}&location=#{address}&text=#{calName}&sprop=partner:localruckus.com&sprop=partneruuid:#{id}&pli=1&sf=true&output=xml" 
+    return "https://www.google.com/calendar/render?action=TEMPLATE&dates=#{d}&details=#{eventDescription}&location=#{address}&text=#{calName}&sprop=partner:localruckus.com&sprop=partneruuid:#{id}&pli=1&sf=true&output=xml" 
