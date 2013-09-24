@@ -98,7 +98,6 @@ body {
   }
   .event-detail, .business-detail {
     font-family: 'Montserrat', sans-serif;
-    margin: 3em;
     font-size: 1em;
     h2 {
       color: @gray-lighter;
@@ -138,7 +137,22 @@ body {
       hr {
         color: @gray-darker;
         margin: 0px;
-      }      
+      }   
+      dl {
+        font-size: 12px;
+        dt {
+
+        }
+        dd {
+          margin-bottom: 10px;
+          &.hasSocialMediaLinks {
+            a {
+              padding-right:5px;
+              padding-top: 2px;
+            }
+          }
+        }
+      }   
     }
     .leftCol {
     }

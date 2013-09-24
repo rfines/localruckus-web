@@ -19,6 +19,9 @@ module.exports = class BusinessDetail extends View
     td = super
     td.i = @model.imageUrl() || 'http://placehold.it/266x150' 
     td.tags = @model.get('tags').join(', ')
+    for sl in @model.get('socialMediaLinks')
+      td[sl.target.toLowerCase()] = sl.url
+    td.hasSocialMediaLinks = @model.get('socialMediaLinks')?.length > 0
     td
 
   loadAndRender: =>
@@ -33,5 +36,9 @@ module.exports = class BusinessDetail extends View
     super
     for x in @events.models
       if x.nextOccurrence(moment())
-        console.log 'doing an event'
-        @subview "event-#{x.id}", new EventItem({model : x, collection : @events, container: @$el.find('.eventGallery')})
+        @subview "event-#{x.id}", new EventItem(
+          model : x
+          collection : @events
+          container: @$el.find('.eventGallery')
+          className: 'col-lg-6 col-md-6 col-sm-12 col-xs-12 eventItem'
+        )

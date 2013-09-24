@@ -22,14 +22,28 @@
               <dt>Phone</dt>
               <dd>{{contactPhone}}</dd>
             {{/if}}
-            {{#if website}}
-              <dd><a href="{{website}}" target="_blank">Visit Website</a></dd>
+            {{#if hasSocialMediaLinks}}
+              <dt>Social Media</dt>
+              <dd class="hasSocialMediaLinks">
+              {{#if website}}
+                <a href="{{website}}" target="_blank">Visit Website</a>
+              {{/if}}
+              {{#if facebook}}
+                <a href="{{facebook}}" target="_blank"><img src="/client/images/facebook_16.png" /></a>
+              {{/if}}
+              {{#if twitter}}
+                <a href="{{twitter}}" target="_blank"><img src="/client/images/twitter_16.png" /></a>
+              {{/if}}
+              {{#if foursquare}}
+                <a href="{{foursquare}}" target="_blank"><img src="/client/images/foursquare_16.png" /></a>
+              {{/if}}                        
+              </dd>
             {{/if}}
           </dl>        
       </div>
     </div>     
   </div>
-  <div class="col-md-8 rightCol">
+  <div class="col-md-7 rightCol">
     <div class="row">
       <h2>{{name}}</h2>
     </div>
@@ -67,7 +81,10 @@
           </div>
         </div>
         <div class="tab-pane fade" id="events">
-          <div class="row eventGallery">
+          <div class="row">
+            <div class="container">
+              <div class="row eventGallery"></div>
+            </div>
           </div>
         </div>
       </div>
