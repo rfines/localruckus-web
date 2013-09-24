@@ -23,8 +23,7 @@ module.exports = class EventDetail extends View
             @business.fetch
               success: =>
                 @render()
-          else
-            @render()
+
   
   getTemplateData: =>
     td = super
