@@ -23,8 +23,6 @@
     <![endif]-->    
     <script>require('initialize');</script>
   </head>
-
-<<<<<<< HEAD
   <body>
       {{#if development}}
       <script>
@@ -46,38 +44,6 @@
           var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
           ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-=======
-<body>
-    {{#if development}}
-    <script>
-      window.brunch = window.brunch || {};
-      window.brunch['auto-reload'] = "{disabled: true}";
-    </script>
-    {{/if}}
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>  
-    <script>
-      window.facebookClientId = "{{facebookClientId}}";
-      $.cloudinary.config({ cloud_name: '{{cloudinary.cloudName}}'});
-      window.baseUrl = "{{baseUrl}}";
-      window.apiUrl ="{{apiUrl}}"
-    </script>
-    <script>
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', '{{googleAnalytics.code}}']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>    
-    <script type="text/javascript">
-        var uvOptions = {};
-        (function () {
-            var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-            uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/YSxBP6VkkI2uhHLdDLQrPQ.js';
-            var s = $('body'); s.after(uv, s);
->>>>>>> Finished add to calendar functionality
         })();
       </script>    
       <script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
