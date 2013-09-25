@@ -26,16 +26,18 @@
               <dt>Social Media</dt>
               <dd class="hasSocialMediaLinks">
               {{#if website}}
-                <a href="{{website}}" target="_blank">Visit Website</a>
+                <dt>Website</dt>
+                <dd><a href="{{website}}" target="_blank">{{website}}</a></dd>
               {{/if}}
               {{#if facebook}}
-                <a href="{{facebook}}" target="_blank"><img src="/client/images/facebook_16.png" /></a>
+                <dd><a href="{{facebook}}" target="_blank"><img src="/client/images/facebook_16.png" /></a>
               {{/if}}
               {{#if twitter}}
                 <a href="{{twitter}}" target="_blank"><img src="/client/images/twitter_16.png" /></a>
               {{/if}}
               {{#if foursquare}}
-                <a href="{{foursquare}}" target="_blank"><img src="/client/images/foursquare_16.png" /></a>
+              
+               <a href="{{foursquare}}" target="_blank"><img src="/client/images/foursquare_16.png" /></a>
               {{/if}}                        
               </dd>
             {{/if}}
@@ -57,11 +59,13 @@
           <div class="row details">
             <div class="col-md-5">
               <dl>
-                <dt>Categories:</dt>
+                <dt>Categories</dt>
                 <dd>{{tags}}</dd>
-                <dt>Phone:</dt>
+                {{#if contactPhone}}
+                <dt>Phone</dt>
                 <dd>{{contactPhone}}</dd>
-                <dt>Address:</dt>
+                {{/if}}
+                <dt>Address</dt>
                 <dd>{{location.address}}</dd>
               </dl>              
               <h3>Map & Directions</h3>
@@ -72,9 +76,11 @@
                 <dd>{{description}}</dd>
                 <dt>More Info</dt>
                 <dd>
-                  <p>{{website}}</p>
+                  <p><a href="{{website}}" target="_blank">{{website}}</a></p>
                   <p>{{contactName}}</p>
+                  {{#if contactPhone}}
                   <p>{{contactPhone}}</p>
+                  {{/if}}
                 </dd>
               </dl>
             </div>

@@ -37,6 +37,14 @@ module.exports = class EventDetail extends View
     endTime = @model.nextOccurrenceEnd()?.format('h:mm a')
     td.time = "#{@model.nextOccurrence()?.format('h:mm a')} to #{@model.nextOccurrenceEnd()?.format('h:mm a')}"
     td.date = "#{@model.nextOccurrence().format('MM/DD/YYYY')} from #{startTime} to #{endTime}"
+    if td.business?.contactPhone?.length >0
+      td.showPhone=true
+    else
+      td.showPhone = false
+    if @model.contactPhone or @model.contactName or @model.contactEmail or @model.website
+      td.showMoreInfo = true
+    else
+      td.showMoreInfo = false
     td
     
   events:
