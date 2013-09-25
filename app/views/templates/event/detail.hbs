@@ -9,16 +9,20 @@
       <div class="col-md-9 businessInfo detailSidebar">
         <p class="businessName"><a href="/business/{{businessId}}">{{businessName}}</a></p>
           <dl>
-            <dt>Phone</dt>
-            <dd>{{business.contactPhone}}</dd>
+            {{#if showPhone}}
+              <dt>Phone</dt>
+              <dd>{{business.contactPhone}}</dd>
+            {{/if}}
             {{#if business.website}}
-            <dd><a href="{{business.website}}" target="_blank">Visit Website</a></dd>
+              <dt>Website</dt>
+              <dd><a href="{{business.website}}" target="_blank">{{business.website}}</a></dd>
             {{/if}}
             {{#if hasSocialMediaLinks}}
               <dt>Social Media</dt>
               <dd class="hasSocialMediaLinks">
               {{#if website}}
-                <a href="{{website}}" target="_blank">Visit Website</a>
+                <dt>Website</dt>
+                <dd><a href="{{website}}" target="_blank">{{website}}</a></dd>
               {{/if}}
               {{#if facebook}}
                 <a href="{{facebook}}" target="_blank"><img src="/client/images/facebook_16.png" /></a>
@@ -67,10 +71,11 @@
             </div>
             <div class="col-md-7">
               <dl>
-                <dt>Categories:</dt>
+                <dt>Categories</dt>
                 <dd>{{tags}}</dd>
                 <dt>Description</dt>                
                 <dd>{{description}}</dd>
+                {{#if showMoreInfo}}
                 <dt>More Info</dt>
                 <dd>
                   <p>{{website}}</p>
@@ -78,6 +83,7 @@
                   <p>{{contactPhone}}</p>
                   <p>{{contactEmail}}</p>
                 </dd>
+                {{/if}}
               </dl>
             </div>
           </div>
@@ -86,23 +92,23 @@
     </div>
   </div>
 </div>
-<div class="modal fade calendarModal" id="calModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
+<div class="modal fade calendarModal" style="color:black;" id="calModal">
+  <div class="modal-dialog" style="color:black;">
+    <div class="modal-content" style="color:black;">
+      <div class="modal-header" style="color:black;">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Choose your calendar</h4>
+        <h4 class="modal-title" style="color:black;">Choose your calendar</h4>
       </div>
-      <div class="modal-body">
-        <p>Which calendar do you wish to add this event to?</p>
+      <div class="modal-body" style="color:black;">
+        <p style="color:black;">Which calendar do you wish to add this event to?</p>
         <select class="calendarSelect select-chosen">
           <option value="ical">iCal &amp; Outlook</option>
           <option value="google">Google Calendar</option>
         </select>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary addToCalendar">Save changes</button>
+      <div class="modal-footer" style="color:black;">
+        <button type="button" class="btn btn-cancel close" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary addToCalendar">Add to calendar</button>
       </div>
     </div>
   </div>

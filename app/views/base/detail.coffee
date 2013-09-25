@@ -36,4 +36,5 @@ module.exports = class Detail extends View
     for sl in @model.get('socialMediaLinks')
       td[sl.target.toLowerCase()] = sl.url
     td.hasSocialMediaLinks = @model.get('socialMediaLinks')?.length > 0
+    
     td    
