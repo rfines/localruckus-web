@@ -48,9 +48,12 @@
           <div class="row details">
             <div class="col-md-5">
               <dl>
-                <dt class="light">Date & Time</dt>
-                <dd class="light">{{scheduleText}} from {{time}}</dd>
-                <dd class="light">{{date}}</dd>
+                <dt>Date & Time</dt>
+                {{#if scheduleText}}
+                <dd>{{scheduleText}} from {{time}}</dd>
+                {{else}}
+                <dd>{{date}}</dd>
+                {{/if}}
                 <dt class="addToCalendar"></dt>
                 <dd><button class="btn btn-default" type="button" data-toggle="modal" data-target="#calModal" data-trigger="click">Add to calendar</button></dd>
                 <dt>Cost / Tickets</dt>

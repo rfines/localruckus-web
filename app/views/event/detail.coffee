@@ -38,6 +38,7 @@ module.exports = class EventDetail extends View
     td.time = "#{@model.nextOccurrence()?.format('h:mm a')} to #{@model.nextOccurrenceEnd()?.format('h:mm a')}"
     td.date = "#{@model.nextOccurrence().format('MM/DD/YYYY')} from #{startTime} to #{endTime}"
     td
+    
   events:
     "click .addToCalendar": "addToCalendar"
     "click .closeModal":"closeModal"
