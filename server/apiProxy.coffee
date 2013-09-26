@@ -16,7 +16,6 @@ handler = (req, res, method) ->
       res.send
 
 handleGet = (req, res)->
-
   o = getOptions('GET', req)
   creq = http.request(o, (cres) ->
     res.writeHead cres.statusCode, cres.headers
@@ -38,7 +37,6 @@ handlePost = (req, res)->
   creq = http.request(o, (cres) ->
     res.writeHead cres.statusCode, cres.headers
     cres.on "data", (chunk) ->
-      console.log cres.headers
       res.write chunk
     cres.on "close", ->
       res.writeHead cres.statusCode, cres.headers
@@ -46,8 +44,6 @@ handlePost = (req, res)->
     cres.on 'end', (x) ->
       res.end()
   ).on("error", (e) ->
-    console.log "error in post"
-    console.log e
     res.writeHead 500
     res.end()
   )
@@ -119,7 +115,11 @@ rewriteUrl = (oldUrl) ->
 
 getOptions = (method, req) ->
   newUrl = rewriteUrl(req.originalUrl)
-  url = require('url').parse("#{CONFIG.apiUrl}/#{newUrl.url}")
+  url = ''
+  if req.originalUrl.indexOf('apiKey') is -1
+    url = require('url').parse("#{CONFIG.apiUrl}/#{newUrl.url}")
+  else
+    url = require('url').parse("#{CONFIG.apiUrl}/legacy/#{newUrl.url}")
   auth = new Buffer("#{CONFIG.apiKey}:#{CONFIG.apiSecret}").toString('base64')
   o = 
     hostname: url.hostname
