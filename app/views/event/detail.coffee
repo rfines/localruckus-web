@@ -36,7 +36,10 @@ module.exports = class EventDetail extends View
     startTime = @model.nextOccurrence()?.format('h:mm a')
     endTime = @model.nextOccurrenceEnd()?.format('h:mm a')
     td.time = "#{@model.nextOccurrence()?.format('h:mm a')} to #{@model.nextOccurrenceEnd()?.format('h:mm a')}"
-    td.date = "#{@model.nextOccurrence().format('MM/DD/YYYY')} from #{startTime} to #{endTime}"
+    fixed = []
+    for x in @model.get('fixedOccurrences')
+      fixed.push "#{moment(x.start).format('MM/DD/YYYY')} from #{startTime} to #{endTime}"
+    td.fixed = fixed
     if td.business?.contactPhone?.length >0
       td.showPhone=true
     else

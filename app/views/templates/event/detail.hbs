@@ -56,7 +56,11 @@
                 {{#if scheduleText}}
                 <dd>{{scheduleText}} from {{time}}</dd>
                 {{else}}
-                <dd>{{date}}</dd>
+                <dd>
+                {{#each fixed}}
+                  <p>{{this}}</p>
+                {{/each}}
+                </dd>
                 {{/if}}
                 <dt class="addToCalendar"></dt>
                 <dd><button class="btn btn-default" type="button" data-toggle="modal" data-target="#calModal" data-trigger="click">Add to calendar</button></dd>
