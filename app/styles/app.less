@@ -89,7 +89,7 @@ body {
 
 #main{
 
-  .home-page, .event-detail, .business-detail {
+  .home-page, .event-detail, .business-detail, .error-page {
     padding: 80px 15px 0;
     background: url("../images/bg_vh.jpg") 0 0 repeat-x;
     background-attachment:scroll;
@@ -194,6 +194,19 @@ body {
       padding: 10px;
       background: #ffffff;
     }    
+  }
+  .error-state, .emptyState {
+    display:none;
+    margin-top: 10px;
+    background-color:#fff;
+    text-align: center;
+    border: 1px solid @gray-lighter;
+    .border-bottom-radius(10px);
+    .border-top-radius(10px);
+    height: 300px; 
+  }  
+  .error-state {
+    display:block;
   }
 }
 
@@ -402,64 +415,53 @@ div#pageLoader {
 }
 
 .eventGallery {
-      padding-left: 3em;
-      padding-right: 3em;
-      .eventItem {
-        margin-bottom: 20px;
-        .thumbnail {
-          text-align: center;
-          border-radius: @border-radius-large;
-          .cardHeader {
-            text-align: left;
-            padding: 14px 10px 0 10px;
-            #gradient > .vertical(@start-color: #ffffff; @end-color: #f9f9f9);
-            h4 {
-              a{
-                color: #464344; 
-                font-size: 14px; 
-              }
-              font-family: Helvetica, Arial, sans-serif;
-              font-size: 16px;
-              font-weight: 700;
-              margin: 0px;
-              padding: 0px;
-              height: 38px;
-            }         
-            .location, .additionalDates {
-              height: 36px;
-              color: #696868;
-              a{
-                color: #696868;
-                font-size: 12px;
-                i {
-                  color: red;
-                  padding-right: 2px;
-                }
-              }
+  padding-left: 3em;
+  padding-right: 3em;
+  .eventItem {
+    margin-bottom: 20px;
+    .thumbnail {
+      text-align: center;
+      border-radius: @border-radius-large;
+      .cardHeader {
+        text-align: left;
+        padding: 14px 10px 0 10px;
+        #gradient > .vertical(@start-color: #ffffff; @end-color: #f9f9f9);
+        h4 {
+          a{
+            color: #464344; 
+            font-size: 14px; 
+          }
+          font-family: Helvetica, Arial, sans-serif;
+          font-size: 16px;
+          font-weight: 700;
+          margin: 0px;
+          padding: 0px;
+          height: 38px;
+        }         
+        .location, .additionalDates {
+          height: 36px;
+          color: #696868;
+          a{
+            color: #696868;
+            font-size: 12px;
+            i {
+              color: red;
+              padding-right: 2px;
             }
-            .card-calendar {
-              border-top: 3px double #ebebeb;
-            }   
           }
-
-          padding:0px;
-          width: 100%;
-          img {
-            max-width: 100%;
-            margin: 0px 0px 0px -1px;
-          }
-
         }
+        .card-calendar {
+          border-top: 3px double #ebebeb;
+        }   
       }
-      .emptyState {
-        display:none;
-        margin-top: 10px;
-        background-color:#fff;
-        text-align: center;
-        border: 1px solid @gray-lighter;
-        .border-bottom-radius(10px);
-        .border-top-radius(10px);
-        height: 300px;
-      }
-    }
 
+      padding:0px;
+      width: 100%;
+      img {
+        max-width: 100%;
+        margin: 0px 0px 0px -1px;
+      }
+
+    }
+  }
+}
