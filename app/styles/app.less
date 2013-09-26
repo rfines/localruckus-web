@@ -38,8 +38,18 @@ body {
     margin-bottom: 0px;
   }
   .navbar-nav.small {
+    li {float:right!important;}
+    h4 {color:#fff;font-family: 'Indie Flower', cursive;font-size: 1.8em;padding:5px 0px 0px 10px;clear: right;}
     a {
-      padding: 5px;
+      padding: 5px!important;
+      font-size: 1em;
+      color: #06A1AF;
+      padding: 4px!important;
+      margin-right: 12px;
+      float: right;
+      img {
+        margin-left:5px;
+      }
     }
   }
   .navbar-default {
@@ -78,6 +88,7 @@ body {
 }
 
 #main{
+
   .home-page, .event-detail, .business-detail {
     padding: 80px 15px 0;
     background: url("../images/bg_vh.jpg") 0 0 repeat-x;
@@ -189,7 +200,58 @@ body {
 /* Set the fixed height of the footer here */
 #footer {
   height: 60px;
-  background-color: #f5f5f5;
+  background-color: #333;
+  position:fixed;
+  width:100%;
+  
+  .navbar-nav.small {
+    position: absolute;
+    right: 0px;
+    top: 14px;
+    h4 {color:#fff;font-family: 'Indie Flower', cursive;font-size: 1.8em;}
+    li {float:right!important;list-style:none;}
+    a.btn {
+      padding: 5px!important;
+      font-size: 0.8em;
+      color: 
+      #fff;
+      font-weight: bold;
+      padding: 4px!important;
+      margin-right: 12px;
+      float: right;
+      i {
+        margin-right:5px;
+        color: #fff;
+      }
+    }
+  }
+  .navbar-nav.small.poweredBy {
+    position: absolute;
+    right: 80%;
+    top: 14px;
+    li {float:right!important;}
+  
+    a {
+      padding: 5px!important;
+      font-size: 1.1em;
+      color: #06A1AF;
+      padding: 4px!important;
+      margin-right: 12px;
+      float: left;
+      img {
+        margin-left:5px;
+      }
+    }
+  }
+  ul.footer-nav {
+    width:30%;
+    margin:20px auto 0px auto;
+    
+    li {
+      a {color: #c5d645;text-decoration:underline;}
+      float:left; list-style:none;margin-right:10px;color: #c5d645;font-size:.9em;}
+    
+  }
 }
 
 div#pageLoader {
@@ -294,6 +356,14 @@ div#pageLoader {
   
 }
 .eventSearchForm {
+    label {
+      color:#c5d645;font-weight:bold;
+      em {font-weight:normal;font-size:.9em;}
+      }
+      .btn-success {background-color:#c5d645;color:#333;border-color:#333;}
+      .buttons {
+        a {color:#c5d645;text-decoration:underline;font-size:.8em;}
+        padding-top:30px;}
   .form-group {
     padding-right: 2px;
     padding-left:2px;
@@ -301,6 +371,8 @@ div#pageLoader {
   .when {
     font-family: 'Montserrat', sans-serif;   
     font-size: 1.2em;
+    label {font-size: 0.8em;
+    display: block;}
     a {
       border: 1px solid @gray-lighter;
       .border-bottom-radius(3px);

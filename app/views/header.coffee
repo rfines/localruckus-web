@@ -42,8 +42,8 @@ module.exports = class HeaderView extends View
       text.parent().addClass('has-error') if not text.val()
 
   suggestBusiness: ->
-    @$el.find('#contactUs .line1').text('Suggest a Business for LocalRuckus')
-    @$el.find('input[name=subject]').attr('value', 'Suggest Business Submission from LocalRuckus.com')
+    @$el.find('#contactUs .line1').text('Suggest a Business or Event for LocalRuckus')
+    @$el.find('input[name=subject]').attr('value', 'Suggest Business or Event Submission from LocalRuckus.com')
 
   suggestEvent: ->
     @$el.find('#contactUs .line1').text('Suggest an Event for LocalRuckus')
