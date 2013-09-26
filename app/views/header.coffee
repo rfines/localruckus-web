@@ -13,6 +13,10 @@ module.exports = class HeaderView extends View
     'click .suggestEvent' : 'suggestEvent'
     'click .contactUs' : 'contactUs'
 
+  listen:
+    'suggestEvent mediator' : 'suggestEvent'
+    'suggestEvent mediator' : 'suggestBusiness'
+
   initialize: ->
     super
 

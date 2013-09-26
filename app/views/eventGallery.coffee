@@ -2,18 +2,19 @@ CollectionView = require 'views/base/collection-view'
 Events = require 'models/events'
 EventItem = require 'views/eventItem'
 EventSearch = require 'views/eventSearch'
+template = require 'views/templates/eventGallery'
 
 module.exports = class EventGallery extends CollectionView
   autoRender: false
   renderItems: true
   itemView: EventItem
   className : 'eventGallery'
+  template: template
 
   listen:
     'event:searchChanged mediator' : 'searchChanged'
 
   initialize: (@options) ->
-    console.log 'init'
     @collection = new Events()
     super(options)
     @startLoading()
@@ -30,6 +31,11 @@ module.exports = class EventGallery extends CollectionView
       else
         @searchOptions.near = 64105
 
+  getTemplateData: =>
+    td = super()
+    td.searchOptions = @searchOptions
+    td
+
   searchChanged: (newOptions) =>
     @startLoading()
     for x in _.keys(newOptions)
@@ -44,6 +50,7 @@ module.exports = class EventGallery extends CollectionView
   loadEvents: =>
     oldCollection = @collection
     @collection = new Events()
+    console.log @searchOptions
     if @searchOptions?.ll
       @collection.ll = "#{@searchOptions.ll}"
       @collection.near = undefined
@@ -64,6 +71,8 @@ module.exports = class EventGallery extends CollectionView
         @$el.empty()
         console.log 'render'
         @render()
+        if @collection.length is 0
+          @$el.find('.emptyState').show()
         @stopLoading()
 
   initItemView: (model) =>
