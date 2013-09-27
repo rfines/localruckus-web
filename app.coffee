@@ -3,6 +3,9 @@ express = require("express")
 app = express()
 port = process.env.PORT || 3001
 apiProxy = require('./server/apiProxy')
+Mandrill = require("mandrill-api").Mandrill
+process.env.MANDRILL_APIKEY = process.env.MANDRILL_APIKEY || CONFIG.email.mandrill.apiKey
+process.env.MANDRILL_USERNAME = process.env.MANDRILL_APIKEY || CONFIG.email.mandrill.apiKey
 
 app.configure ->
   app.set('view engine', 'hbs')
@@ -31,23 +34,21 @@ app.get "/robots.txt", (req, res) ->
   res.render CONFIG.robotsFile
 
 app.post "/lrApi/contact", (req, res) ->
-  console.log 'lrApi contact'
-  username = process.env.SENDGRID_USERNAME || CONFIG.sendgrid.username
-  password = process.env.SENDGRID_PASSWORD || CONFIG.sendgrid.password
-  sendgrid = require("sendgrid")(username, password)
-  sendgrid.send
-    to: "info@localruckus.com"
-    from: req.body.email
-    subject: req.body.subject
-    text: "Name: #{req.body.name}\n\nMessage: #{req.body.text}"
-  , (err, json) ->
-    if err
-      res.send 500, err
-      res.end()
-    else 
-      res.send 200, {status: 'SUCCESS'}
-      res.end()
-
+  m = new Mandrill()
+  sendOptions = 
+    message: 
+      text : "Name: #{req.body.name}\n\nMessage: #{req.body.text}"
+      subject: req.body.subject
+      from_email : req.body.email
+      to: [{email:"england@localruckus.com"}]
+  success = ->
+    res.send 200, {status: 'SUCCESS'}
+    res.end()
+  error = (err) ->
+    res.send 500, err
+    res.end()
+  console.log 'ready to send'
+  m.messages.send sendOptions, success, error
 
 app.get "/*", (req, res) ->
   data =

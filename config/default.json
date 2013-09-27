@@ -10,9 +10,11 @@
   "googleAnalytics" : {
     "code" : "UA-26299789-3"
   },
-  "sendgrid" : {
-    "password" : "ddh8lrzb",
-    "username" : "app17368325@heroku.com"
+  "email" : {
+    "mandrill" : {
+      "apiKey" : "8YzdtsF-xJYq2fsB21DVrQ",
+      "username" : "info@hoopla.io"
+    }
   },
   "robotsFile" : "stage.robots.hbs"
 }
