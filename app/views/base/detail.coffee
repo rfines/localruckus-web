@@ -15,7 +15,7 @@ module.exports = class Detail extends View
 
   attach: =>
     super()
-    @publishEvent 'adjustTitle', @model.get('name')
+    @publishEvent 'adjustTitle', "#{@model.get('name')} - Local Ruckus - Do the Local Thing"
     @subview('shareThis', new ShareThis({container: '.shareIcons'}))   
     @initMap()
 

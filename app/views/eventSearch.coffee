@@ -40,7 +40,6 @@ module.exports = class EventSearch extends View
     o.start = w.start.toDate().toISOString()
     o.end = w.end.toDate().toISOString() if w.end
     o.radius = @$el.find('select[name=radius] > option:selected').val()
-    console.log o
     @publishEvent 'event:searchChanged', o
     @publishEvent 'geo:newAddress', near
 

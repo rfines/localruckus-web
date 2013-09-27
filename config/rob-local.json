@@ -1,0 +1,9 @@
+{
+  "development" : true,
+  "apiUrl" : "http://localhost:8080",
+  "baseUrl":"http://localhost:3000/",
+  "cloudinary" : {
+    "cloudName" : "robs-cloud"
+  },
+  "robotsFile" : "stage.robots.hbs"
+}

@@ -9,4 +9,3 @@ module.exports = class Controller extends Chaplin.Controller
     @compose 'site', SiteView
     @compose 'header', HeaderView
     @compose 'footer', FooterView
-
