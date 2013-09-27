@@ -1,12 +1,14 @@
 {
   "development" : false,
   "baseUrl":"http://www.localruckus.com/",
-  "apiUrl" : "http://api.hoopla.io/",
+  "apiUrl" : "http://hoopla-io-api-stage.herokuapp.com/",
+  //"apiUrl" : "http://api.hoopla.io/",
   "cloudinary" : {
     "cloudName" : "hu9ncnicw"
   },
   "googleAnalytics" : {
-    "code" : "UA-26299789-1"
+    //"code" : "UA-26299789-1"
+    "code" : "UA-26299789-3"
   },  
   "robotsFile" : "prod.robots.hbs"  
 }

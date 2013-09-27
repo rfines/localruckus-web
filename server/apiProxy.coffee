@@ -27,7 +27,7 @@ handleGet = (req, res)->
     cres.on 'end', (x) ->
       res.end()
   ).on("error", (e) ->
-    res.writeHead 500
+    res.writeHead 500, e
     res.end()
   )
   creq.end()
@@ -44,7 +44,7 @@ handlePost = (req, res)->
     cres.on 'end', (x) ->
       res.end()
   ).on("error", (e) ->
-    res.writeHead 500
+    res.writeHead 500, e
     res.end()
   )
   if req.headers['content-type'].indexOf('application/json') != -1 
@@ -69,7 +69,7 @@ handlePut = (req, res)->
     cres.on 'end', (x) ->
       res.end()
   ).on("error", (e) ->
-    res.writeHead 500
+    res.writeHead 500, e
     res.end()
   )
   if req.headers['content-type'].indexOf('application/json') != -1
@@ -93,7 +93,7 @@ handleDelete = (req, res) ->
     cres.on 'end', (x) ->
       res.end()
   ).on("error", (e) ->
-    res.writeHead 500
+    res.writeHead 500, e
     res.end()
   )
   creq.end()
