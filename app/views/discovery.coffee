@@ -14,7 +14,7 @@ module.exports = class HomePageView extends View
 
   attach: ->
     super()
-    @subview('eventSearch', new EventSearch({container: @$el.find('.eventSearch')}))
+    @subview('eventSearch', new EventSearch({container: @$el.find('.eventSearch'), searchOptions: @options.searchOptions}))
     @subview('eventGallery', new EventGallery({container: @$el, searchOptions: @options.searchOptions}))
     @publishEvent 'adjustTitle', 'Local Ruckus - Do the Local Thing'
 

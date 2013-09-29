@@ -13,17 +13,24 @@ module.exports = class EventSearch extends View
   listen:
     'geo:newAddress mediator' : 'updateAddress'   
 
-  initialize: ->
-    super()
+  initialize: (@options) ->
+    super(@options)
     @whenOptions = [
       {text: 'Anytime', start: moment().startOf('day')}
-      {text: 'Today', start: moment().startOf('day'), end : moment().startOf('day').add('days',1)}
+      {text: 'Today', start: moment().startOf('day'), end : moment().endOf('day')}
       {text: 'Tomorrow', start: moment().startOf('day').add('days',1), end : moment().endOf('day').add('days',1)}
       {text: 'This Weekend', start: moment().day(5).startOf('day'), end : moment().day(7).endOf('day')}
       {text: 'Next Week', start: moment().startOf('week').add('weeks',1).add('days',1), end : moment().endOf('week').add('weeks', 1).add('days',1)}
       {text: 'Next Weekend', start: moment().day(5).startOf('day').add('weeks',1), end : moment().day(7).endOf('day').add('weeks',1)}
       {text: 'Beyond', start: moment().startOf('day').day(1).add('weeks',2)}
     ]
+
+  attach: ->
+    super()
+    console.log @options.searchOptions.whenOption
+    wo = _.indexOf @whenOptions, _.find @whenOptions, (item) =>
+      item.text is @options.searchOptions.whenOption
+    @updateWhen(wo)
 
   searchEvents: (e) ->
     e.preventDefault()
@@ -37,6 +44,8 @@ module.exports = class EventSearch extends View
     c = @$el.find('.whenSelected').text()      
     w = _.find @whenOptions, (item) ->
       c is item.text
+    console.log w
+    o.whenOption = w.text if w.text
     o.start = w.start.toDate().toISOString()
     o.end = w.end.toDate().toISOString() if w.end
     o.radius = @$el.find('select[name=radius] > option:selected').val()

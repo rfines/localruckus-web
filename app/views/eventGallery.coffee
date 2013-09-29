@@ -44,13 +44,13 @@ module.exports = class EventGallery extends CollectionView
       delete @searchOptions.near
     if newOptions.near and not newOptions.ll
       delete @searchOptions.ll
+    console.log @searchOptions
     Chaplin.cookieManager.updateSearch(@searchOptions)
     @loadEvents()  
 
   loadEvents: =>
     oldCollection = @collection
     @collection = new Events()
-    console.log @searchOptions
     if @searchOptions?.ll
       @collection.ll = "#{@searchOptions.ll}"
       @collection.near = undefined
@@ -65,11 +65,10 @@ module.exports = class EventGallery extends CollectionView
     @collection.keyword = @searchOptions.keyword if @searchOptions?.keyword
     @collection.tags = @searchOptions.tags if @searchOptions?.tags
     @collection.start = @searchOptions.start if @searchOptions?.start
-    @collection.end = @searchOptions.start if @searchOptions?.end
+    @collection.end = @searchOptions.end if @searchOptions?.end
     @collection.fetch 
       success: =>
         @$el.empty()
-        console.log 'render'
         @render()
         if @collection.length is 0
           @$el.find('.emptyState').show()
