@@ -452,7 +452,11 @@ div#pageLoader {
               margin: 0px;
               padding: 0px;
               height: 38px;
-            }         
+            }    
+            .imageOrMap .image {
+              float:left;
+              img {width:145px;}
+              }     
             .location, .additionalDates {
               height: 36px;
               color: #696868;
@@ -481,4 +485,33 @@ html body div#site-container div#main div.home-page div.row div.col-md-12 div fo
 
 #footer ul.footer-nav {display:none;}
 }
+@media (max-width: 767px) {
+  
+  #footer {
+    height:180px;
+    bottom: -38px;
+    text-align:center;
+    .navbar-nav.small {
+      li {float:none!important;
+        margin-bottom:15px;
+        a.btn {
+        float:none!important;
+        }
+      }
+        position: static;}
+    .navbar-nav.small.poweredBy {
 
+    position: static;
+    text-align: center;
+    li {
+      float:none!important;
+      a {float:none;}
+    }
+
+  }
+}
+.eventGallery .eventItem {
+margin-bottom: 20px;
+min-height: 200px;
+}
+}
