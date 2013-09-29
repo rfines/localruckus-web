@@ -5,6 +5,7 @@ module.exports = (match) ->
   match 'food', 'dashboard#food'
   match 'family', 'dashboard#family'
   match 'event/:id', 'event#detail'
+  match ':category/details/:id/:name', 'event#detail'
   match 'business/:id', 'business#detail'
   match 'businesses/details/:id/:name', 'business#detail'
   match 'terms', 'static#terms'

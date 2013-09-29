@@ -22,13 +22,13 @@
               <dt>Phone</dt>
               <dd>{{contactPhone}}</dd>
             {{/if}}
+            {{#if website}}
+              <dt>Website</dt>
+              <dd><a href="{{website}}" target="_blank">{{website}}</a></dd>
+            {{/if}}            
             {{#if hasSocialMediaLinks}}
               <dt>Social Media</dt>
               <dd class="hasSocialMediaLinks">
-              {{#if website}}
-                <dt>Website</dt>
-                <dd><a href="{{website}}" target="_blank">{{website}}</a></dd>
-              {{/if}}
               {{#if facebook}}
                 <dd><a href="{{facebook}}" target="_blank"><img src="/client/images/facebook_16.png" /></a>
               {{/if}}
