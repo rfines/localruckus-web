@@ -27,10 +27,10 @@ module.exports = class EventSearch extends View
 
   attach: ->
     super()
-    console.log @options.searchOptions.whenOption
-    wo = _.indexOf @whenOptions, _.find @whenOptions, (item) =>
-      item.text is @options.searchOptions.whenOption
-    @updateWhen(wo)
+    if @options?.searchOptions?.whenOption
+      wo = _.indexOf @whenOptions, _.find @whenOptions, (item) =>
+        item.text is @options.searchOptions.whenOption
+      @updateWhen(wo)
 
   searchEvents: (e) ->
     e.preventDefault()
