@@ -9,3 +9,8 @@ module.exports = class CookieManager
     @cookie.search = search
     @cookie.lastSearch = new Date()
     $.cookie('localruckus', @cookie, { expires: 60, path: '/'});
+
+  clear: () ->
+    delete @cookie.lastSearch
+    delete @cookie.search
+    $.cookie('localruckus', @cookie, { expires: 60, path: '/'});

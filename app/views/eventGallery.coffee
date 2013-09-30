@@ -16,6 +16,7 @@ module.exports = class EventGallery extends CollectionView
 
   initialize: (@options) ->
     @collection = new Events()
+    @options.collection = @collection
     super(options)
     @startLoading()
     if @options.searchOptions

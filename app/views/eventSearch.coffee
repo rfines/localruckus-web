@@ -9,6 +9,7 @@ module.exports = class EventSearch extends View
     'submit form.eventSearchForm' : 'searchEvents'
     'click .whenPrev' : 'whenPrev'
     'click .whenNext' : 'whenNext'
+    'click .reset' : 'resetSearch'
 
   listen:
     'geo:newAddress mediator' : 'updateAddress'   
@@ -34,23 +35,33 @@ module.exports = class EventSearch extends View
 
   searchEvents: (e) ->
     e.preventDefault()
+    @$el.find('.has-error').removeClass('has-error')
     near = @$el.find('input[name=near]').val()
-    o = {near: near}
-    if @$el.find('input[name=keyword]').val()
-      o.keyword = @$el.find('input[name=keyword]').val()
-      o.tags = ''
+    if not near
+      @$el.find('input[name=near]').parent().addClass('has-error')
     else
-      o.keyword = ''
-    c = @$el.find('.whenSelected').text()      
-    w = _.find @whenOptions, (item) ->
-      c is item.text
-    console.log w
-    o.whenOption = w.text if w.text
-    o.start = w.start.toDate().toISOString()
-    o.end = w.end.toDate().toISOString() if w.end
-    o.radius = @$el.find('select[name=radius] > option:selected').val()
-    @publishEvent 'event:searchChanged', o
-    @publishEvent 'geo:newAddress', near
+      o = {near: near}
+      if @$el.find('input[name=keyword]').val()
+        o.keyword = @$el.find('input[name=keyword]').val()
+        o.tags = ''
+      else
+        o.keyword = ''
+      c = @$el.find('.whenSelected').text()      
+      w = _.find @whenOptions, (item) ->
+        c is item.text
+      o.whenOption = w.text if w.text
+      o.start = w.start.toDate().toISOString()
+      o.end = w.end.toDate().toISOString() if w.end
+      o.radius = @$el.find('select[name=radius] > option:selected').val()
+      @publishEvent 'event:searchChanged', o
+      @publishEvent 'geo:newAddress', near
+
+  resetSearch: (e) ->
+    e.preventDefault()
+    Chaplin.cookieManager.clear()
+    @updateWhen(0)
+    @$el.find('input[name=keyword]').val('')
+    @$el.find('input[name=near]').val('')
 
   updateAddress: (addr) ->
     @$el.find('input[name=near]').val(addr)              
