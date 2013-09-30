@@ -20,28 +20,28 @@ module.exports = class Event extends Model
   nextOccurrence: (afterMoment) ->
     if afterMoment
       m = _.find @get('occurrences'), (o) ->
-        moment(o.start).isAfter(afterMoment)
+        moment.utc(o.start).isAfter(afterMoment)
       if m
         return moment(m.start)
     else
       if @get('occurrences') and _.first(@get('occurrences'))
-        m = moment(_.first(@get('occurrences')).start)
+        m = moment.utc(_.first(@get('occurrences')).start)
         m.local()
         return m
       return undefined
 
   nextOccurrenceEnd: ->
     if @get('occurrences') and _.first(@get('occurrences'))
-      m = moment(_.first(@get('occurrences')).end)
+      m = moment.utc(_.first(@get('occurrences')).end)
       m.local()
       return m
     return undefined
 
   getStartDate: ->
-    return moment(_.first(@get('occurrences')).start)
+    return moment.utc(_.first(@get('occurrences')).start)
 
   getEndDate: ->
-    return moment(_.first(@get('occurrences')).end)    
+    return moment.utc(_.first(@get('occurrences')).end)    
 
   imageUrl: (options) ->
     media = @get('media')
@@ -55,20 +55,8 @@ module.exports = class Event extends Model
   getICal:()->
     start = @nextOccurrence().format("X")
     end = @nextOccurrenceEnd().format("X")
-    
     url = "/api/event/#{@id}/invite.ics?start=#{start}&end=#{end}"
     window.location.href = url
-    ###
-    $.ajax
-      type:'GET'
-      url:url
-      success: (response)=>
-        console.log response
-        return response.file
-      error:(error)=>
-        console.log error
-        return error
-    ###
 
   clone: ->
     json = @toJSON()
