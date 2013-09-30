@@ -19,7 +19,7 @@ app.configure ->
     res.send 500, "Something broke!"
 
 app.get "/api/getdefevents", (req, res) ->
-  res.redirect(301, '#{CONFIG.hooplaUrl}integrate/widget/524997f03df814cfaf00002b');
+  res.redirect(301, "#{CONFIG.hooplaUrl}integrate/widget/524997f03df814cfaf00002b");
   
 #api urls use proxy to set headers
 app.get "/api/*", (req, res) ->
