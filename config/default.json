@@ -1,5 +1,6 @@
 {
   "development" : true,
+  "hooplaUrl" : "http://localhost:3000/",
   "apiUrl" : "http://localhost:8080",
   "apiKey" :"XVoZHNOJ2kFdrApkq4wM",
   "baseUrl":"http://localhost:3000/",

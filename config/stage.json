@@ -1,5 +1,6 @@
 {
   "development" : false,
+  "hooplaUrl" : "http://stage.hoopla.io/",
   "baseUrl":"http://localruckus-web-stage.herokuapp.com/",
   "apiUrl" : "http://hoopla-io-api-stage.herokuapp.com/",
   "cloudinary" : {
