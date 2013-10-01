@@ -315,6 +315,7 @@ div#pageLoader {
     background: transparent;
     font-family: 'Indie Flower', cursive;
     color: #fff;
+    a.btn-info{color:@gray-darker;} 
     form {
       padding: 20px 0px 10px 0px;
       input.email {
@@ -388,7 +389,7 @@ div#pageLoader {
 .eventSearchForm {
     label {
       color:#c5d645;font-weight:bold;
-      em {font-weight:normal;font-size:.9em;}
+      em {font-weight:normal;font-size:.8em;}
       }
       .btn-success {background-color:#c5d645;color:#333;border-color:#333;}
       .buttons {
@@ -447,22 +448,20 @@ div#pageLoader {
               font-size: 13px;
             }
             #gradient > .vertical(@start-color: #ffffff; @end-color: #f9f9f9);
+            
             h4 {
               a{
                 color: #464344; 
                 font-size: 24px; 
               }
-              font-family: Helvetica, Arial, sans-serif;
+              font-family: Helvetica,Arial,sans-serif;
               font-size: 16px;
               font-weight: 700;
-              margin: 0px;
-              padding: 0px;
-              height: 38px;
+              margin: 0px 0px 10px 0px;
+              padding: 0;
+              height: 68px;
             }    
-            .imageOrMap .image {
-              float:left;
-              img {width:145px;}
-              }     
+                
             .location, .additionalDates {
               height: 36px;
               color: #696868;
@@ -485,14 +484,28 @@ div#pageLoader {
 }
 
     }
+    .imageOrMap .image {
+      img {width:100%;margin-right:10px;}
+      }
 @media (max-width: 967px) {
 
 html body div#site-container div#main div.home-page div.row div.col-md-12 div form.form-inline div.when{display:none!important;}
+.buttons {
+  position:relative;
+  top:10px;
+ }
+ .imageOrMap .image {
+   img {width:100%;margin-right:10px;}
+   }
 
 #footer ul.footer-nav {display:none;}
 }
 @media (max-width: 767px) {
   
+  .imageOrMap .image {
+    float:none;
+    img {width:100%;}
+    }
   
   .fd-btn-left a.freshwidget-theme {
    top:50%!important; 
