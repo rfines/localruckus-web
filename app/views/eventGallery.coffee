@@ -62,7 +62,7 @@ module.exports = class EventGallery extends CollectionView
         @collection.ll = "#{oldCollection.ll}"
         @collection.near = undefined
       else if oldCollection?.near
-        @collection.near = "#{oldCollection.near}"
+        @collection.near = "#{oldCollection.near}"    
     @collection.keyword = @searchOptions.keyword if @searchOptions?.keyword
     @collection.tags = @searchOptions.tags if @searchOptions?.tags
     @collection.start = @searchOptions.start if @searchOptions?.start
