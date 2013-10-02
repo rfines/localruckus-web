@@ -6,8 +6,6 @@ module.exports = class HomeController extends Controller
 
   index: ->
     c = Chaplin.cookieManager.cookie
-    if not c.search?.tags?
-      c.search.tags= "MUSIC,FAMILY-AND-CHILDREN,ARTS"
     if c and c.lastSearch and moment(c.lastSearch).isAfter(moment().subtract('hours', 1))
       @view = new DiscoveryView({region: 'main', searchOptions : c.search})
       @view.loadEvents()
