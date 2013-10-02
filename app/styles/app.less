@@ -36,7 +36,7 @@ body {
   }
   .navbar-nav.small {
     li {float:right!important;}
-    h4 {color:#fff;font-family: 'Indie Flower', cursive;font-size: 1.3em;padding:5px 0px 0px 10px;clear: right;}
+    h4 {color:#fff;font-family: 'Indie Flower', cursive;font-size: 1.5em;padding:5px 0px 0px 10px;clear: right;}
     a {
       padding: 5px!important;
       font-size: 1em;
@@ -361,8 +361,8 @@ div#pageLoader {
 }
 #toHoopla{
   .modal-dialog{
-    color: black;
-    background-color: white;
+    color: white;
+    background-color: black;
     .modal-content {
       .box-shadow(none);
       border: 0px;
@@ -371,7 +371,7 @@ div#pageLoader {
       background-clip: padding-box;    
       background: transparent;
       font-family: 'Indie Flower', cursive;
-      color: #000;
+      h2 {font-family: 'Indie Flower', cursive;}
       form {
         padding: 20px 0px 10px 0px;
         input.email {
@@ -461,11 +461,13 @@ div#pageLoader {
               margin: 0px 0px 10px 0px;
               padding: 0;
               height: 68px;
+              text-align:center;
             }    
                 
             .location, .additionalDates {
               height: 36px;
               color: #696868;
+              line-height: 36px;
               a{
                 color: #696868;
                 font-size: 12px;
@@ -485,6 +487,7 @@ div#pageLoader {
 }
 
     }
+    .imageOrMap {height:150px;overflow:hidden;}
     .imageOrMap .image {
       img {width:100%;margin-right:10px;}
       }
@@ -538,9 +541,95 @@ html body div#site-container div#main div.home-page div.row div.col-md-12 div fo
 margin-bottom: 20px;
 min-height: 200px;
 }
+.navbar-nav {
+margin: -0.5px -15px;
+}
+.navbar-default .navbar-nav > li > a {
+   i {margin-right:5px;}
+ color: #fff;
+ font-weight: bolder;
+ font-size: 1.2em;
+ }
+#footer {
+height: 78px;
+bottom: -50px;
+text-align: center;
+}
 }
 
 
 .has-error .form-control {
   border: 2px solid #b94a48;
+}
+@media (max-width: 480px) {
+  .navbar {
+  min-height: 40px
+}
+.navbar-nav {
+margin: -0.5px -15px;
+}
+  .navbar-brand {
+  padding: 5px;
+  img {width: 60%;}
+  }
+  .navbar-default .navbar-nav > li 
+   {border-bottom:1px solid @gray;}
+  .navbar-default .navbar-nav > li > a {
+    i {margin-right:5px;}
+  color: #fff;
+  font-weight: bolder;
+  font-size: 1.2em;
+  }  
+#main .home-page, #main .event-detail, #main .business-detail, #main .error-page {
+  padding: 56px 34px 0px!important;
+}
+.eventGallery {
+padding-left: 0px;
+padding-right: 0px;
+}
+.eventGallery .eventItem .thumbnail .cardHeader h4 a {
+font-size: 17px;
+}
+.eventGallery .eventItem .thumbnail .cardHeader h4 {
+max-height: 54px;
+text-align: left;
+}
+.eventGallery .eventItem .thumbnail .cardHeader span {
+font-size: 15px;
+}
+.eventGallery .eventItem .thumbnail .cardHeader .card-calendar {
+text-align: center;
+}
+#main .event-detail h2, #main .business-detail h2 {
+font-size: 1.6em;
+}
+.imageOrMap {
+height: 59px;
+overflow: hidden;
+width: 82px;
+float: left;
+margin: 15px 10px 0px 0px;
+}
+#footer {
+height: 78px;
+bottom: -50px;
+text-align: center;
+}
+.eventSearchForm label {
+display:none;
+}
+
+}
+@media all and (max-device-width:480px) and (orientation:landscape){
+  .navbar {
+  min-height: 40px
+}
+.navbar-nav {
+margin: -0.5px -15px;
+}
+  .navbar-brand {
+  padding: 5px;
+  img {width: 60%;margin-left:35px;}
+  }
+
 }
