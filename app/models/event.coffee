@@ -6,42 +6,11 @@ module.exports = class Event extends Model
   
   urlRoot : "/api/event"
 
-  validation :
-    name:
-      required: true        
-    description:
-      required: true
-    location:
-      required: true
-    contactPhone:
-      required: false
-      pattern: "phone"
-
   nextOccurrence: (afterMoment) ->
-    if afterMoment
-      m = _.find @get('occurrences'), (o) ->
-        moment.utc(o.start).isAfter(afterMoment)
-      if m
-        return moment(m.start)
-    else
-      if @get('occurrences') and _.first(@get('occurrences'))
-        m = moment.utc(_.first(@get('occurrences')).start)
-        m.local()
-        return m
-      return undefined
+    return moment.utc(@get('nextOccurrence').start)
 
   nextOccurrenceEnd: ->
-    if @get('occurrences') and _.first(@get('occurrences'))
-      m = moment.utc(_.first(@get('occurrences')).end)
-      m.local()
-      return m
-    return undefined
-
-  getStartDate: ->
-    return moment.utc(_.first(@get('occurrences')).start)
-
-  getEndDate: ->
-    return moment.utc(_.first(@get('occurrences')).end)    
+    return moment.utc(@get('nextOccurrence').end)
 
   imageUrl: (options) ->
     media = @get('media')
@@ -57,14 +26,3 @@ module.exports = class Event extends Model
     end = @nextOccurrenceEnd().format("X")
     url = "/api/event/#{@id}/invite.ics?start=#{start}&end=#{end}"
     window.location.href = url
-
-  clone: ->
-    json = @toJSON()
-    delete json.id
-    delete json._id
-    delete json._v
-    delete json.occurrences
-    delete json.fixedOccurrences
-    delete json.schedules
-    return new Event(json)
-
