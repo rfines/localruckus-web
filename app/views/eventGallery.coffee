@@ -45,7 +45,6 @@ module.exports = class EventGallery extends CollectionView
       delete @searchOptions.near
     if newOptions.near and not newOptions.ll
       delete @searchOptions.ll
-    console.log @searchOptions
     Chaplin.cookieManager.updateSearch(@searchOptions)
     @loadEvents()  
 
@@ -67,6 +66,7 @@ module.exports = class EventGallery extends CollectionView
     @collection.tags = @searchOptions.tags if @searchOptions?.tags
     @collection.start = @searchOptions.start if @searchOptions?.start
     @collection.end = @searchOptions.end if @searchOptions?.end
+    @collection.radius = @searchOptions.radius if @searchOptions?.radius
     @collection.fetch 
       success: =>
         @$el.empty()
