@@ -43,7 +43,7 @@ app.post "/lrApi/contact", (req, res) ->
       text : "Name: #{req.body.name}\n\nMessage: #{req.body.text}"
       subject: req.body.subject
       from_email : req.body.email
-      to: [{email:"england@localruckus.com"}]
+      to: [{email:"info@localruckus.com"}]
   success = ->
     res.send 200, {status: 'SUCCESS'}
     res.end()
