@@ -7,7 +7,12 @@ module.exports = class Event extends Model
   urlRoot : "/api/event"
 
   nextOccurrence: (afterMoment) ->
-    return moment.utc(@get('nextOccurrence').start)
+    if afterMoment
+      occ = _.find @get('occurrences'), (item)->
+        return moment.utc(occ).isAfter(afterMoment)
+      return occ
+    else
+      return moment.utc(@get('nextOccurrence').start)
 
   nextOccurrenceEnd: ->
     return moment.utc(@get('nextOccurrence').end)
