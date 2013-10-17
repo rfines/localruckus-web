@@ -51,7 +51,8 @@ module.exports = class EventSearch extends View
         c is item.text
       o.whenOption = w.text if w.text
       o.start = w.start.toDate().toISOString()
-      o.end = w.end.toDate().toISOString() if w.end
+      if w.end
+        o.end = w.end.toDate().toISOString()
       o.radius = @$el.find('select[name=radius] > option:selected').val()
       @publishEvent 'event:searchChanged', o
       @publishEvent 'geo:newAddress', near
