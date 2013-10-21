@@ -18,7 +18,20 @@ module.exports = class EventItem extends View
     @loadAndRender()
 
   loadAndRender: =>
-    if @model.get('business')
+    if @model.has('host')
+      match = _.find Chaplin.datastore.businesses, (b) =>
+        return b.id is @model.get('host')
+      if match
+        @business = match
+        @render()
+      else
+        @business = new Business()
+        @business.id = @model.get('host')
+        @business.fetch
+          success: =>
+            Chaplin.datastore.businesses.push @business
+            @render()
+    else if @model.has('business')
       match = _.find Chaplin.datastore.businesses, (b) =>
         return b.id is @model.get('business')
       if match
