@@ -35,7 +35,11 @@ module.exports = class EventDetail extends View
       td.cost = 'FREE'
     startTime = @model.nextOccurrence()?.utc().format('h:mm a')
     endTime = @model.nextOccurrenceEnd()?.utc().format('h:mm a')
-    td.time = "#{@model.nextOccurrence()?.utc().format('h:mm a')} to #{@model.nextOccurrenceEnd()?.utc().format('h:mm a')}"
+    if endTime > startTime
+      td.time = "#{startTime} to #{endTime}"
+    else
+      endTime = ''
+      td.time= "#{startTime}"
     fixed = []
     for x in @model.get('fixedOccurrences')
       fixed.push "#{moment(x.start).format('MM/DD/YYYY')} from #{startTime} to #{endTime}"
