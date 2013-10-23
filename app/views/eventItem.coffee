@@ -93,4 +93,4 @@ module.exports = class EventItem extends View
     @$el.find('.imageOrMap .map').hide()
 
   gotoEvent: ->
-    @publishEvent '!router:route', "/event/#{@model.id}"
+    @publishEvent '!router:route', "/event/#{@model.id}
