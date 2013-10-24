@@ -1,6 +1,6 @@
 {
   "development" : false,
-  "hooplaUrl" : "http://www.hoopla.io/",
+  "hooplaUrl" : "https://dashboard.hoopla.io/",
   "baseUrl":"http://www.localruckus.com/",
   "apiUrl" : "http://api.hoopla.io/",
   "cloudinary" : {

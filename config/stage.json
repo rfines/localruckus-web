@@ -1,6 +1,6 @@
 {
   "development" : false,
-  "hooplaUrl" : "http://stage.hoopla.io/",
+  "hooplaUrl" : "https://dashboard-stage.hoopla.io/",
   "baseUrl":"http://stage.localruckus.com",
   "apiUrl" : "http://api-stage.hoopla.io",
   "cloudinary" : {
