@@ -58,7 +58,7 @@ module.exports = class EventItem extends View
 
   getTemplateData: ->
     td = super()
-    td.i = @model.imageUrl({height:150, width:266}) || 'http://placehold.it/266x150' 
+    td.i = @model.imageUrl({height:150, width:266}) || '/client/images/default-event.jpg' 
     td.businessId = @model.get('business')
     td.businessName = @business.get('name') if @business
     td.isRecurring = @model.get('scheduleText')?.length > 0

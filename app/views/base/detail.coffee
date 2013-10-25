@@ -32,7 +32,7 @@ module.exports = class Detail extends View
 
   getTemplateData: =>
     td = super
-    td.i = @model.imageUrl() || 'http://placehold.it/266x150' 
+    td.i = @model.imageUrl()
     for sl in @model.get('socialMediaLinks')
       td[sl.target.toLowerCase()] = sl.url
     td.hasSocialMediaLinks = @model.get('socialMediaLinks')?.length > 0
