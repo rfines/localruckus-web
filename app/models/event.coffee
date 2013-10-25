@@ -22,7 +22,9 @@ module.exports = class Event extends Model
     if media?.length > 0
       opts = {}
       opts = {crop: 'fill', height: options.height, width: options.width} if options
-      return $.cloudinary.url(ImageUtils.getId(media[0].url), opts)  
+      imgUrl = $.cloudinary.url(ImageUtils.getId(media[0].url), opts)  
+      imgUrl = imgUrl.replace("w_#{options.width}", "w_#{options.width},f_auto")
+      return imgUrl
     else
       return undefined
 
