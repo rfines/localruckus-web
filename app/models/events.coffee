@@ -5,7 +5,7 @@ module.exports = class Events extends Collection
   model : Event
   start : moment().toDate().toISOString()
   radius: 16093 #32187 for 20 miles
-  tags:"MUSIC,FAMILY-AND-CHILDREN,ARTS"
+  tags:"MUSIC,FAMILY-AND-CHILDREN,ARTS,ENTERTAINMENT"
 
   url: ->
     u = "/api/event?"
