@@ -58,6 +58,8 @@ module.exports = class EventItem extends View
 
   getTemplateData: ->
     td = super()
+    if @model.get('name').length > 50
+      td.name = "#{textCutter(50,@model.get('name'))}..."
     td.i = @model.imageUrl({height:150, width:266}) || '/client/images/default-event.jpg' 
     td.businessId = @model.get('business')
     td.businessName = @business.get('name') if @business
@@ -91,6 +93,9 @@ module.exports = class EventItem extends View
   showImage: ->
     @$el.find('.imageOrMap .image').show()
     @$el.find('.imageOrMap .map').hide()
-
+  textCutter = (i, text) ->
+    short = text.substr(0, i)
+    return short.replace(/\s+\S*$/, "")  if /^\S/.test(text.substr(i))
+    short
   gotoEvent: ->
     @publishEvent '!router:route', "/event/#{@model.id}"
