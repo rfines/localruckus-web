@@ -11,7 +11,29 @@ module.exports = class EventDetail extends View
   loadAndRender: =>
     @model.fetch
       success: =>
-        if @model.get('business')
+        console.log @model.get('host') != @model.get('business')
+        if @model.get('business') and @model.get('host') and (@model.get('host') != @model.get('business'))
+          hMatch = _.find Chaplin.datastore.businesses, (b) =>
+            return b.id is @model.get('host')
+          match = _.find Chaplin.datastore.businesses, (b) =>
+            return b.id is @model.get('business')
+          if match
+            @business = match
+            if hMatch
+              @host = hMatch
+            @render()
+          else    
+            @business = new Business()
+            @business.id = @model.get('business')
+            @business.fetch
+              success: =>
+                
+            @host = new Business()
+            @host.id = @model.get('host')
+            @host.fetch
+              success: =>
+                @render()
+        else if @model.get('business')
           match = _.find Chaplin.datastore.businesses, (b) =>
             return b.id is @model.get('business')
           if match
@@ -27,13 +49,14 @@ module.exports = class EventDetail extends View
   
   getTemplateData: =>
     td = super()
-
     td.tags = toTitleCase(@model.get('tags').join(', '))
     td.business = @business.toJSON()
     td.businessId = @business.id
     td.businessName = @business.get('name').trim()
-    if @model.get('host')
-      td.host = @model.get('host').name
+    if @host
+      td.hostName = @host.get('name')
+      td.hostAddress = @host.get("location").address
+      console.log td.hostName
     if not td.cost or td.cost is 0
       td.cost = 'FREE'
     startTime = @model.nextOccurrence()?.utc().format('h:mm a')
