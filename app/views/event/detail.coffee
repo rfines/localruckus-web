@@ -27,10 +27,12 @@ module.exports = class EventDetail extends View
   
   getTemplateData: =>
     td = super
-    td.tags = @model.get('tags').join(', ')
+    td.tags = toTitleCase(@model.get('tags').join(', '))
     td.business = @business.toJSON()
     td.businessId = @business.id
     td.businessName = @business.get('name').trim()
+    if @model.get('host')
+      td.host = @model.get('host').name
     if not td.cost or td.cost is 0
       td.cost = 'FREE'
     startTime = @model.nextOccurrence()?.utc().format('h:mm a')
@@ -82,3 +84,6 @@ module.exports = class EventDetail extends View
     address = @model.get('location').address
     id = @model.id
     return "https://www.google.com/calendar/render?action=TEMPLATE&dates=#{d}&details=#{eventDescription}&location=#{address}&text=#{calName}&sprop=partner:localruckus.com&sprop=partneruuid:#{id}&pli=1&sf=true&output=xml" 
+  toTitleCase = (str) ->
+    str.replace /\w\S*/g, (txt) ->
+      txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
