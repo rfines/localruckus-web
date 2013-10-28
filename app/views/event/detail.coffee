@@ -26,7 +26,8 @@ module.exports = class EventDetail extends View
 
   
   getTemplateData: =>
-    td = super
+    td = super()
+
     td.tags = toTitleCase(@model.get('tags').join(', '))
     td.business = @business.toJSON()
     td.businessId = @business.id
@@ -50,7 +51,7 @@ module.exports = class EventDetail extends View
       td.showPhone=true
     else
       td.showPhone = false
-    if @model.contactPhone or @model.contactName or @model.contactEmail or @model.website
+    if @model.has('contactPhone') or @model.has('contactName') or @model.has('contactEmail') or @model.has('website')
       td.showMoreInfo = true
     else
       td.showMoreInfo = false
