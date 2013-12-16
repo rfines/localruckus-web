@@ -10,6 +10,9 @@ module.exports = class HomePageView extends View
 
   events:
     "click .loadMore" : "loadMore"
+  listen:
+    "hideButton mediator":"hideButton"
+    "showButton mediator":"showButton"
 
   initialize: (@options) ->
     @options = @options || {}
@@ -18,7 +21,7 @@ module.exports = class HomePageView extends View
   attach: ->
     super()
     @subview('eventSearch', new EventSearch({container: @$el.find('.eventSearch'), searchOptions: @options.searchOptions}))
-    @subview('eventGallery', new EventGallery({container: @$el, searchOptions: @options.searchOptions}))
+    @subview('eventGallery', new EventGallery({container: @$el.find(".eventGallery"), searchOptions: @options.searchOptions}))
     @publishEvent 'adjustTitle', 'Local Ruckus - Do the Local Thing'
 
   loadEvents: ->
@@ -26,3 +29,8 @@ module.exports = class HomePageView extends View
 
   loadMore: ->
     @subview('eventGallery')?.loadMore()
+
+  hideButton: ->
+    @$el.find('.eventGalleryFooter').hide()
+  showButton:->
+    @$el.find('.eventGalleryFooter').show()

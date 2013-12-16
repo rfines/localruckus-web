@@ -19,6 +19,7 @@ module.exports = class EventGallery extends CollectionView
     @options.collection = @collection
     super(options)
     @startLoading()
+    @publishEvent "showButton"
     if @options.searchOptions
       @searchOptions = @options.searchOptions
     else
@@ -52,6 +53,7 @@ module.exports = class EventGallery extends CollectionView
     @loadEvents()  
 
   loadEvents: =>
+    @publishEvent "showButton"
     oldCollection = @collection
     @collection = new Events()
     if @searchOptions?.ll
@@ -76,6 +78,10 @@ module.exports = class EventGallery extends CollectionView
         @render()
         if @collection.length is 0
           @$el.find('.emptyState').show()
+          @publishEvent "hideButton"
+        else if @collection.length < 50
+          console.log @collection.length
+          @publishEvent "hideButton"
         @stopLoading()
 
   initItemView: (model) =>
@@ -91,13 +97,17 @@ module.exports = class EventGallery extends CollectionView
     c.end = @collection.end
     c.radius = @collection.radius
     c.skip = @collection.skip + 50
+    @collection.skip = c.skip
     console.log c
+    console.log @collection.skip
     @collection.on "add", (m) ->
       console.log 'added'
     c.fetch 
       success: =>
         console.log 'success'
         console.log c.models.length
+        if c.models.length < 50
+          @publishEvent "hideButton"
         @collection.add(c.models)
         @$el.empty()
         @render()

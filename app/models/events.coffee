@@ -22,7 +22,6 @@ module.exports = class Events extends Collection
     p.end = @end if @end
     p.radius = @radius
     u = u + $.param(p)
-    console.log u
     return u
     
   comparator : (event) ->

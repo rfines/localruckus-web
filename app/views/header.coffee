@@ -9,5 +9,10 @@ module.exports = class HeaderView extends View
 
   initialize: ->
     super
-
+  listen: 
+    "changeActiveIcon mediator":"changeActiveIcon"
+  changeActiveIcon:(className) ->
+    console.log "removing active class"
+    @$el.find(".active").removeClass 'active'
+    @$el.find(className).addClass 'active'
     

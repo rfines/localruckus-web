@@ -5,6 +5,7 @@ DiscoveryView = require 'views/discovery'
 module.exports = class HomeController extends Controller
 
   index: ->
+    @publishEvent "changeActiveIcon", ".all"
     c = Chaplin.cookieManager.cookie
     if c and c.lastSearch and moment(c.lastSearch).isAfter(moment().subtract('hours', 1))
       @view = new DiscoveryView({region: 'main', searchOptions : c.search})
@@ -25,6 +26,7 @@ module.exports = class HomeController extends Controller
       searchOptions : {}
     }  
     options.searchOptions.tags = 'MUSIC'
+    @publishEvent "changeActiveIcon", ".music"
     @view = new DiscoveryView(@locationOptions(options))
     @view.loadEvents()
 
@@ -34,6 +36,7 @@ module.exports = class HomeController extends Controller
       searchOptions : {}
     }  
     options.searchOptions.tags = 'FAMILY-AND-CHILDREN'
+    @publishEvent "changeActiveIcon", ".family"
     @view = new DiscoveryView(@locationOptions(options))   
     @view.loadEvents()
 
@@ -43,6 +46,7 @@ module.exports = class HomeController extends Controller
       searchOptions : {}
     }  
     options.searchOptions.tags = 'FOOD-AND-DRINK'
+    @publishEvent "changeActiveIcon", ".food"
     @view = new DiscoveryView(@locationOptions(options))   
     @view.loadEvents()  
 
@@ -52,7 +56,8 @@ module.exports = class HomeController extends Controller
       searchOptions : {}
     }  
     options.searchOptions.tags = 'ARTS'
-    @view = new DiscoveryView(@locationOptions(options))         
+    @publishEvent "changeActiveIcon", ".art"
+    @view = new DiscoveryView(@locationOptions(options))      
     @view.loadEvents()
 
   locationOptions: (options) ->

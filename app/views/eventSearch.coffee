@@ -63,6 +63,7 @@ module.exports = class EventSearch extends View
     @updateWhen(0)
     @$el.find('input[name=keyword]').val('')
     @$el.find('input[name=near]').val('')
+    window.location.reload(false)
 
   updateAddress: (addr) ->
     @$el.find('input[name=near]').val(addr)              
