@@ -6,6 +6,8 @@ module.exports = class Events extends Collection
   start : moment().toDate().toISOString()
   radius: 16093 #32187 for 20 miles
   tags:"MUSIC,FAMILY-AND-CHILDREN,ARTS,ENTERTAINMENT"
+  limit : 50
+  skip : 0
 
   url: ->
     u = "/api/event?"
@@ -14,11 +16,13 @@ module.exports = class Events extends Collection
     p.near = @near if @near
     p.keyword = @keyword if @keyword
     p.tags = @tags if @tags?.length > 0 and not p.keyword
-    p.limit = 50
+    p.skip = @skip
+    p.limit = @limit
     p.start = @start
     p.end = @end if @end
     p.radius = @radius
     u = u + $.param(p)
+    console.log u
     return u
     
   comparator : (event) ->

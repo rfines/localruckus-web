@@ -37,6 +37,7 @@ module.exports = class EventGallery extends CollectionView
     td.searchOptions = @searchOptions
     td
 
+
   searchChanged: (newOptions) =>
     @startLoading()
     for x in _.keys(newOptions)
@@ -79,3 +80,25 @@ module.exports = class EventGallery extends CollectionView
 
   initItemView: (model) =>
     new EventItem({model : model, collection : @collection})
+
+  loadMore: =>
+    c = new Events()
+    c.ll = @collection.ll
+    c.near = @collection.near
+    c.keyword = @collection.keyword
+    c.tags = @collection.tags
+    c.start = @collection.start
+    c.end = @collection.end
+    c.radius = @collection.radius
+    c.skip = @collection.skip + 50
+    console.log c
+    @collection.on "add", (m) ->
+      console.log 'added'
+    c.fetch 
+      success: =>
+        console.log 'success'
+        console.log c.models.length
+        @collection.add(c.models)
+        @$el.empty()
+        @render()
+        @stopLoading()  

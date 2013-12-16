@@ -8,6 +8,9 @@ module.exports = class HomePageView extends View
   className: 'home-page'
   template: template
 
+  events:
+    "click .loadMore" : "loadMore"
+
   initialize: (@options) ->
     @options = @options || {}
     super(options)
@@ -20,3 +23,6 @@ module.exports = class HomePageView extends View
 
   loadEvents: ->
     @subview('eventGallery')?.loadEvents()
+
+  loadMore: ->
+    @subview('eventGallery')?.loadMore()
