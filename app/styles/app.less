@@ -69,6 +69,9 @@ body {
 .categoryButton:hover {
   background-position:-75px 0px;
 }
+.categoryButton.all.active{
+  background-position:-75px -73px;
+}
 .music {
   background-position:0px -150px!important;
 }
@@ -406,9 +409,6 @@ div#pageLoader {
     label {font-size: 0.8em;
     display: block;}
     a {
-      border: 1px solid @gray-lighter;
-      .border-bottom-radius(3px);
-      .border-top-radius(3px);
     }
     a.whenPrev {
       padding: 2px 5px 5px 2px;
