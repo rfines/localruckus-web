@@ -33,14 +33,16 @@ body {
   }
   .navbar {
     margin-bottom: 0px;
+    padding-bottom: 8px;
+    box-shadow: 0px 0px 25px rgba(0,0,0,.8);
   }
   .navbar-nav.small {
     li {float:right!important;}
     h4 {color:#fff;font-family: 'Indie Flower', cursive;font-size: 1.5em;padding:5px 0px 0px 10px;clear: right;}
     a {
       padding: 5px!important;
-      font-size: 1em;
-      color: #06A1AF;
+      font-size: 1.2em;
+      color: #fff;
       padding: 4px!important;
       margin-right: 12px;
       float: right;
@@ -49,6 +51,9 @@ body {
       }
     }
   }
+  .header-cta {position: relative;
+  top: 30px;
+  margin-right: 10%;}
   .navbar-default {
     background-color: transparent;
     border-color: transparent;
@@ -61,6 +66,7 @@ body {
     background-position-x: -15px;
     height: 71px;
     width: 70px;
+    text-indent:-1000px;
     background: url('../images/category-icons-with-hover.png') no-repeat 0px 0px transparent;
     
              
@@ -68,6 +74,25 @@ body {
 }
 .categoryButton:hover {
   background-position:-75px 0px;
+}
+.categoryButton.all.active {background-position:-75px -74px!important;}
+.categoryButton.music.active {background-position: -75px -150px!important;}
+.categoryButton.family.active {background-position: -75px -302px!important;}
+.categoryButton.food.active {background-position: -75px -225px!important;}
+.categoryButton.arts.active {background-position: -75px -226px!important;}
+.categoryButton.active {
+  background-position:-75px -73px!important;
+  text-indent:0px;
+  span {
+    position: absolute;
+    bottom: -12px;
+    color: #ffffff;
+    font-size: .9em;
+    font-weight: bold;
+    text-align: center;
+    text-indent: 0;
+    width: 68%;
+  }
 }
 .music {
   background-position:0px -150px!important;
@@ -95,6 +120,7 @@ body {
   .home-page {
     .eventGalleryHeader {
       text-align: center;
+      margin-top:20px;
       .nearGroup {
         input {
           background-color: @gray-darker;
@@ -115,7 +141,7 @@ body {
     }
     h3 {
       font-size: 1.25em;
-      font-family: Helvetica, Arial, sans-serif;
+      font-family: 'Lato', Helvetica, Arial, sans-serif;
       font-weight: 700;
     }
     .shareIcons {
@@ -175,7 +201,7 @@ body {
         }      
         dd {
           margin-bottom: 10px;
-          font-family: Helvetica, sans-serif;
+          font-family: 'Lato', Helvetica, Arial, sans-serif;
           font-size: 0.9em;
           color: @gray;
         }
@@ -223,7 +249,14 @@ body {
   background-color: #333;
   position:fixed;
   width:100%;
-  
+   .row {
+     width: 83%;
+     margin: 0px auto;
+     .app-promo {
+       position:relative;
+       top:12px;
+     }
+   }
   .navbar-nav.small {
     position: absolute;
     right: 0px;
@@ -247,21 +280,22 @@ body {
     }
   }
   .navbar-nav.small.poweredBy {
-    position: absolute;
-    right: 80%;
+    position: relative;
     top: 14px;
     li {float:right!important;}
   
     a {
-      padding: 5px!important;
-      font-size: 1.1em;
-      color: #06A1AF;
+      font-size: 1em;
+      color: #c5d645;
       padding: 4px!important;
       margin-right: 12px;
-      float: left;
+      float: right;
       img {
         margin-left:5px;
       }
+    a:hover {
+      background-color:transparent;
+    }
     }
   }
   ul.footer-nav {
@@ -270,7 +304,7 @@ body {
     
     li {
       a {color: #c5d645;text-decoration:underline;}
-      float:left; list-style:none;margin-right:10px;color: #c5d645;font-size:.9em;}
+      float:left; list-style:none;margin-right:10px;color: #c5d645;font-size:.8em;}
     
   }
 }
@@ -406,9 +440,6 @@ div#pageLoader {
     label {font-size: 0.8em;
     display: block;}
     a {
-      border: 1px solid @gray-lighter;
-      .border-bottom-radius(3px);
-      .border-top-radius(3px);
     }
     a.whenPrev {
       padding: 2px 5px 5px 2px;
@@ -455,7 +486,7 @@ div#pageLoader {
                 color: #464344; 
                 font-size: 24px; 
               }
-              font-family: Helvetica,Arial,sans-serif;
+              font-family: 'Lato', Helvetica, Arial, sans-serif;
               font-size: 16px;
               font-weight: 700;
               margin: 0px 0px 10px 0px;
@@ -491,6 +522,7 @@ div#pageLoader {
     .imageOrMap .image {
       img {width:100%;margin-right:10px;}
       }
+    .eventGalleryFooter {padding-bottom:20%;margin-bottom:20%;}
 @media (max-width: 967px) {
 
 html body div#site-container div#main div.home-page div.row div.col-md-12 div form.form-inline div.when{display:none!important;}
@@ -601,9 +633,6 @@ font-size: 15px;
 text-align: center;
 }
 .eventGalleryFooter{
-  height:100px;
-  width:100%;
-  margin-left:50%;
 }
 #main .event-detail h2, #main .business-detail h2 {
 font-size: 1.6em;
