@@ -4,8 +4,7 @@ View = require 'views/base/view'
 module.exports = class EventSearch extends View
   autoRender: true
   template: template
-  tags=[]
-
+  tags : []
   events: 
     'submit form.eventSearchForm' : 'searchEvents'
     'click .whenPrev' : 'whenPrev'
@@ -17,8 +16,6 @@ module.exports = class EventSearch extends View
 
   initialize: (@options) ->
     super(@options)
-    @getTags()
-
     @whenOptions = [
       {text: 'Anytime', start: moment().startOf('day')}
       {text: 'Today', start: moment().startOf('day'), end : moment().endOf('day')}
@@ -31,10 +28,12 @@ module.exports = class EventSearch extends View
 
   attach: ->
     super()
+    @getTags(@options?.searchOptions?.tags)
     if @options?.searchOptions?.whenOption
       wo = _.indexOf @whenOptions, _.find @whenOptions, (item) =>
         item.text is @options.searchOptions.whenOption
       @updateWhen(wo)
+    
 
   searchEvents: (e) ->
     e.preventDefault()
@@ -60,7 +59,6 @@ module.exports = class EventSearch extends View
       if w.end
         o.end = w.end.toDate().toISOString()
       o.radius = @$el.find('select[name=radius] > option:selected').val()
-      console.log o
       @publishEvent 'event:searchChanged', o
       @publishEvent 'geo:newAddress', near
 
@@ -105,14 +103,18 @@ module.exports = class EventSearch extends View
   updateWhen: (newIndex) ->
     @$el.find('.whenSelected').text(@whenOptions[newIndex].text)
 
-  getTags:()->
+  getTags:(tag)->
     url = '/api/eventTag'
     $.ajax
       url: url
       method: "GET"
       success: (response) ->
+        @tags = response
         _.each response, (item, index, list)=>
-          $('.tag_chosen').append("<option value='"+item.slug+"'>"+item.text+"</option>")
-        $(".chosen-select.tag_chosen").chosen({"no_results_text": "Oops, nothing found!","allow_single_deselect": true, width:"100%", height:"100%"})
+          if item.slug is tag
+            $('.tag_chosen').append("<option value='"+item.slug+"' selected=true>"+item.text+"</option>")
+          else
+            $('.tag_chosen').append("<option value='"+item.slug+"'>"+item.text+"</option>")
+        $(".chosen-select.tag_chosen").chosen({"no_results_text": "Oops, nothing found!","allow_single_deselect": true, width:"100%"})
       error: (error) ->
         alert error
