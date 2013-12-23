@@ -4,6 +4,7 @@ View = require 'views/base/view'
 module.exports = class EventSearch extends View
   autoRender: true
   template: template
+  tags=[]
 
   events: 
     'submit form.eventSearchForm' : 'searchEvents'
@@ -16,6 +17,8 @@ module.exports = class EventSearch extends View
 
   initialize: (@options) ->
     super(@options)
+    @getTags()
+
     @whenOptions = [
       {text: 'Anytime', start: moment().startOf('day')}
       {text: 'Today', start: moment().startOf('day'), end : moment().endOf('day')}
@@ -46,6 +49,9 @@ module.exports = class EventSearch extends View
         o.tags = ''
       else
         o.keyword = ''
+      if @$el.find('input[name=tag]').val() != ''
+        o.tags = $('.chosen-select.tag_chosen').chosen().val()
+
       c = @$el.find('.whenSelected').text()      
       w = _.find @whenOptions, (item) ->
         c is item.text
@@ -54,6 +60,7 @@ module.exports = class EventSearch extends View
       if w.end
         o.end = w.end.toDate().toISOString()
       o.radius = @$el.find('select[name=radius] > option:selected').val()
+      console.log o
       @publishEvent 'event:searchChanged', o
       @publishEvent 'geo:newAddress', near
 
@@ -63,6 +70,7 @@ module.exports = class EventSearch extends View
     @updateWhen(0)
     @$el.find('input[name=keyword]').val('')
     @$el.find('input[name=near]').val('')
+    @$el.find('input[name=tags]').val('')
     window.location.reload(false)
 
   updateAddress: (addr) ->
@@ -96,3 +104,15 @@ module.exports = class EventSearch extends View
 
   updateWhen: (newIndex) ->
     @$el.find('.whenSelected').text(@whenOptions[newIndex].text)
+
+  getTags:()->
+    url = '/api/eventTag'
+    $.ajax
+      url: url
+      method: "GET"
+      success: (response) ->
+        _.each response, (item, index, list)=>
+          $('.tag_chosen').append("<option value='"+item.slug+"'>"+item.text+"</option>")
+        $(".chosen-select.tag_chosen").chosen({"no_results_text": "Oops, nothing found!","allow_single_deselect": true, width:"100%", height:"100%"})
+      error: (error) ->
+        alert error

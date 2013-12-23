@@ -11,7 +11,6 @@ module.exports = class EventDetail extends View
   loadAndRender: =>
     @model.fetch
       success: =>
-        console.log @model.get('host') != @model.get('business')
         if @model.get('business') and @model.get('host') and (@model.get('host') != @model.get('business'))
           hMatch = _.find Chaplin.datastore.businesses, (b) =>
             return b.id is @model.get('host')
@@ -49,18 +48,20 @@ module.exports = class EventDetail extends View
   
   getTemplateData: =>
     td = super()
-    td.tags = toTitleCase(@model.get('tags').join(', '))
+    td.tags = toTitleCase(_.uniq(@model.get('tags')).join(', '))
     td.business = @business.toJSON()
     td.businessId = @business.id
     td.businessName = @business.get('name').trim()
     if @host
       td.hostName = @host.get('name')
       td.hostAddress = @host.get("location").address
-      console.log td.hostName
     if not td.cost or td.cost is 0
       td.cost = 'FREE'
-    startTime = @model.nextOccurrence()?.utc().format('h:mm a')
-    endTime = @model.nextOccurrenceEnd()?.utc().format('h:mm a')
+    else
+      td.cost = 'Starting at $'+@model.get('cost')+".00"
+    next = @model.get('nextOccurrence')
+    startTime = moment(next.start).utc().format('h:mm a')
+    endTime = moment(next.end).utc().format('h:mm a')
     if endTime > startTime
       td.time = "#{startTime} to #{endTime}"
     else
@@ -68,7 +69,7 @@ module.exports = class EventDetail extends View
       td.time= "#{startTime}"
     fixed = []
     for x in @model.get('fixedOccurrences')
-      fixed.push "#{moment(x.start).format('MM/DD/YYYY')} from #{startTime} to #{endTime}"
+      fixed.push "#{moment(x.start).utc().format('MM/DD/YYYY')} from #{startTime} to #{endTime}"
     td.fixed = fixed
     if td.business?.contactPhone?.length >0
       td.showPhone=true

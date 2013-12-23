@@ -56,7 +56,7 @@ module.exports = class HomeController extends Controller
       searchOptions : {}
     }  
     options.searchOptions.tags = 'ARTS'
-    @publishEvent "changeActiveIcon", ".art"
+    @publishEvent "changeActiveIcon", ".arts"
     @view = new DiscoveryView(@locationOptions(options))      
     @view.loadEvents()
 

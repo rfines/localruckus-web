@@ -4,7 +4,7 @@ Event = require('models/event')
 module.exports = class Events extends Collection
   model : Event
   start : moment().toDate().toISOString()
-  radius: 16093 #32187 for 20 miles
+  radius: 16093
   tags:"MUSIC,FAMILY-AND-CHILDREN,ARTS,ENTERTAINMENT"
   limit : 50
   skip : 0

@@ -80,7 +80,6 @@ module.exports = class EventGallery extends CollectionView
           @$el.find('.emptyState').show()
           @publishEvent "hideButton"
         else if @collection.length < 50
-          console.log @collection.length
           @publishEvent "hideButton"
         @stopLoading()
 
@@ -98,14 +97,10 @@ module.exports = class EventGallery extends CollectionView
     c.radius = @collection.radius
     c.skip = @collection.skip + 50
     @collection.skip = c.skip
-    console.log c
-    console.log @collection.skip
     @collection.on "add", (m) ->
       console.log 'added'
     c.fetch 
       success: =>
-        console.log 'success'
-        console.log c.models.length
         if c.models.length < 50
           @publishEvent "hideButton"
         @collection.add(c.models)

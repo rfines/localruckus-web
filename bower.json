@@ -28,8 +28,10 @@
     "moment": {
       "main": "moment.js"
     },
-    "jquery-placeholder" : {
-      "main": ["jquery.placeholder.js"]
+    "jquery-placeholder": {
+      "main": [
+        "jquery.placeholder.js"
+      ]
     }
   }
 }
