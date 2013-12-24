@@ -110,7 +110,7 @@ body {
   background-position:0px -225px!important;
 }
 #main{
-
+  .home-page, .event-detail .appPromo {margin-bottom:70px;}
   .home-page, .event-detail, .business-detail, .error-page {
     padding: 80px 15px 0;
     background: url("../images/bg_vh.jpg") 0 0 repeat-x;
@@ -162,7 +162,8 @@ body {
         margin: 0px;
         border-bottom: 1px solid @gray;
         a {
-          color: @gray-light;
+          font-weight: 700;
+          font-size: 1.3em;
         }
       }
       hr {
@@ -219,6 +220,7 @@ body {
         padding-left: 30px;
       }
       color: @text-color;
+      padding-bottom: 70px;
     }    
     .tab-content {
       padding: 10px;
@@ -525,7 +527,7 @@ div#pageLoader {
     .eventGalleryFooter {padding-bottom:20%;margin-bottom:20%;}
 @media (max-width: 967px) {
 
-html body div#site-container div#main div.home-page div.row div.col-md-12 div form.form-inline div.when{display:none!important;}
+
 .buttons {
   position:relative;
   top:10px;
@@ -649,11 +651,13 @@ height: 78px;
 bottom: -50px;
 text-align: center;
 }
+
 .eventSearchForm label {
 display:none;
 }
 
 }
+.eventSearchForm .form-group input.form-control, .eventSearchForm .form-group select {font-size:12px;height:25px!important;}
 @media all and (max-device-width:480px) and (orientation:landscape){
   .navbar {
   min-height: 40px
