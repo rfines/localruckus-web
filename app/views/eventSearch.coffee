@@ -109,7 +109,7 @@ module.exports = class EventSearch extends View
       url: url
       method: "GET"
       success: (response) ->
-        @tags = response
+        sortByKey response, 'slug'
         _.each response, (item, index, list)=>
           if item.slug is tag
             $('.tag_chosen').append("<option value='"+item.slug+"' selected=true>"+item.text+"</option>")
@@ -118,3 +118,12 @@ module.exports = class EventSearch extends View
         $(".chosen-select.tag_chosen").chosen({"no_results_text": "Oops, nothing found!","allow_single_deselect": true, width:"100%"})
       error: (error) ->
         alert error
+        
+  sortByKey = (array, key) ->
+    array.sort (a, b) ->
+      x = a[key]
+      y = b[key]
+      if typeof x is "string"
+        x = x.toLowerCase()
+        y = y.toLowerCase()
+      (if (x < y) then -1 else ((if (x > y) then 1 else 0)))
