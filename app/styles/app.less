@@ -41,19 +41,19 @@ body {
     h4 {color:#fff;font-family: 'Indie Flower', cursive;font-size: 1.5em;padding:5px 0px 0px 10px;clear: right;}
     a {
       padding: 5px!important;
-      font-size: 1.2em;
       color: #fff;
       padding: 4px!important;
       margin-right: 12px;
       float: right;
+      font-weight:bold;
       img {
-        margin-left:5px;
+        margin:0px 5px;
       }
     }
   }
   .header-cta {position: relative;
-  top: 30px;
-  margin-right: 10%;}
+  top: 25px;
+  margin-right: 9%;}
   .navbar-default {
     background-color: transparent;
     border-color: transparent;
@@ -349,9 +349,8 @@ div#pageLoader {
     outline: none;
     background-clip: padding-box;    
     background: transparent;
-    font-family: 'Indie Flower', cursive;
     color: #fff;
-    a.btn-info{color:@gray-darker;} 
+    a.btn-info{color:@gray-darker;margin:0px 5px;} 
     form {
       padding: 20px 0px 10px 0px;
       input.email {
@@ -406,8 +405,7 @@ div#pageLoader {
       outline: none;
       background-clip: padding-box;    
       background: transparent;
-      font-family: 'Indie Flower', cursive;
-      h2 {font-family: 'Indie Flower', cursive;}
+      h2 {font-family: 'Montserrat', sans-serif;}
       form {
         padding: 20px 0px 10px 0px;
         input.email {
@@ -438,9 +436,7 @@ div#pageLoader {
   }
   .when {
     font-family: 'Montserrat', sans-serif;   
-    font-size: 1.2em;
-    label {font-size: 0.8em;
-    display: block;}
+    font-size: 1.2em;cta
     a {
     }
     a.whenPrev {
@@ -526,7 +522,7 @@ div#pageLoader {
       }
     .eventGalleryFooter {padding-bottom:20%;margin-bottom:20%;}
 @media (max-width: 967px) {
-
+.header-cta {display:none;}
 
 .buttons {
   position:relative;
@@ -657,7 +653,7 @@ display:none;
 }
 
 }
-.eventSearchForm .form-group input.form-control, .eventSearchForm .form-group select {font-size:12px;height:25px!important;}
+.eventSearchForm .form-group input.form-control, .eventSearchForm .form-group select {font-size:12px;height:25px!important;display: block; }
 @media all and (max-device-width:480px) and (orientation:landscape){
   .navbar {
   min-height: 40px

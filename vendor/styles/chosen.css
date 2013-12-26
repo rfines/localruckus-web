@@ -63,6 +63,8 @@
   margin-right: 26px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-align:left;
+  color: #666;
 }
 .chosen-container-single .chosen-single-with-deselect span {
   margin-right: 38px;
