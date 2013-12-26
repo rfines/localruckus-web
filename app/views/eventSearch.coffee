@@ -109,7 +109,7 @@ module.exports = class EventSearch extends View
       url: url
       method: "GET"
       success: (response) ->
-        sortByKey response, 'slug'
+        sortByKey response, 'text'
         _.each response, (item, index, list)=>
           if item.slug is tag
             $('.tag_chosen').append("<option value='"+item.slug+"' selected=true>"+item.text+"</option>")
