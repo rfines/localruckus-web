@@ -1,12 +1,13 @@
 <form class="form-inline eventSearchForm" role="search">
   <div class="form-group col-md-2 col-md-offset-1 keyword">
 <label for="keyword">WHAT</label>
-    <input type="text" class="form-control" placeholder="What (Keyword, Category, Venue, etc...)" name="keyword" value="{{search.keyword}}" />
+    <input type="text" class="form-control" placeholder="What (Keyword, Venue, etc...)" name="keyword" value="{{search.keyword}}" />
   </div>  
   <div class="form-group col-md-2 tag" style="height:10%">
     <label for="tags">CATEGORY</label>
-    <select data-placeholder="Choose a category..." class="chosen-select tag_chosen" name="tags" value="{{search.tags}}">
-    <option value="" />
+    <select type="text/input" data-placeholder="Choose a category..." class="chosen-select tag_chosen" name="tags">
+<option value="" selected>Choose a category</option>
+    <option value="{{search.tags}}"</option>
           </select>
   </div>
   <div class="form-group col-md-2 where">

@@ -41,19 +41,19 @@ body {
     h4 {color:#fff;font-family: 'Indie Flower', cursive;font-size: 1.5em;padding:5px 0px 0px 10px;clear: right;}
     a {
       padding: 5px!important;
-      font-size: 1.2em;
       color: #fff;
       padding: 4px!important;
       margin-right: 12px;
       float: right;
+      font-weight:bold;
       img {
-        margin-left:5px;
+        margin:0px 5px;
       }
     }
   }
   .header-cta {position: relative;
-  top: 30px;
-  margin-right: 10%;}
+  top: 25px;
+  margin-right: 9%;}
   .navbar-default {
     background-color: transparent;
     border-color: transparent;
@@ -349,9 +349,8 @@ div#pageLoader {
     outline: none;
     background-clip: padding-box;    
     background: transparent;
-    font-family: 'Indie Flower', cursive;
     color: #fff;
-    a.btn-info{color:@gray-darker;} 
+    a.btn-info{margin:0px 5px;} 
     form {
       padding: 20px 0px 10px 0px;
       input.email {
@@ -363,6 +362,9 @@ div#pageLoader {
     }
   }  
 }
+.modal-body {background-color: #c5d645;
+border-radius: 8px;
+color: #333;padding: 48px;}
 #weeklyRuckusSignup {
   .modal-content {
 
@@ -380,6 +382,7 @@ div#pageLoader {
 #contactUs {
   .control-group {
     text-align: left;
+    margin-top: 15px;
   }
   textarea {
     height: 100px;
@@ -406,8 +409,7 @@ div#pageLoader {
       outline: none;
       background-clip: padding-box;    
       background: transparent;
-      font-family: 'Indie Flower', cursive;
-      h2 {font-family: 'Indie Flower', cursive;}
+      h2 {font-family: 'Montserrat', sans-serif;}
       form {
         padding: 20px 0px 10px 0px;
         input.email {
@@ -421,6 +423,10 @@ div#pageLoader {
   }
 
   
+}
+.eventSearch .when label {
+font-size: .8em;
+display: block;
 }
 .btn-success {background-color:#c5d645;color:#333;border-color:#333;}
       .buttons {
@@ -438,9 +444,7 @@ div#pageLoader {
   }
   .when {
     font-family: 'Montserrat', sans-serif;   
-    font-size: 1.2em;
-    label {font-size: 0.8em;
-    display: block;}
+    font-size: 1.2em;cta
     a {
     }
     a.whenPrev {
@@ -486,12 +490,12 @@ div#pageLoader {
             h4 {
               a{
                 color: #464344; 
-                font-size: 24px; 
+                font-size: 23px; 
               }
               font-family: 'Lato', Helvetica, Arial, sans-serif;
               font-size: 16px;
               font-weight: 700;
-              margin: 0px 0px 10px 0px;
+              margin: 0px 0px 37px 0px;
               padding: 0;
               height: 68px;
               text-align:center;
@@ -520,13 +524,13 @@ div#pageLoader {
 }
 
     }
-    .imageOrMap {height:150px;overflow:hidden;}
+    .imageOrMap {height:124px;overflow:hidden;}
     .imageOrMap .image {
       img {width:100%;margin-right:10px;}
       }
     .eventGalleryFooter {padding-bottom:20%;margin-bottom:20%;}
 @media (max-width: 967px) {
-
+.header-cta {display:none;}
 
 .buttons {
   position:relative;
@@ -652,12 +656,14 @@ bottom: -50px;
 text-align: center;
 }
 
-.eventSearchForm label {
+.eventSearchForm label, .eventSearch .when label {
 display:none;
 }
 
+
 }
-.eventSearchForm .form-group input.form-control, .eventSearchForm .form-group select {font-size:12px;height:25px!important;}
+.eventSearchForm .form-group input.form-control, .eventSearchForm .form-group select {font-size:12px;height:25px!important;display: block; width:100%;}
+.eventSearchForm .form-group select {padding:0px;}
 @media all and (max-device-width:480px) and (orientation:landscape){
   .navbar {
   min-height: 40px
