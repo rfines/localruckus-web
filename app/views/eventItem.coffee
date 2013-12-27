@@ -66,7 +66,7 @@ module.exports = class EventItem extends View
     td.isRecurring = @model.get('scheduleText')?.length > 0
     start = moment.utc(@collection.start || new Date()).startOf('day')
     next = @model.get('nextOccurrence')
-    td.nextOccurrence = @model.nextOccurrence(start).utc().format("ddd, MMM Do")    
+    td.nextOccurrence = @model.nextOccurrence(start).utc().format("ddd MMM Do")    
     startTime = moment(next.start).utc()
     endTime = moment(next.end).utc()
     if endTime > startTime
