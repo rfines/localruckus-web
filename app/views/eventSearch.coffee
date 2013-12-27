@@ -7,8 +7,6 @@ module.exports = class EventSearch extends View
   tags : []
   events: 
     'submit form.eventSearchForm' : 'searchEvents'
-    'click .whenPrev' : 'whenPrev'
-    'click .whenNext' : 'whenNext'
     'click .reset' : 'resetSearch'
 
   listen:
@@ -29,11 +27,9 @@ module.exports = class EventSearch extends View
   attach: ->
     super()
     @getTags(@options?.searchOptions?.tags)
-    if @options?.searchOptions?.whenOption
-      wo = _.indexOf @whenOptions, _.find @whenOptions, (item) =>
-        item.text is @options.searchOptions.whenOption
-      @updateWhen(wo)
-    
+    if @options?.searchOptions?.when
+      $('.date-range option')[@options.searchOptions.when].selected = true
+  
 
   searchEvents: (e) ->
     e.preventDefault()
@@ -51,9 +47,9 @@ module.exports = class EventSearch extends View
       if @$el.find('input[name=tag]').val() != ''
         o.tags = $('.chosen-select.tag_chosen').chosen().val()
 
-      c = @$el.find('.whenSelected').text()      
-      w = _.find @whenOptions, (item) ->
-        c is item.text
+      c = @$el.find('.date-range').val()      
+      console.log c
+      w = @whenOptions[c]
       o.whenOption = w.text if w.text
       o.start = w.start.toDate().toISOString()
       if w.end
@@ -65,10 +61,10 @@ module.exports = class EventSearch extends View
   resetSearch: (e) ->
     e.preventDefault()
     Chaplin.cookieManager.clear()
-    @updateWhen(0)
     @$el.find('input[name=keyword]').val('')
     @$el.find('input[name=near]').val('')
     @$el.find('input[name=tags]').val('')
+    @$el.find('.date-range').val('0')
     window.location.reload(false)
 
   updateAddress: (addr) ->
@@ -77,6 +73,12 @@ module.exports = class EventSearch extends View
   getTemplateData: ->
     td = super()
     td.search = Chaplin.cookieManager.cookie.search || {}
+    if @options?.searchOptions?.whenOption
+      wo = _.indexOf @whenOptions, _.find @whenOptions, (item) =>
+        item.text is @options.searchOptions.whenOption
+      console.log wo
+      console.log @options
+      td.search.when=wo
     td
 
   whenPrev: ->
