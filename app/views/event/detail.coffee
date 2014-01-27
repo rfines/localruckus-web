@@ -131,7 +131,13 @@ module.exports = class EventDetail extends View
       url: url
       method: "GET"
       success: (response) =>
-        $('.tags_dd').text(_.uniq(@getTagText(@model.get('tags'), response)))
+        textArr = @getTagText(@model.get('tags'), response)
+        joined =""
+        if textArr?.length > 1
+          joined = textArr.join(", ")
+        else
+          joined = textArr.toString()
+        $('.tags_dd').text(joined)
       error: (error) =>
         console.log error
   toTitleCase = (str) ->
