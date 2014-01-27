@@ -48,7 +48,6 @@ module.exports = class EventSearch extends View
         o.tags = $('.chosen-select.tag_chosen').chosen().val()
 
       c = @$el.find('.date-range').val()      
-      console.log c
       w = @whenOptions[c]
       o.whenOption = w.text if w.text
       o.start = w.start.toDate().toISOString()

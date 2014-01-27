@@ -7,6 +7,7 @@ module.exports = class EventDetail extends View
   autoRender: false
   className: 'event-detail'
   template: template
+  eventTags:[]
 
   loadAndRender: =>
     @model.fetch
@@ -48,10 +49,14 @@ module.exports = class EventDetail extends View
   
   getTemplateData: =>
     td = super()
-    td.tags = toTitleCase(_.uniq(@model.get('tags')).join(', '))
+    @getTags()
     td.business = @business.toJSON()
     td.businessId = @business.id
     td.businessName = @business.get('name').trim()
+    if @model.get('website')?.indexOf('http') is -1
+      td.website = "http://#{@model.get('website')}"
+    if @model.get('ticketUrl')?.indexOf('http') is -1
+      td.ticketUrl = "http://#{@model.get('ticketUrl')}"
     if @host
       td.hostName = @host.get('name')
       td.hostAddress = @host.get("location").address
@@ -98,7 +103,18 @@ module.exports = class EventDetail extends View
       gCal = @googleCalUrl()
       window.open(gCal,'_blank')
 
-
+  getTagText:(tags, allTags)=>
+    tagText = []
+    if allTags and allTags.length >0 
+      _.each tags, (item)=>
+        s= {}
+        s = item
+        _.each allTags, (tag)=>
+          temp = {}
+          temp = tag
+          if temp.slug == s and _.indexOf(tagText, temp.text)
+            tagText.push temp.text
+      return tagText
   googleCalUrl:()=>
     name = encodeURIComponent(@model.get('name'))
     calName = "Local Ruckus: #{name}"
@@ -109,6 +125,15 @@ module.exports = class EventDetail extends View
     address = @model.get('location').address
     id = @model.id
     return "https://www.google.com/calendar/render?action=TEMPLATE&dates=#{d}&details=#{eventDescription}&location=#{address}&text=#{calName}&sprop=partner:localruckus.com&sprop=partneruuid:#{id}&pli=1&sf=true&output=xml" 
+  getTags:()=>
+    url = '/api/eventTag'
+    $.ajax
+      url: url
+      method: "GET"
+      success: (response) =>
+        $('.tags_dd').text(_.uniq(@getTagText(@model.get('tags'), response)))
+      error: (error) =>
+        console.log error
   toTitleCase = (str) ->
     str.replace /\w\S*/g, (txt) ->
       txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
