@@ -9,13 +9,31 @@ module.exports = class Event extends Model
   nextOccurrence: (afterMoment) ->
     if afterMoment
       occ = _.find @get('occurrences'), (item)->
+        #console.log item
         return moment.utc(item.start).isAfter(afterMoment)
-      return moment.utc(occ.start)
+      if occ?.start
+        return moment.utc(occ.start)
+      else if @get('occurrences').length > 0
+        return moment.utc(@get('occurrences')[0].start)
+      else
+        return moment.utc(@get('nextOccurrence').start)
     else
       return moment.utc(@get('nextOccurrence').start)
-
-  nextOccurrenceEnd: ->
-    return moment.utc(@get('nextOccurrence').end)
+      
+  nextOccurrenceEnd: (afterMoment) ->
+    if afterMoment
+      occ = _.find @get('occurrences'), (item)->
+        #console.log item
+        return moment.utc(item.end).isAfter(afterMoment)
+      if occ?.end
+        return moment.utc(occ.end)
+      else if @get('occurrences').length > 0
+        return moment.utc(@get('occurrences')[0].end)
+      else
+        return moment.utc(@get('nextOccurrence').end)
+    else
+      return moment.utc(@get('nextOccurrence').end)
+  
 
   imageUrl: (options) ->
     media = @get('media')

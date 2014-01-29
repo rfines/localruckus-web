@@ -64,17 +64,19 @@ module.exports = class EventDetail extends View
       td.cost = 'FREE'
     else
       td.cost = 'Starting at $'+@model.get('cost')+".00"
-    next = @model.get('nextOccurrence')
-    startTime = moment(next.start).utc().format('h:mm a')
-    endTime = moment(next.end).utc().format('h:mm a')
-    if endTime > startTime
-      td.time = "#{startTime} to #{endTime}"
+    next = @model.nextOccurrence(moment())
+    startTime = moment(next).utc()
+    endTime = moment(@model.nextOccurrenceEnd(moment())).utc()
+    console.log startTime
+    console.log endTime
+    if endTime?.isAfter(startTime)
+      td.time = "#{moment(startTime).utc().format('h:mm a')} to #{moment(endTime).utc().format('h:mm a')}"
     else
       endTime = ''
       td.time= "#{startTime}"
     fixed = []
     for x in @model.get('fixedOccurrences')
-      fixed.push "#{moment(x.start).utc().format('MM/DD/YYYY')} from #{startTime} to #{endTime}"
+      fixed.push "#{moment(x.start).utc().format('MM/DD/YYYY')} from #{startTime.format('h:mm a')} to #{endTime.format('h:mm a')}"
     td.fixed = fixed
     if td.business?.contactPhone?.length >0
       td.showPhone=true
