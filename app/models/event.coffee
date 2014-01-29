@@ -19,7 +19,7 @@ module.exports = class Event extends Model
         return moment.utc(@get('nextOccurrence').start)
     else
       return moment.utc(@get('nextOccurrence').start)
-      
+
   nextOccurrenceEnd: (afterMoment) ->
     if afterMoment
       occ = _.find @get('occurrences'), (item)->
