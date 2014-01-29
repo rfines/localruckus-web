@@ -64,8 +64,11 @@ module.exports = class EventSearch extends View
     @$el.find('input[name=near]').val('')
     @$el.find('input[name=tags]').val('')
     @$el.find('.date-range').val('0')
-    window.location.reload(false)
-
+    l = window.location.href
+    if l.indexOf('/#') != -1
+      parts = l.indexOf('/#')
+      l = l.substr(0,parts)
+    window.location.href = l
   updateAddress: (addr) ->
     @$el.find('input[name=near]').val(addr)              
 
@@ -106,19 +109,11 @@ module.exports = class EventSearch extends View
 
   getTags:(tag)->
     url = '/api/eventTag'
-    $.ajax
-      url: url
-      method: "GET"
-      success: (response) ->
-        sortByKey response, 'text'
-        _.each response, (item, index, list)=>
-          if item.slug is tag
-            $('.tag_chosen').append("<option value='"+item.slug+"' selected=true>"+item.text+"</option>")
-          else
-            $('.tag_chosen').append("<option value='"+item.slug+"'>"+item.text+"</option>")
-        $(".chosen-select.tag_chosen").chosen({"no_results_text": "Oops, nothing found!","allow_single_deselect": true, width:"100%"})
-      error: (error) ->
-        alert error
+    $(".chosen-select.tag_chosen").chosen({"no_results_text": "Oops, nothing found!","allow_single_deselect": true, width:"100%"})
+    if tag
+      tagOpt = {}
+      $('.chosen-select.tag_chosen').val(tag)
+      $('.chosen-select.tag_chosen').trigger("chosen:updated")
         
   sortByKey = (array, key) ->
     array.sort (a, b) ->
