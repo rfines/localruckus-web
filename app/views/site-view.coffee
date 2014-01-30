@@ -10,7 +10,13 @@ module.exports = class SiteView extends View
     main: '#main'
     footer: '#footer'
   template: template
-
+  initialize:(options)=>
+    super(options)
+    l = window.location.href
+    if l.indexOf('/sthash.') != -1
+      i = l.indexOf('/sthash.')
+      r = l.substr(0, i)
+      window.location.href = r
   events: 
     'submit form.contactForm' : 'contact'
 
