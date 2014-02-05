@@ -29,7 +29,6 @@ module.exports = class BusinessDetail extends View
             @events
             @render()
             @getOwners (err, owner)=>
-              console.log owner
               if err
                 console.log err
                 @$el.find(".claimBusiness").show()
