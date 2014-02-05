@@ -9,9 +9,10 @@
     </div>
     <div class="row">
       <div class="col-md-9 businessInfo detailSidebar">
-        <p class="businessName">{{name}}</p>
+        <h5 class="businessName" style="color:#fff;">{{name}}</h5>
+	
         <hr />
-          <dl>
+          <p><dl>
             {{#if contactName}}
               <dt>Contact Name</dt>
               <dd>{{contactName}}</dd>
@@ -27,7 +28,8 @@
             {{#if website}}
               <dt>Website</dt>
               <dd><a href="{{website}}" target="_blank">{{website}}</a></dd>
-            {{/if}}            
+            {{/if}}      
+				    
             {{#if hasSocialMediaLinks}}
               <dt>Social Media</dt>
               <dd class="hasSocialMediaLinks">
@@ -43,13 +45,17 @@
               {{/if}}                        
               </dd>
             {{/if}}
-          </dl>        
+          </dl> 	<div class="claim-business">
+	          <button type="button" class="btn btn-default btn-block claimBusiness" data-toggle="modal" data-target="#claim-modal"><i class="glyphicon glyphicon-star-empty
+				"></i>&nbsp;Claim This Business Profile</button>
+	        </div>   </p>    
       </div>
     </div>     
   </div>
   <div class="col-md-7 rightCol">
     <div class="row">
       <h2>{{name}}</h2>
+		
     </div>
     <div class="details">
       <ul id="businessTab" class="nav nav-tabs">
@@ -74,9 +80,7 @@
               <div class="map" id="map_{{_id}}" style="height:149px;width:265px"></div>
             </div>
             <div class="col-md-7">
-              <div class="pull-right claim-business">
-                <button type="button" class="btn btn-success claimBusiness" data-toggle="modal" data-target="#claim-modal">Claim this business</button>
-              </div>
+
               <dl>
                 <dd>{{{description}}}</dd>
                 <dt>More Info</dt>
@@ -93,9 +97,9 @@
         </div>
         <div class="tab-pane fade" id="events">
           <div class="row">
-            <div class="container">
+           
               <div class="row eventGallery"></div>
-            </div>
+
           </div>
         </div>
       </div>
