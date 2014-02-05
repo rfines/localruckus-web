@@ -67,16 +67,18 @@ module.exports = class EventDetail extends View
     next = @model.nextOccurrence(moment())
     startTime = moment(next).utc()
     endTime = moment(@model.nextOccurrenceEnd(moment())).utc()
-    console.log startTime
-    console.log endTime
-    if endTime?.isAfter(startTime)
+    if endTime and endTime?.isAfter(startTime)
       td.time = "#{moment(startTime).utc().format('h:mm a')} to #{moment(endTime).utc().format('h:mm a')}"
     else
       endTime = ''
       td.time= "#{startTime}"
     fixed = []
-    for x in @model.get('fixedOccurrences')
-      fixed.push "#{moment(x.start).utc().format('MM/DD/YYYY')} from #{startTime.format('h:mm a')} to #{endTime.format('h:mm a')}"
+    if @model.get('fixedOccurrences')?.length > 0
+      for x in @model.get('fixedOccurrences')
+        if endTime
+          fixed.push "#{moment(x.start).format('MM/DD/YYYY')} from #{startTime.format('h:mm a')} to #{endTime.format('h:mm a')}"
+        else
+          fixed.push "#{moment(x.start).format('MM/DD/YYYY')} from #{startTime.format('h:mm a')}"
     td.fixed = fixed
     if td.business?.contactPhone?.length >0
       td.showPhone=true
@@ -105,18 +107,17 @@ module.exports = class EventDetail extends View
       gCal = @googleCalUrl()
       window.open(gCal,'_blank')
 
-  getTagText:(tags, allTags)=>
+  getTagText:(tags, allTags, cb)=>
     tagText = []
     if allTags and allTags.length >0 
       _.each tags, (item)=>
         s= {}
         s = item
-        _.each allTags, (tag)=>
-          temp = {}
-          temp = tag
-          if temp.slug == s and _.indexOf(tagText, temp.text)
-            tagText.push temp.text
-      return tagText
+        temp =_.find allTags, (tag)=>
+          return tag.slug == s
+        if temp and tagText.indexOf(temp.text) is -1
+          tagText.push temp.text
+      cb tagText
   googleCalUrl:()=>
     name = encodeURIComponent(@model.get('name'))
     calName = "Local Ruckus: #{name}"
@@ -133,13 +134,15 @@ module.exports = class EventDetail extends View
       url: url
       method: "GET"
       success: (response) =>
-        textArr = @getTagText(@model.get('tags'), response)
-        joined =""
-        if textArr?.length > 1
-          joined = textArr.join(", ")
-        else
-          joined = textArr.toString()
-        $('.tags_dd').text(joined)
+        @getTagText(@model.get('tags'), response, (arr)=>
+          textArr = arr
+          if textArr?.length > 1
+            joined = textArr.join(", ")
+            $('.tags_dd').html(joined)
+          else
+            joined = textArr.join(", ")
+            $('.tags_dd').html(joined)
+        )
       error: (error) =>
         console.log error
   toTitleCase = (str) ->
