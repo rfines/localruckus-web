@@ -17,11 +17,6 @@ module.exports = class HomePageView extends View
   initialize: (@options) ->
     @options = @options || {}
     super(options)
-    l = window.location.href
-    if l.indexOf('/sthash.') != -1
-      i = l.indexOf('/sthash.')
-      r = l.substr(0, i)
-      window.location.href = r
 
   attach: ->
     super()

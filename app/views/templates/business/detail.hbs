@@ -74,6 +74,9 @@
               <div class="map" id="map_{{_id}}" style="height:149px;width:265px"></div>
             </div>
             <div class="col-md-7">
+              <div class="pull-right claim-business">
+                <button type="button" class="btn btn-success claimBusiness" data-toggle="modal" data-target="#claim-modal">Claim this business</button>
+              </div>
               <dl>
                 <dd>{{{description}}}</dd>
                 <dt>More Info</dt>
@@ -95,6 +98,23 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="claim-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Claim this Business</h4>
+      </div>
+      <div class="modal-body">
+        To claim this business and manage your own events please email <a target="_blank" href="mailto:info@localruckus.com">info@localruckus.com</a>.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
       </div>
     </div>
   </div>
