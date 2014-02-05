@@ -60,10 +60,13 @@ module.exports = class EventDetail extends View
     if @host
       td.hostName = @host.get('name')
       td.hostAddress = @host.get("location").address
-    if not td.cost or td.cost is 0
+    if not @model.has('cost')
+      td.cost=""
+    else if td.cost is 0
       td.cost = 'FREE'
     else
       td.cost = 'Starting at $'+@model.get('cost')+".00"
+      
     next = @model.nextOccurrence(moment())
     startTime = moment(next).utc()
     endTime = moment(@model.nextOccurrenceEnd(moment())).utc()
@@ -89,7 +92,12 @@ module.exports = class EventDetail extends View
     else
       td.showMoreInfo = false
     td
-    
+  attach:()=>
+    super()
+    if not @model.has('cost')
+      console.log "trying to hide the cost/tickets"
+      @$el.find("#cost_dt").hide()
+      @$el.find("#cost_dd").hide()
   events:
     "click .addToCalendar": "addToCalendar"
     "click .closeModal":"closeModal"

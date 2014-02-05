@@ -62,5 +62,21 @@ app.get "/*", (req, res) ->
     googleAnalytics : CONFIG.googleAnalytics
   res.render "index.hbs", data
 
+app.post "/lrApi/transferRequest", (req, res) ->
+  m = new Mandrill()
+  sendOptions = 
+    message: 
+      text : "Name: #{req.body.name}\n\nBusiness Name:#{req.body.businessName}\n\nBusiness Address:#{req.body.address}\n\nAdditional Info: #{req.body.text}"
+      subject: req.body.subject
+      from_email : req.body.email
+      to: [{email:"info@localruckus.com"}]
+  success = ->
+    res.send 200, {status: 'SUCCESS'}
+    res.end()
+  error = (err) ->
+    res.send 500, err
+    res.end()
+  console.log 'ready to send'
+  m.messages.send sendOptions, success, error
 app.listen(port);
 console.log "Started LocalRuckus - http://localhost:#{port}"

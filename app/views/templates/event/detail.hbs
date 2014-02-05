@@ -70,8 +70,8 @@
                 {{/if}}
                 <dt class="addToCalendar"></dt>
                 <dd><button class="btn btn-default" type="button" data-toggle="modal" data-target="#calModal" data-trigger="click">Add to calendar</button></dd>
-                <dt>Cost / Tickets</dt>
-                <dd>{{cost}} {{#if ticketUrl}}- <a href="{{ticketUrl}}">Tickets</a>{{/if}}</dd>
+                <dt id="cost_dt">Cost / Tickets</dt>
+                <dd id="cost_dd">{{cost}} {{#if ticketUrl}}- <a href="{{ticketUrl}}">Tickets</a>{{/if}}</dd>
                 <dt>Map & Directions</dt>
                 <dd>
                   <p>{{location.address}}</p>
