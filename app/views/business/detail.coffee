@@ -44,7 +44,7 @@ module.exports = class BusinessDetail extends View
           model : x
           collection : @events
           container: @$el.find('.eventGallery')
-          className: 'col-lg-6 col-md-4 col-sm-12 col-xs-12 eventItem'
+          className: 'col-lg-4 col-md-6 col-sm-6 col-xs-12 eventItem'
         )
   getOwners:(cb)=>
     url = "/api/business/#{@model.id}/user"
