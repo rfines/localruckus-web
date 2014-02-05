@@ -2,16 +2,17 @@
   <div class="col-md-3 col-md-offset-1 leftCol">
     {{#if i}}
     <div class="row detailImage">
-      <img src="{{i}}" />
+      <img class="img-responsive hidden-xs" src="{{i}}" />
     </div>
     {{/if}}
-    <div class="row shareIcons">
+    <div class="row shareIcons hidden-xs">
     </div>
     <div class="row">
       <div class="col-md-9 businessInfo detailSidebar">
-        <p class="businessName">{{name}}</p>
+        <h5 class="businessName" style="color:#fff;">{{name}}</h5>
+	
         <hr />
-          <dl>
+          <p><dl>
             {{#if contactName}}
               <dt>Contact Name</dt>
               <dd>{{contactName}}</dd>
@@ -27,7 +28,8 @@
             {{#if website}}
               <dt>Website</dt>
               <dd><a href="{{website}}" target="_blank">{{website}}</a></dd>
-            {{/if}}            
+            {{/if}}      
+				    
             {{#if hasSocialMediaLinks}}
               <dt>Social Media</dt>
               <dd class="hasSocialMediaLinks">
@@ -43,13 +45,17 @@
               {{/if}}                        
               </dd>
             {{/if}}
-          </dl>        
+          </dl> 	<div class="claim-business">
+	          <button type="button" class="btn btn-default btn-block claimBusiness" data-toggle="modal" data-target="#claim-modal"><i class="glyphicon glyphicon-star-empty
+				"></i>&nbsp;Claim This Business Profile</button>
+	        </div>   </p>    
       </div>
     </div>     
   </div>
   <div class="col-md-7 rightCol">
     <div class="row">
       <h2>{{name}}</h2>
+		
     </div>
     <div class="details">
       <ul id="businessTab" class="nav nav-tabs">
@@ -74,9 +80,7 @@
               <div class="map" id="map_{{_id}}" style="height:149px;width:265px"></div>
             </div>
             <div class="col-md-7">
-              <div class="pull-right claim-business">
-                <button type="button" class="btn btn-success claimBusiness" data-toggle="modal" data-target="#claim-modal">Claim this business</button>
-              </div>
+
               <dl>
                 <dd>{{{description}}}</dd>
                 <dt>More Info</dt>
@@ -93,9 +97,9 @@
         </div>
         <div class="tab-pane fade" id="events">
           <div class="row">
-            <div class="container">
+           
               <div class="row eventGallery"></div>
-            </div>
+
           </div>
         </div>
       </div>
@@ -108,13 +112,45 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Claim this Business</h4>
+        <h4 class="modal-title" id="myModalLabel">Claim the {{name}} Business Profile</h4>
       </div>
-      <div class="modal-body">
-        To claim this business and manage your own events please email <a target="_blank" href="mailto:info@localruckus.com">info@localruckus.com</a>.
+      <div class="modal-body row">
+	<div class="col-md-12">
+	<ul>
+	<li><i class="glyphicon glyphicon-check"></i>&nbsp;Local Ruckus is powered by <a href="http://www.hoopla.io/" target="blank">Hoopla.io</a></li>
+	<li><i class="glyphicon glyphicon-check"></i>&nbsp;Create an account for FREE until Q2 2014!...Here's our <a href="http://www.hoopla.io/#Pricing" target="blank">anticipated pricing</a></li>
+	<li><i class="glyphicon glyphicon-check"></i>&nbsp;Manage social media promotions for your events from one place </li>
+	<li><i class="glyphicon glyphicon-check"></i>&nbsp;Update your website automagically with our website calendar widgets</li>
+	<li><i class="glyphicon glyphicon-check"></i>&nbsp;Automatically syndicate your events to publishers in the Hoopla.io Network, including Local Ruckus </li>
+	</ul>
+	<form role=" class="form-inline" class="contactForm" method="POST">
+      <input type="text" name="subject" class="hide" value="Suggest Business or Event Submission from LocalRuckus.com" />
+      <div class="control-group">
+        <label for="name">Your Name <span class="required">*</span></label>
+        <input type="text" name="name" class="form-control" />
+      </div>
+	<div class="control-group">
+        <label for="name">Your Business</label>
+        <input type="text" name="name" class="form-control" value="{{name}}"  disabled/>
+      </div>
+      <div class="control-group">
+        <label for="email">Your Email Address <span class="required">*</span></label>
+        <input type="email" name="email" class="form-control" />
+      </div>             
+      <div class="control-group">
+        <label for="name">Additional info <span class="required">*</span></label>
+        <textarea name="text" class="form-control" />
+      </div><div class="row"><p>&nbsp;	</p>
+		              </div>
+      <div class="pull-right"><p>&nbsp;<button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">no thank you</button>&nbsp;<button type="submit" class="btn btn-info">Claim Business</button>
+</p>
+      </div>
+    </form>
+	</div>
+       
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+       
       </div>
     </div>
   </div>
