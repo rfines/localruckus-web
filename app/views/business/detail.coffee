@@ -9,7 +9,7 @@ module.exports = class BusinessDetail extends View
   autoRender: false
   className: 'business-detail'
   template: template
-
+  owner: {}
   initialize: ->
     super
     @events = new Collection()
@@ -28,6 +28,13 @@ module.exports = class BusinessDetail extends View
           success: =>
             @events
             @render()
+            @getOwners (err, owner)=>
+              console.log owner
+              if err
+                console.log err
+                @$el.find(".claimBusiness").show()
+              else if owner and owner.length > 0
+                @$el.find(".claimBusiness").hide()
 
   attach: =>
     super
@@ -39,3 +46,13 @@ module.exports = class BusinessDetail extends View
           container: @$el.find('.eventGallery')
           className: 'col-lg-6 col-md-4 col-sm-12 col-xs-12 eventItem'
         )
+  getOwners:(cb)=>
+    url = "/api/business/#{@model.id}/user"
+    $.ajax
+      type: 'GET'
+      url: url
+      success: (data, textStatus, jqXHR)=>
+        @owner = data
+        cb null, data
+      error:(jqXHR, textStatus, errorThrown)=>
+        cb errorThrown,null
