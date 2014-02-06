@@ -72,6 +72,10 @@ module.exports = class BusinessDetail extends View
         data: {name : name.val(), businessName:business.val(), email: email.val(), text : text.val(), subject: subject, address: address.val()}
         dataType: 'json'   
         success: (data, status, xhr) ->
+          $('#claim-success').slideDown()
+          setTimeout ( ->
+            $("#claim-success").slideUp()
+          ), 5000
           $('#claim-modal').modal('hide')
     else
       name.parent().addClass('has-error') if not name.val()
