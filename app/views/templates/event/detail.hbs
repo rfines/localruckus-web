@@ -59,8 +59,8 @@
             <div class="col-md-5">
               <dl>
                 <dt>Date & Time</dt>
-                {{#if scheduleText}}
-                <dd>{{scheduleText}} from {{time}}</dd>
+                {{#if nextOccurrence}}
+                <dd>{{nextOccurrence}} from {{time}}</dd>
                 {{else}}
                 <dd>
                 {{#each fixed}}
