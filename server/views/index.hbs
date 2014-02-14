@@ -39,19 +39,7 @@
         $.cloudinary.config({ cloud_name: '{{cloudinary.cloudName}}'});
         window.baseUrl = "{{baseUrl}}";
       </script>
-      <script type="text/javascript">
-        $(function() { $.smartbanner({
-          title:"Local Ruckus",
-          author: "Hoopla.io",
-          price:"FREE",
-          appStoreLanguage: 'us',
-          inGooglePlay: 'In Google Play',
-          button: 'Get the App',
-          scale: 'auto',
-          daysHidden: 14,
-          daysReminder: 25
-        }); } );
-      </script>
+      
       <script>
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', '{{googleAnalytics.code}}']);
