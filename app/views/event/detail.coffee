@@ -92,6 +92,7 @@ module.exports = class EventDetail extends View
       td.showMoreInfo = true
     else
       td.showMoreInfo = false
+    console.log @model.get('nextOccurrence')
     td
   attach:()=>
     super()

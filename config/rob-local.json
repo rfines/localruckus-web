@@ -1,10 +1,10 @@
 {
   "development" : true,
-  "hooplaUrl" : "http://localhost:3000/",
-  "apiUrl" : "http://localhost:8080",
-  "baseUrl":"http://localhost:3000/",
+  "hooplaUrl" : "https://dashboard.hoopla.io/",
+  "baseUrl":"http://www.localruckus.com/",
+  "apiUrl" : "http://api.hoopla.io/",
   "cloudinary" : {
-    "cloudName" : "robs-cloud"
+    "cloudName" : "hu3y2dnvf"
   },
   "robotsFile" : "stage.robots.hbs"
 }
