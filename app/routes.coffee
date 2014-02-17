@@ -10,4 +10,5 @@ module.exports = (match) ->
   match 'business/:id', 'business#detail'
   match 'terms', 'static#terms'
   match 'privacy', 'static#privacy'
+  match 'apps', 'static#apps'
   match '*anything', 'error#notFound'

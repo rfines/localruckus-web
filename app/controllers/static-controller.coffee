@@ -8,4 +8,7 @@ module.exports = class StaticController extends Controller
     @view = new StaticView({region: 'main', template: require('views/templates/terms')})
 
   privacy: ->
-    @view = new StaticView({region: 'main', template: require('views/templates/privacy')})    
+    @view = new StaticView({region: 'main', template: require('views/templates/privacy')})   
+    
+  apps: ->
+    @view = new StaticView({region: 'main', template: require('views/templates/apps')}) 
