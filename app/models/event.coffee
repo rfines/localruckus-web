@@ -4,7 +4,14 @@ ImageUtils = require 'utils/imageUtils'
 
 module.exports = class Event extends Model
   
-  urlRoot : "/api/event"
+  url: ->
+    console.log 'in the url function'
+    if @isNew()
+      return "/api/event"
+    else
+      console.log 'else case'
+      console.log 'id is ' + @id
+      return "/api/event/#{@id}"  
 
   nextOccurrence: (afterMoment) ->
     if afterMoment
