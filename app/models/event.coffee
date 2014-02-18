@@ -5,8 +5,6 @@ ImageUtils = require 'utils/imageUtils'
 module.exports = class Event extends Model
   
   url: ->
-    console.log 'in the url function'
-    console.log 'id is ' + @id
     return "/api/event/#{@id}"  
 
   nextOccurrence: (afterMoment) ->

@@ -10,7 +10,6 @@ module.exports = class EventDetail extends View
   eventTags:[]
 
   loadAndRender: =>
-    console.log 'Load and render'
     @model.fetch
       success: =>
         if @model.get('business') and @model.get('host') and (@model.get('host') != @model.get('business'))
@@ -93,12 +92,10 @@ module.exports = class EventDetail extends View
       td.showMoreInfo = true
     else
       td.showMoreInfo = false
-    console.log @model.get('nextOccurrence')
     td
   attach:()=>
     super()
     if not @model.has('cost')
-      console.log "trying to hide the cost/tickets"
       @$el.find("#cost_dt").hide()
       @$el.find("#cost_dd").hide()
   events:

@@ -3,7 +3,8 @@ ImageUtils = require 'utils/imageUtils'
 
 module.exports = class Business extends Model
 
-  urlRoot : "/api/business"
+  url: ->
+    return "/api/business/#{@id}"
   
   imageUrl: (options) ->
     media = @get('media')
