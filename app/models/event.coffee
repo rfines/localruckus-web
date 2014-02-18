@@ -7,12 +7,7 @@ module.exports = class Event extends Model
   url: ->
     console.log 'in the url function'
     console.log 'id is ' + @id
-    if @isNew()
-      return "/api/event"
-    else
-      console.log 'else case'
-      console.log 'id is ' + @id
-      return "/api/event/#{@id}"  
+    return "/api/event/#{@id}"  
 
   nextOccurrence: (afterMoment) ->
     if afterMoment
