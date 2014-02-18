@@ -6,6 +6,7 @@ module.exports = class Event extends Model
   
   url: ->
     console.log 'in the url function'
+    console.log 'id is ' + @id
     if @isNew()
       return "/api/event"
     else
