@@ -92,12 +92,10 @@ module.exports = class EventDetail extends View
       td.showMoreInfo = true
     else
       td.showMoreInfo = false
-    console.log @model.get('nextOccurrence')
     td
   attach:()=>
     super()
     if not @model.has('cost')
-      console.log "trying to hide the cost/tickets"
       @$el.find("#cost_dt").hide()
       @$el.find("#cost_dd").hide()
   events:

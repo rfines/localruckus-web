@@ -4,7 +4,8 @@ ImageUtils = require 'utils/imageUtils'
 
 module.exports = class Event extends Model
   
-  urlRoot : "/api/event"
+  url: ->
+    return "/api/event/#{@id}"  
 
   nextOccurrence: (afterMoment) ->
     if afterMoment
