@@ -6,6 +6,7 @@ module.exports = class EventController extends Controller
   detail: (params) ->
     event = new Event()
     event.id = params.id
+    console.log 'Event id is: ' + params.id
     @view = new EventDetail
       region : 'main'
       model : event

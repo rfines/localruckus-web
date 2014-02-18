@@ -10,6 +10,7 @@ module.exports = class EventDetail extends View
   eventTags:[]
 
   loadAndRender: =>
+    console.log 'Load and render'
     @model.fetch
       success: =>
         if @model.get('business') and @model.get('host') and (@model.get('host') != @model.get('business'))
